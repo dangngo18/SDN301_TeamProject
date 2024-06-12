@@ -102,14 +102,14 @@
     cursor: pointer;
 }
 
-.HeaderProfileAndBell{
+.HeaderProfileAndBell {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    
+
 }
 
-.HeaderProfile{
+.HeaderProfile {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,11 +118,199 @@
     width: 60px;
     height: 60px;
     overflow: hidden;
-    & .ProfileAvatar{
+
+    & .ProfileAvatar {
         width: 80%;
         height: 80%;
         object-fit: cover;
         border-radius: 50%;
         border: 1px solid;
+    }
+}
+
+/* Footer style */
+
+.Footercontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 80px;
+}
+
+.Footer1 {
+    display: flex;
+    padding: 40px 0px 56px 0px;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.Footer_list1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 80px;
+    flex: 1;
+
+    .Footer_item {
+        h3 {
+            color: var(--Black-color);
+            font-family: 'Roboto';
+            font-size: 16px;
+            font-style: normal;
+            font-weight: bolder;
+            line-height: normal;
+        }
+
+        .UL {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 12px;
+
+            li {
+                list-style-type: none;
+                color: var(--Gray-text-color);
+                font-family: 'Roboto';
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: normal;
+
+                &:hover {
+                    font-weight: bolder;
+                    cursor: pointer;
+                }
+            }
+        }
+
+
+    }
+}
+
+.Footer_subcribe {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 16px;
+
+    .Footer_subcribe_header {
+        color: var(--Black-color);
+        font-family: 'Roboto';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: bolder;
+        line-height: normal;
+    }
+
+    .Footer_subcribe_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+
+        .Subcribe_header {
+            color: var(--Gray-text-color);
+            font-family: 'Roboto';
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+        }
+
+        .Subcribe_footer {
+            color: var(--Gray-text-color);
+            font-family: 'Roboto';
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+        }
+
+        .Subcribe_input {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+
+            .Subcribe_input_box {
+                display: flex;
+                padding: 10px 16px;
+                align-items: center;
+                flex: 1;
+                border-radius: 5px;
+                border: 1px solid var(--border-color, #D9D9D9);
+
+                &::placeholder {
+                    color: #6A6A6A;
+                    font-size: 16px;
+                }
+
+            }
+
+            .Subcribe_input_button {
+                display: flex;
+                padding: 12px 20px;
+                align-items: center;
+                border-radius: 10px;
+                border: 1px solid var(--Black-color);
+                background: var(--Black-color);
+                color: var(--Background-color);
+                font-family: 'Roboto';
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.Footer2 {
+    display: flex;
+    padding: 40px 0px 56px 0px;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.Footer_list2 {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+
+    & .Item_Icon {
+        color: #000;
+        font-family: 'Roboto';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        cursor: pointer;
+    }
+
+    & .Item_Icon:hover {
+        font-weight: bolder;
+        cursor: pointer;
+    }
+}
+
+
+
+.Footer_icon_List {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+
+    svg {
+        width: 24px;
+        height: 24px;
     }
 }
