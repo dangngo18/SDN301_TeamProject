@@ -1,5 +1,7 @@
 import React from 'react'
-import {Icon} from '../assets/icon/icons';
+import { Icon } from '../assets/icon/icons';
+import { Link } from 'react-router-dom';
+
 export function Header() {
   const [search, setSearch] = React.useState('');
   const Menu = ["Home", "Style", "Shop"]
@@ -24,7 +26,13 @@ export function Header() {
         <nav className='nav'>
           <ul className='ListMenu'>
             {Menu.map((item, index) => (
-              <li className='Menu' key={'item' + index}>{item}</li>
+              <li className='Menu' key={'item' + index}>
+                {item === 'Home'
+                  ?
+                  <Link to={'/'}>{item}</Link>
+                  : 
+                  <Link to={'/' + item} >{item}</Link>}
+              </li>
             ))}
           </ul>
         </nav>
@@ -58,7 +66,13 @@ export function HeaderAfterLogin() {
         <nav className='nav'>
           <ul className='ListMenu'>
             {Menu.map((item, index) => (
-              <li className='Menu' key={'item' + index}>{item}</li>
+              <li className='Menu' key={'item' + index}>
+                {item === 'Home'
+                  ?
+                  <Link to={'/'}>{item}</Link>
+                  : 
+                  <Link to={'/' + item} >{item}</Link>}
+              </li>
             ))}
           </ul>
         </nav>
@@ -86,7 +100,13 @@ export function HeaderforStudio() {
           <nav className='nav'>
             <ul className='ListMenu'>
               {Menu.map((item, index) => (
-                <li className='Menu' key={'item' + index}>{item}</li>
+                <li className='Menu' key={'item' + index}>
+                  {item === 'Home'
+                  ?
+                  <Link to={'/'}>{item}</Link>
+                  : 
+                  <Link to={'/' + item} >{item}</Link>}
+                </li>
               ))}
             </ul>
           </nav>
