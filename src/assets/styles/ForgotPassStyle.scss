@@ -1,0 +1,156 @@
+@import url("../../assets/styles/stylesall.scss");
+
+// Find Your Email Page
+.ForgotGroup_Container {
+    display: flex;
+    padding: 60px 0px 160px 0px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+}
+
+.ForgotGroup_FormContainer {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    align-self: stretch;
+    margin: 0 auto;
+}
+
+.ForgotGroup_Form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+
+    .ForgotGroup_FormTitle {
+        display: flex;
+        padding-bottom: 41px;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 5px;
+        align-self: stretch;
+        color: var(--Black-color);
+        text-align: center;
+        font-family: 'Roboto';
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        border-bottom: 1px solid;
+    }
+
+    .ForgotGroup_FormDesciption {
+        display: flex;
+        padding: 40px 0px 30px 0px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        align-self: stretch;
+
+        .ForgotGroup_FormDesciption_Text {
+            align-self: stretch;
+            color: var(--Black-color);
+            font-family: 'Roboto';
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 18px;
+            text-wrap: wrap;
+        }
+    }
+
+    .ForgotGroup_FormInput {
+        display: flex;
+        padding: 10px 0px 14px 0px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        align-self: stretch;
+
+        .ForgotGroup_FormInputTitle {
+            align-self: stretch;
+            color: var(--Black-color);
+            font-family: Roboto;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 18px;
+            /* 138.462% */
+        }
+
+        .ForgotGroup_FormInputBox {
+            display: flex;
+            padding: 6px 30px 6px 0px;
+            align-items: center;
+            align-self: stretch;
+            border-bottom: 1px solid var(--border-color, #D9D9D9);
+
+            input {
+                width: 100%;
+            }
+
+            ::placeholder {
+                color: var(--Gray-text-color);
+                font-family: Roboto;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 22px;
+                /* 146.667% */
+            }
+        }
+    }
+}
+
+.ForgotGroup_FormBtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 10px;
+    border: 1px solid var(--border-color, #D9D9D9);
+
+    .ForgotGroup_FormBtn_Disable {
+        display: flex;
+        padding: 15px 0px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 10px;
+        background: #DDD;
+        color: var(--Background-color, #FFF);
+        font-family: 'Roboto';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 22px;
+        transition: ease-in-out 0.3s;
+        /* 137.5% */
+    }
+
+    .ForgotGroup_FormBtn_Active {
+        display: flex;
+        padding: 15px 0px;
+        flex-direction: column;
+        background: var(--Main-color);
+        justify-content: center;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 10px;
+        color: var(--Background-color, #989595);
+        font-family: 'Roboto';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 22px;
+        transition: ease-in-out 0.3s;
+        /* 137.5% */
+    }
+}
