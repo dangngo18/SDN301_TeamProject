@@ -1,5 +1,5 @@
 import React from 'react'
-import { Instagram, FaceBook, Twitter } from '../assets/icon/icons'
+import {Icon} from '../assets/icon/icons'
 import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 export default function Footer() {
   const [submitEmail, setSubmitEmail] = React.useState("");
@@ -20,7 +20,7 @@ export default function Footer() {
     fontSize: "30px",
   }
   return (
-    <div className='Footercontainer'>
+    <div className='Footercontainer container'>
       <div className='Footer1'>
         <div className='Footer_list1'>
           {footerlist.map((item, index) => (
@@ -43,7 +43,7 @@ export default function Footer() {
               <input placeholder='Enter your email' className='Subcribe_input_box' type="text" value={submitEmail} onChange={e => (setSubmitEmail(e.target.value))} />
               <button className='Subcribe_input_button'>Sign Up</button>
             </div>
-            <div className='Subcribe_footer'>Opt out at any time by clicking Unsubscribe at the bottom of any of our emails. By signing up you agree with our <span>Terms & Conditions</span><span>Privacy</span>, and <span>Cookie Policy</span></div>
+            <div className='Subcribe_footer'>Opt out at any time by clicking Unsubscribe at the bottom of any of our emails. By signing up you agree with our <span>Terms & Conditions</span> <span>Privacy</span>, and <span>Cookie Policy</span></div>
           </div>
         </div>
       </div>
@@ -57,13 +57,13 @@ export default function Footer() {
         </div >
         <div className='Footer_icon_List'>
           <div >
-            <Instagram />
+            {Icon.Instagram}
           </div>
           <div >
-            <FaceBook />
+            {Icon.FaceBook}
           </div>
           <div >
-            <Twitter />
+            {Icon.Twitter}
           </div>
         </div>
       </div>
