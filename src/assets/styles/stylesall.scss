@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
     --Main-color: #FF385C;
     --Background-color: #FFFFFF;
@@ -7,29 +9,94 @@
     --Border-color: #D9D9D9;
     --Background-color-2: #F5F5F5;
     --Text-link-color: #297DCB;
+    --White-text: #FFFFFF;
 
     --Max-container: 1215px;
+    --Header-height: 100px;
 }
 
+/* ================================= Base style =============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
 
-/* Header style */
+svg {
+    width: 24px;
+    height: 24px;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+body {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--Gray-text-color);
+    background-color: var(--Background-color);
+}
+
+/* ============================= Reuse Style =============================*/
+.container {
+    max-width: var(--Max-container);
+    margin: 0 auto;
+}
+
+.section {
+    padding: 0 80px;
+}
+
+.btn_style1 {
+    width: 100%;
+    padding: 10px 16px;
+    background: var(--Main-color);
+    color: var(--White-text);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    border-radius: 10px;
+    border: 1px solid var(--Main-color);
+    cursor: pointer;
+}
+
+/*===================================== Header style =============================*/
 
 .HeaderBeforeLogin {
     display: flex;
-    padding: 10px 80px;
+    padding: 9px 80px 10px;
     justify-content: space-between;
     align-items: center;
 }
 
 .HeaderSearchBox {
     display: flex;
-    padding: 2px 6px 2px 38px;
+    padding: 6px 6px 6px 28px;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     border-radius: 36px;
     border: 1px solid #DDD;
     background: #FFF;
-    width: 50%;
+    flex: 1;
+    max-width: 881px;
+    gap: 28px;
 
     & .SearchBox {
 
@@ -38,61 +105,87 @@
         background: #FFF;
         font-size: 18px;
         color: #6A6A6A;
+        flex: 1;
 
         &::placeholder {
             color: #6A6A6A;
-            font-size: 16px;
+            font-size: 18px;
         }
 
 
     }
 
     & .SearchButton {
-        background-color: var(--Black-color);
-        color: #F5F5F5;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
+        line-height: 100%;
+
+        & span {
+            display: block;
+            background-color: var(--Black-color);
+            color: var(--Background-color);
+            padding: 15px 16px;
+            border-radius: 50%;
+
+            svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
     }
+}
+
+.HeaderProfileAndLogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .nav {
     display: flex;
-    padding: 16px 24px;
     justify-content: center;
     align-items: center;
 
     & .ListMenu {
-        display: grid;
-        grid-template-columns: repeat(3, 100px);
-        padding: 0;
+        display: flex;
+        padding: 16px 24px;
 
         & .Menu {
+            padding: 10px 16px;
             list-style-type: none;
-            color: var(--Title-color, #161823);
+            color: var(--Gray-text-color);
             font-family: Roboto;
             font-size: 24px;
             font-style: normal;
+            text-align: center;
             font-weight: 500;
             line-height: normal;
             text-transform: uppercase;
+            border-radius: 36px;
+            transition: 0.2s ease-in-out;
+            cursor: pointer;
+
+            &.Active {
+                color: var(--Black-color);
+                font-weight: 600;
+            }
+
+            &:not(.Actice):hover {
+                color: var(--Black-color);
+                background: var(--Background-color-2);
+            }
 
         }
     }
 }
 
 .LoginButton {
-    display: flex;
     padding: 12px 36px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    text-align: center;
     border-radius: 10px;
+    width: fit-content;
     background: var(--Main-color, #FF385C);
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-    color: #FFF;
-    font-family: 'Roboto';
+    color: var(--Background-color);
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -103,47 +196,85 @@
 }
 
 .HeaderProfileAndBell {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
     align-items: center;
-
+    gap: 18px;
 }
 
 .HeaderProfile {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid;
+    border: 1px solid var(--Gray-text-color);
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
     overflow: hidden;
+    padding: 3px;
 
     & .ProfileAvatar {
-        width: 80%;
-        height: 80%;
+        width: 40px;
+        height: 40px;
         object-fit: cover;
         border-radius: 50%;
-        border: 1px solid;
+        cursor: pointer;
     }
 }
 
-/* Footer style */
+/* ================================ AddAPost =======================================*/
+.upload_button {
+    padding-right:14px;
+    button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: var(--Background-color);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        cursor: pointer;
+        border-radius: 10px;
+        border: 1px solid var(--Main-color, #FF385C);
+        background: var(--Background-color, #FFF);
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.20);
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+            background: rgba(255, 56, 92, 0.04);
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        :hover{
+            background: rgba(255, 56, 92, 0.04);
+        }
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
+}
+
+
+
+/*==================================== Footer style ===================================*/
 
 .Footercontainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0px 80px;
 }
 
 .Footer1 {
     display: flex;
     padding: 40px 0px 56px 0px;
     justify-content: center;
-    align-items: center;
-    width: 80%;
+    align-items: flex-start;
+    width: 100%;
 }
 
 .Footer_list1 {
@@ -158,8 +289,9 @@
             color: var(--Black-color);
             font-family: 'Roboto';
             font-size: 16px;
+            margin-bottom: 16px;
             font-style: normal;
-            font-weight: bolder;
+            font-weight: 700;
             line-height: normal;
         }
 
@@ -179,7 +311,7 @@
                 line-height: normal;
 
                 &:hover {
-                    font-weight: bolder;
+                    font-weight: 600;
                     cursor: pointer;
                 }
             }
@@ -195,7 +327,7 @@
     flex: 1;
     gap: 16px;
 
-    .Footer_subcribe_header {
+    & .Footer_subcribe_header {
         color: var(--Black-color);
         font-family: 'Roboto';
         font-size: 16px;
@@ -204,14 +336,14 @@
         line-height: normal;
     }
 
-    .Footer_subcribe_content {
+    & .Footer_subcribe_content {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
         gap: 10px;
 
-        .Subcribe_header {
+        & .Subcribe_header {
             color: var(--Gray-text-color);
             font-family: 'Roboto';
             font-size: 18px;
@@ -220,10 +352,10 @@
             line-height: normal;
         }
 
-        .Subcribe_footer {
+        & .Subcribe_footer {
             color: var(--Gray-text-color);
             font-family: 'Roboto';
-            font-size: 16px;
+            font-size: 13px;
             font-style: normal;
             font-weight: 300;
             line-height: normal;
@@ -231,7 +363,7 @@
 
         .Subcribe_input {
             display: flex;
-            align-items: center;
+            align-items: stretch;
             gap: 8px;
             align-self: stretch;
 
@@ -240,7 +372,8 @@
                 padding: 10px 16px;
                 align-items: center;
                 flex: 1;
-                border-radius: 5px;
+                border-radius: 10px;
+                font-size: 16px;
                 border: 1px solid var(--border-color, #D9D9D9);
 
                 &::placeholder {
@@ -272,14 +405,14 @@
 .Footer2 {
     display: flex;
     padding: 40px 0px 56px 0px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 100%;
 }
 
 .Footer_list2 {
     display: flex;
-    flex: 1;
+    /* flex: 1; */
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
@@ -295,18 +428,16 @@
     }
 
     & .Item_Icon:hover {
-        font-weight: bolder;
+        font-weight: 600;
         cursor: pointer;
     }
 }
 
-
-
 .Footer_icon_List {
     display: flex;
-    flex: 1;
+    /* flex: 1; */
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 20px;
 
     svg {
