@@ -31,7 +31,7 @@ export default function OTP() {
       <div className='ForgotGroup_Container'>
         <div className='ForgotGroup_FormContainer'>
           <div className='ForgotGroup_Form'>
-            <div className='ForgotGroup_FormTitle'>Find Your Email</div>
+            <div className='ForgotGroup_FormTitle'>Forgot Password</div>
             <div className='ForgotGroup_FormDesciption'>
               <div className='ForgotGroup_FormDesciption_Text'>
                 You will receive an OTP send to your email,
