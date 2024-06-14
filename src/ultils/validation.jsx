@@ -22,3 +22,13 @@ export const validateEmail = (email) => {
   }
 }
 
+export const checkOTP = (otp) => {
+  const re = /^\d{6}$/;
+  if (!otp) {
+    return "OTP is required";
+  }
+  if (!re.test(otp)) {
+    return "OTP is not valid. It should be a 6-digit number";
+  }
+}
+

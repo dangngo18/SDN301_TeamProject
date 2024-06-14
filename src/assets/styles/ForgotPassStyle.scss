@@ -154,3 +154,22 @@
         /* 137.5% */
     }
 }
+
+.ForgotGroup_ResendOTP {
+    color: #000;
+    font-family: 'Roboto';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 22px;
+
+    /* 169.231% */
+    span {
+        color: var(--Main-color, #FF385C);
+        font-family: Roboto;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22px;
+    }
+}
