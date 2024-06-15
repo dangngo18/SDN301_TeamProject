@@ -24,7 +24,6 @@ export default function OTP() {
       e.preventDefault()
     }
   }
-  console.log(inputotp)
   return (
     <div>
       <HeaderAfterLogin />

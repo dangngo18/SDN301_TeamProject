@@ -32,3 +32,12 @@ export const checkOTP = (otp) => {
   }
 }
 
+export const validatePassword = (password) => {
+  const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  if (!password) {
+    return "Password is required";
+  }
+  if (!re.test(password)) {
+    return "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one digit";
+  }
+}

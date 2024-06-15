@@ -7,6 +7,7 @@ import Shop from '../pages/Shop'
 import FindEmail from '../pages/ForgotPass/FindEmail'
 import ForgotPass from '../pages/ForgotPass/ForgotPassword'
 import OTP from '../pages/ForgotPass/OTP'
+import ResetPassword from '../pages/ForgotPass/ResetPassword'
 const publicRoutes = [
     {
         path: '/',
@@ -40,6 +41,10 @@ const publicRoutes = [
         path: '/OTP',
         component: <OTP />
     },
+    {
+        path: '/ResetPassword',
+        component: <ResetPassword />
+    }
 ]
 
 export { publicRoutes }
