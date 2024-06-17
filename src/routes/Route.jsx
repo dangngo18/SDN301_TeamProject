@@ -5,6 +5,7 @@ import Home from '../pages/Home'
 import Style from '../pages/Style'
 import Shop from '../pages/Shop'
 import FindEmail from '../pages/ForgotPass/FindEmail'
+import SignUp from '../pages/SignUp'
 const publicRoutes = [
     {
         path: '/',
@@ -29,6 +30,10 @@ const publicRoutes = [
     {
         path: '/FindEmail',
         component: <FindEmail />
+    },
+    {
+        path: '/SignUp',
+        component: <SignUp />
     }
 ]
 

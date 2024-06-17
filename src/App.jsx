@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import AddAPost from './pages/AddAPost';
 import { publicRoutes } from './routes/Route';
 import { Route, Routes, Link } from 'react-router-dom';
+
 function App() {
   const [count, setCount] = useState(0)
 
