@@ -6,6 +6,12 @@ import Style from '../pages/Style'
 import Shop from '../pages/Shop'
 import FindEmail from '../pages/ForgotPass/FindEmail'
 import AddAPost from '../pages/AddAPost'
+import ForgotPass from '../pages/ForgotPass/ForgotPassword'
+import OTP from '../pages/ForgotPass/OTP'
+import ResetPassword from '../pages/ForgotPass/ResetPassword'
+import FinnishedReset from '../pages/ForgotPass/FinnishedReset'
+import NotFound from '../pages/NotFound'
+
 const publicRoutes = [
     {
         path: '/',
@@ -34,6 +40,26 @@ const publicRoutes = [
     {
         path: '/post/upload',
         component: <AddAPost/>
+    },
+    {
+        path: '/ForgotPass',
+        component: <ForgotPass />
+    },
+    {
+        path: '/OTP',
+        component: <OTP />
+    },
+    {
+        path: '/ResetPassword',
+        component: <ResetPassword />
+    },
+    {
+        path: '/FinnishedReset',
+        component: <FinnishedReset />
+    },
+    {
+        path: '/Error',
+        component: <NotFound />
     }
 ]
 

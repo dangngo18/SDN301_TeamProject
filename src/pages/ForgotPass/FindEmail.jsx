@@ -11,7 +11,7 @@ export default function FindEmail() {
 
     const handlSubmit = (e) => {
         const examine = validatePhoneNumber(email)
-        const check = true;
+        let check = true;
         if(examine){
             setError(examine)
             check = false            
