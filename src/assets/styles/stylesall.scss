@@ -3,6 +3,7 @@
 
 :root {
     --Main-color: #FF385C;
+    --Main-color-hover: #f03558;
     --Background-color: #FFFFFF;
     --Black-color: #161823;
     --Gray-text-color: #6A6A6A;
@@ -24,6 +25,15 @@
     font-family: "Roboto", sans-serif;
 }
 
+body {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--Gray-text-color);
+    background-color: var(--Background-color);
+}
+
 svg {
     width: 24px;
     height: 24px;
@@ -40,18 +50,35 @@ a {
     color: inherit;
 }
 
+ul {
+    list-style: none;
+}
+
 input {
     border: none;
     outline: none;
 }
 
-body {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    color: var(--Gray-text-color);
-    background-color: var(--Background-color);
+input[type="button"] {
+    background: none;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+/* ======================================= Header style ======================================= */
+
+.HeaderBeforeLogin {
+    display: flex;
+    padding: 9px 80px 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin-right: 28px;
 }
 
 /* ============================= Reuse Style =============================*/
@@ -75,9 +102,16 @@ body {
     line-height: 22px;
     border-radius: 10px;
     border: 1px solid var(--Main-color);
+    transition: 0.3s ease-in-out;
     cursor: pointer;
-}
 
+    &:hover {
+        background: var(--Main-color-hover);
+    }
+}
+.d-none{
+    display: none !important;
+}
 /*===================================== Header style =============================*/
 
 .HeaderBeforeLogin {

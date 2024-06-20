@@ -5,7 +5,7 @@ import Home from '../pages/Home'
 import Style from '../pages/Style'
 import Shop from '../pages/Shop'
 import FindEmail from '../pages/ForgotPass/FindEmail'
-import AddAPost from '../pages/AddAPost'
+import PostManage from '../pages/PostManage'
 import ForgotPass from '../pages/ForgotPass/ForgotPassword'
 import OTP from '../pages/ForgotPass/OTP'
 import ResetPassword from '../pages/ForgotPass/ResetPassword'
@@ -39,7 +39,7 @@ const publicRoutes = [
     },
     {
         path: '/post/upload',
-        component: <AddAPost/>
+        component: <PostManage/>
     },
     {
         path: '/ForgotPass',
