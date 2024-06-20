@@ -5,6 +5,7 @@ import { HeaderAfterLogin, Header, HeaderforStudio } from './components/Header'
 import Footer from './components/Footer';
 import { publicRoutes } from './routes/Route';
 import { Route, Routes, Link } from 'react-router-dom';
+
 function App() {
   const [count, setCount] = useState(0)
 

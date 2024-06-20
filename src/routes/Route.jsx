@@ -6,6 +6,7 @@ import Style from '../pages/Style'
 import Shop from '../pages/Shop'
 import FindEmail from '../pages/ForgotPass/FindEmail'
 import PostManage from '../pages/PostManage'
+import SignUp from '../pages/SignUp'
 import ForgotPass from '../pages/ForgotPass/ForgotPassword'
 import OTP from '../pages/ForgotPass/OTP'
 import ResetPassword from '../pages/ForgotPass/ResetPassword'
@@ -42,6 +43,10 @@ const publicRoutes = [
         component: <PostManage/>
     },
     {
+        path: '/SignUp',
+        component: <SignUp />
+    },
+      {
         path: '/ForgotPass',
         component: <ForgotPass />
     },
