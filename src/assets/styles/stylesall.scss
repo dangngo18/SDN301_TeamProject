@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
 
 :root {
     --Main-color: #FF385C;
+    --Main-color-hover: #f03558;
     --Background-color: #FFFFFF;
     --Black-color: #161823;
     --Gray-text-color: #6A6A6A;
@@ -23,6 +25,15 @@
     font-family: "Roboto", sans-serif;
 }
 
+body {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--Gray-text-color);
+    background-color: var(--Background-color);
+}
+
 svg {
     width: 24px;
     height: 24px;
@@ -39,18 +50,35 @@ a {
     color: inherit;
 }
 
+ul {
+    list-style: none;
+}
+
 input {
     border: none;
     outline: none;
 }
 
-body {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    color: var(--Gray-text-color);
-    background-color: var(--Background-color);
+input[type="button"] {
+    background: none;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+/* ======================================= Header style ======================================= */
+
+.HeaderBeforeLogin {
+    display: flex;
+    padding: 9px 80px 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin-right: 28px;
 }
 
 /* ============================= Reuse Style =============================*/
@@ -74,9 +102,16 @@ body {
     line-height: 22px;
     border-radius: 10px;
     border: 1px solid var(--Main-color);
+    transition: 0.3s ease-in-out;
     cursor: pointer;
-}
 
+    &:hover {
+        background: var(--Main-color-hover);
+    }
+}
+.d-none{
+    display: none !important;
+}
 /*===================================== Header style =============================*/
 
 .HeaderBeforeLogin {
@@ -86,9 +121,13 @@ body {
     align-items: center;
 }
 
+.logo {
+    margin-right: 28px;
+}
+
 .HeaderSearchBox {
     display: flex;
-    padding: 6px 6px 6px 28px;
+    padding: 5px 5px 5px 28px;
     justify-content: space-between;
     align-items: stretch;
     border-radius: 36px;
@@ -122,7 +161,7 @@ body {
             display: block;
             background-color: var(--Black-color);
             color: var(--Background-color);
-            padding: 15px 16px;
+            padding: 12px 13px;
             border-radius: 50%;
 
             svg {
@@ -186,9 +225,9 @@ body {
     background: var(--Main-color, #FF385C);
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
     color: var(--Background-color);
-    font-size: 18px;
+    font-size: 14px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: normal;
     outline: none;
     border: none;
@@ -199,6 +238,30 @@ body {
     display: flex;
     align-items: center;
     gap: 18px;
+
+    .bell_icon {
+        padding: 0 2px;
+        position: relative;
+
+        .notification_count {
+            position: absolute;
+            background: var(--Main-color);
+            color: var(--White-text);
+            font-family: 'Inter';
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 100%;
+            display: flex;
+            padding: 2px 4px;
+            letter-spacing: 1px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100px;
+            right: -4px;
+            top: -6px;
+        }
+    }
 }
 
 .HeaderProfile {
@@ -209,6 +272,7 @@ body {
     border-radius: 50%;
     overflow: hidden;
     padding: 3px;
+
 
     & .ProfileAvatar {
         width: 40px;
@@ -221,7 +285,8 @@ body {
 
 /* ================================ AddAPost =======================================*/
 .upload_button {
-    padding-right:14px;
+    padding-right: 14px;
+
     button {
         display: flex;
         align-items: center;
@@ -247,10 +312,11 @@ body {
             width: 16px;
             height: 16px;
         }
-        
-        :hover{
+
+        :hover {
             background: rgba(255, 56, 92, 0.04);
         }
+
         svg {
             width: 12px;
             height: 12px;

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import "./assets/styles/stylesall.scss";
 import { publicRoutes } from './routes/Route';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
+
 function App() {
   const [count, setCount] = useState(0)
 
