@@ -26,85 +26,85 @@ export default function Home() {
     const [category, setCategory] = React.useState([
         [
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 1',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 1',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 1',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 1',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 1',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 1',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 1',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 1',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 1',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 1',
             },
         ],
         [
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 2',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 2',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 2',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 2',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 2',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 2',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 2',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 2',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 2',
             },
             {
-                placeholder: './img/Logo.jpg',
+                placeholder: '/img/Logo.jpg',
                 category: 'Category 2',
             },
         ]

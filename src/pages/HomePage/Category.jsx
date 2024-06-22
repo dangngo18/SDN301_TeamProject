@@ -61,7 +61,7 @@ export default function Category({ item }) {
                         {categoryItems.map((items, innerIndex) => (
                             <div className='category-items' key={innerIndex}>
                                 <div className='category-items-img'>
-                                    <img src={items.placeholder} alt={items.category} />
+                                    <img className='categor-img' src="public/img/Logo.jpg" alt={items.category} />
                                 </div>
                                 <div className='category-items-text'>
                                     {items.category}
