@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
+import 'swiper/css';
 import "./assets/styles/stylesall.scss";
 import { HeaderAfterLogin, Header, HeaderforStudio } from './components/Header'
 import Footer from './components/Footer';

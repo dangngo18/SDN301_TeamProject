@@ -5,6 +5,6 @@ export function ButtonStyle1({link,content}) {
         window.location.href = link;
     }
   return (
-    <button onclick={(handleClickHref)} className={"btn_style1"}>{content}</button>
+    <button onClick={(handleClickHref)} className={"btn_style1"}>{content}</button>
   )
 }

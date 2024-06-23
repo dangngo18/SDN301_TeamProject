@@ -1,4 +1,4 @@
-@import url("../../assets/styles/stylesall.scss");
+// @import url("../../assets/styles/stylesall.scss");
 
 .container {
   display: flex;
@@ -6,7 +6,7 @@
   width: 1920px;
 }
 
-form {
+.formSignup {
   display: flex;
   max-width: 400px;
   flex-direction: column;

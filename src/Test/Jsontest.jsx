@@ -4,6 +4,7 @@ export const Post_Image = [
     {
         id: 1,
         title: "Post 1",
+        description: "post description",
         image: [
             {
                 alt: "image 1",
@@ -15,12 +16,13 @@ export const Post_Image = [
             }
         ],
         like_number: 123,
-        type:0
+        type: 0
 
     },
     {
         id: 2,
         title: "Post 2",
+        description: "post description",
         image: [
             {
                 alt: "image sub 1",
@@ -28,13 +30,14 @@ export const Post_Image = [
             }
         ],
         like_number: 15,
-        type:0
+        type: 0
 
 
     },
     {
         id: 3,
         title: "Post 3",
+        description: "post description",
         image: [
             {
                 alt: "image sub 2",
@@ -42,11 +45,12 @@ export const Post_Image = [
             }
         ],
         like_number: 432,
-        type:0
+        type: 0
     },
     {
         id: 4,
         title: "Post 4",
+        description: "post description",
         image: [
             {
                 alt: "image sub 3",
@@ -58,12 +62,13 @@ export const Post_Image = [
             }
         ],
         like_number: 123445,
-        type:0
+        type: 0
 
     },
     {
         id: 5,
         title: "Post 5",
+        description: "post description",
         image: [
             {
                 alt: "image sub 5",
@@ -71,7 +76,7 @@ export const Post_Image = [
             }
         ],
         like_number: 349,
-        type:0
+        type: 0
 
     }
 
@@ -82,14 +87,51 @@ export const Post_Videos = [
     {
         id: 7,
         title: "Post 7",
+        description: "post description",
         image: [
             {
                 alt: "image sub 5",
                 url: "https://i.ibb.co/P4m9gPf/p-9b865d844e0b4272ae6b3cc60bef7a5d.jpg"
             }
         ],
-        like_number: 34921232,
-        type:1
+        like_number: 349,
+        type: 0
+
     }
 ]
 export const Post_Archived = []
+
+export const product_tag =
+    [
+        {
+            id: 1,
+            name: "Moonlight boot pride a",
+            price: 240000,
+            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+        },
+        {
+            id: 2,
+            name: "Moonlight boot pride b",
+            price: 240000,
+            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+        },
+        {
+            id: 3,
+            name: "Moonlight boot pride c",
+            price: 240000,
+            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+        },
+        {
+            id: 4,
+            name: "noonlight boot price d",
+            price: 240000,
+            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+        }
+        ,
+        {
+            id: 4,
+            name: "noonlight boot price d",
+            price: 240000,
+            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+        }
+    ]

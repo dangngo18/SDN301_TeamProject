@@ -75,7 +75,7 @@ export default function SignUp() {
     <div>
       <Header />
       <div className="container">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="formSignup">
           <h4>Join for your experience</h4>
 
           <div className="email">

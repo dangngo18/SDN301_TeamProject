@@ -23,6 +23,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
+
+    
 }
 
 body {
@@ -68,6 +70,12 @@ img {
     height: auto;
 }
 
+textarea {
+    border: none;
+    outline: none;
+    resize: none;
+}
+
 /* ======================================= Header style ======================================= */
 
 .HeaderBeforeLogin {
@@ -99,7 +107,7 @@ img {
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
-    line-height: 22px;
+    line-height: 90%;
     border-radius: 10px;
     border: 1px solid var(--Main-color);
     transition: 0.3s ease-in-out;
@@ -109,9 +117,11 @@ img {
         background: var(--Main-color-hover);
     }
 }
-.d-none{
+
+.d-none {
     display: none !important;
 }
+
 /*===================================== Header style =============================*/
 
 .HeaderBeforeLogin {

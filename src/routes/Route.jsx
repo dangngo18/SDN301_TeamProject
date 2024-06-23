@@ -5,6 +5,7 @@ import Home from '../pages/Home'
 import Style from '../pages/Style'
 import Shop from '../pages/Shop'
 import FindEmail from '../pages/ForgotPass/FindEmail'
+import PostUpload from '../pages/PostUpload'
 import PostManage from '../pages/PostManage'
 import SignUp from '../pages/SignUp'
 import ForgotPass from '../pages/ForgotPass/ForgotPassword'
@@ -39,8 +40,12 @@ const publicRoutes = [
         component: <FindEmail />
     },
     {
-        path: '/post/upload',
+        path: '/profile/posts',
         component: <PostManage/>
+    },
+    {
+        path: '/post/upload',
+        component: <PostUpload/>
     },
     {
         path: '/SignUp',

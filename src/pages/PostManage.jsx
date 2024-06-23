@@ -105,7 +105,7 @@ export default function PostManage() {
               </div>
             </div>
             <div className="post_right_btn_action">
-              <Button link="/post/upload/form-input" content="Upload" />
+              <Button link="/post/upload" content="Upload" />
             </div>
           </div>
         </div>
