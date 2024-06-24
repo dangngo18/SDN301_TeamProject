@@ -12,7 +12,7 @@ export function PostLoopTab({ Posts }) {
     Posts.map((post,index) => {
       return (
         <div key={index} className='Post_card1'>
-          <a href={`/post/id:${post.id}`}>
+          <a href={`/studio/post/${post.id}`}>
           <div className='Post_card1_img'>
             <picture>
               <img src={post.image[0].url} alt="" />

@@ -15,6 +15,20 @@ export const Post_Image = [
                 url: "https://i.ibb.co/Kr7kqq3/p-95dcd80450ca42ddadf4dbcf323c4ac3.webp"
             }
         ],
+        product_tags: [
+            {
+                id: 1,
+                name: "Moonlight boot pride a",
+                price: 240000,
+                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+            },
+            {
+                id: 2,
+                name: "Moonlight boot pride b",
+                price: 240000,
+                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+            }
+        ],
         like_number: 123,
         type: 0
 

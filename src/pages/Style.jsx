@@ -1,7 +1,7 @@
 import React from 'react'
-import { Header } from '../components/Header'
+import { HeaderforStyle } from '../components/Header'
 export default function Style() {
   return (
-    <Header/>
+    <HeaderforStyle />
   )
 }

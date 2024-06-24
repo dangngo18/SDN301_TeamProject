@@ -1,24 +1,39 @@
-import React, { useState, useRef } from 'react'
-import { HeaderforStudio } from '../components/Header'
+import React, { useState, useRef,useEffect } from 'react'
+import { useParams } from 'react-router-dom';
+import { HeaderforStudio } from '../../components/Header'
 import 'swiper/css/free-mode';
-import "../assets/styles/postManage.scss"
-import { Icon } from '../assets/icon/icons';
-import { Post_Image, Post_Videos, product_tag } from '../Test/Jsontest';
+import "../../assets/styles/postManage.scss"
+import { Icon } from '../../assets/icon/icons';
+import { Post_Image, Post_Videos, product_tag } from '../../Test/Jsontest';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 
 
-export default function PostUpload() {
+export default function PostEdit() {
     const [isDisable, setDisable] = useState(true);
     const [postMedia, setPostMedia] = useState([]);
-    const [isDragging, setIsDragging] = useState(false);
     const [postTitle, setPostTitle] = useState('');
     const [postDescription, setPostDescription] = useState('');
     const [searchInput, setSearchInput] = useState('');
     const [productTags, setProductTags] = useState([]);
-
-
+    const { id } = useParams();
     const [isFocused, setIsFocused] = useState(false);
+    
+    useEffect(() => {
+        const post = Post_Image.find((e) => e.id === parseInt(id, 10));   
+          if(post.image){
+              setPostMedia(post.image);
+          }
+          if(post.title){
+              setPostTitle(post.title);
+          }
+          if(post.description){
+              setPostDescription(post.description);
+          }
+          if(post.product_tags){
+              setProductTags(post.product_tags);
+          }   
+      }, [id, Post_Image]);
 
     const handleFocus = () => {
         setIsFocused(true);
@@ -28,56 +43,6 @@ export default function PostUpload() {
         setIsFocused(false);
     };
     // ============================================== Drag between image =========================
-    // ============================================== Drag image into file =======================
-    function onFileSelect(event) {
-        const files = event.target.files;
-        if (files.length === 0) return;
-        for (let i = 0; i < files.length; i++) {
-            if (!files[i].type.includes("image")) continue;
-            if (!postMedia.some((e) => e.name === files[i].name)) {
-                const image = {
-                    id: Math.random().toString(36).substring(2, 9),
-                    name: files[i].name,
-                    url: URL.createObjectURL(files[i]),
-                    type: "image"
-                }
-                setPostMedia((preImages) => [...preImages, image]);
-            }
-        }
-    }
-
-    function removeImage(id) {
-        setPostMedia((preImages) => preImages.filter((e) => e.id !== id));
-    }
-
-    function onDragOver(event) {
-        event.preventDefault();
-        setIsDragging(true);
-        event.dataTransfer.dropEffect = "copy";
-    }
-
-    function onDragLeave(event) {
-        event.preventDefault();
-        setIsDragging(false);
-    }
-
-    function onDrop(event) {
-        event.preventDefault();
-        const files = event.dataTransfer.files;
-        for (let i = 0; i < files.length; i++) {
-            if (!files[i].type.includes("image")) continue;
-            if (!postMedia.some((e) => e.name === files[i].name)) {
-                const image = {
-                    id: Math.random().toString(36).substring(2, 9),
-                    name: files[i].name,
-                    url: URL.createObjectURL(files[i]),
-                    type: "image"
-                }
-                setPostMedia((preImages) => [...preImages, image]);
-            }
-        }
-        setIsDragging(false);
-    }
 
     const removeProduct = (id) => {
         setProductTags(productTags.filter((product) => product.id !== id));
@@ -85,7 +50,7 @@ export default function PostUpload() {
     // =================================================== Form prepairing =====================================
 
     function handleSubmit(event) {
-        // event.preventDefault();
+        event.preventDefault();
         const flag = false;
         if (postTitle === '') {
             flag = true;
@@ -100,7 +65,6 @@ export default function PostUpload() {
             flag = true;
         }
         if (flag) {
-            event.preventDefault();
             console.log("error");
         } else {
             const postData = {
@@ -114,29 +78,7 @@ export default function PostUpload() {
 
     }
     // ======================================================= Child  Components =========================================
-    const LabelInput = () => {
-        return (
-            <label htmlFor="post_image_input" className="post_image_upload"
-                onDragOver={onDragOver}
-                onDragLeave={onDragLeave}
-                onDrop={onDrop}
-            >
-                {isDragging ? (
-                    <div className="post_image_drag_area_text">
-                        <img src="../FileAnimation.gif" alt="add file animation" />
-                        <h3>Drop your files here</h3>
-                    </div>
-                ) : (
-                    <>
-                        {Icon.Camera}
-                        <h3>Upload your photo</h3>
-                        <p>Click or drag file to this area</p>
-                    </>
-                )}
-
-            </label>
-        )
-    }
+    
     const renderMedia = () => {
         if (postMedia.length > 5) {
             return (
@@ -145,13 +87,14 @@ export default function PostUpload() {
                     spaceBetween={8}
                     freeMode={true}
                     modules={[FreeMode]}
-                    className='SwiperContainer'>{
+                    className='SwiperContainer'>
+                    {
                         postMedia.map((postMedia, index) => (
                             <SwiperSlide
                                 key={index}>
                                 <div className="post_image_item" >
-                                    <div className="post_media_overlay">
-                                        <button className="btnRemove" onClick={() => removeImage(postMedia.id)}>{Icon.Remove}</button>
+                                    <div className="post_media_overlay" style={{justifyContent:'flex-end'}}>
+                                        <button className="btnRemove d-none" onClick={() => removeImage(postMedia.id)}>{Icon.Remove}</button>
                                         <button className="btnView">{Icon.ViewIcon}</button>
                                     </div>
                                     <img src={postMedia.url} alt={postMedia.name} />
@@ -165,8 +108,8 @@ export default function PostUpload() {
             return (
                 postMedia.map((postMedia, index) => (
                     <div className="post_image_item" key={index}>
-                        <div className="post_media_overlay">
-                            <button className="btnRemove" onClick={() => removeImage(postMedia.id)}>{Icon.Remove}</button>
+                        <div className="post_media_overlay" style={{justifyContent:'flex-end'}}>
+                            <button className="btnRemove d-none" onClick={() => removeImage(postMedia.id)}>{Icon.Remove}</button>
                             <button className="btnView">{Icon.ViewIcon}</button>
                         </div>
                         <img src={postMedia.url} alt={postMedia.name} />
@@ -248,44 +191,17 @@ export default function PostUpload() {
                     <div className="post_container container">
                         <div className="post_col_left">
                             <div className="post_left_header">
-                                <h2>New Post</h2>
+                                <h2>Post Detail</h2>
                             </div>
                             <div className="post_left_body">
                                 <div className="post_left_body_container">
                                     <div className="post_left_body_form">
                                         <div className="post_image">
-                                            <div className={`post_image_drag_area`} >
-                                                {postMedia.length > 0 ?
-                                                    (
-
-                                                        // postMedia.length > 4 ?
-                                                        //     (
+                                            <div className={`post_image_drag_area`} >                                           
                                                         <div className={`post_image_container`}>
-
-                                                            {renderMedia()}
-
-                                                            <LabelInput />
+                                                            {renderMedia()}                    
                                                         </div>
-                                                        // ) : (
-                                                        //     <div className={`post_image_container`}>
-                                                        //         <Swiper
-                                                        //         // slidesPerView={4}
-                                                        //         // spaceBetween={10}
-                                                        //         // freeMode={true}
-                                                        //         // modules={[FreeMode]}
-                                                        //         className="myswiper"
-                                                        //         >
-                                                        //             {renderMedia()}
-                                                        //         </Swiper>
-                                                        //         <LabelInput />
-                                                        //     </div>
-                                                        // )
-
-                                                    ) :
-                                                    (
-                                                        <LabelInput />
-                                                    )}
-                                                <input id="post_image_input" type="file" accept="image/*" style={{ display: 'none' }} multiple onChange={onFileSelect} />
+                                                <input id="post_image_input" type="file" accept="image/*" style={{ display: 'none' }} multiple/>
                                             </div>
                                         </div>
                                         <div className="post_title">
@@ -319,7 +235,7 @@ export default function PostUpload() {
                             <div className="post_right_profile">
                                 <div className="post_right_profile_info">
                                     <picture className="post_right_profile-img">
-                                        <img src="../img/Bloons 6のTwitterイラスト検索結果。.png" alt="" />
+                                        <img src="../../img/Bloons 6のTwitterイラスト検索結果。.png" alt="" />
                                     </picture>
                                     <span className='post_right_profile-name'>@hdang_n</span>
                                 </div>
@@ -338,9 +254,30 @@ export default function PostUpload() {
                                     </div>
                                 </div>
                             </div>
+                            <div className="post_right_profile">
+                                <div className="post_right_profile_dashboard">
+                                    <div className="profile_dashboard_item edit">
+                                        {Icon.Heart}
+                                        <span>166</span>
+                                    </div>
+                                    <div className="profile_dashboard_item edit">
+                                        {Icon.Comment2}
+                                        <span>2,904</span>
+                                    </div>
+                                    <div className="profile_dashboard_item edit">
+                                        {Icon.Save2}
+                                        <span>{Post_Image.length + Post_Videos.length}</span>
+                                    </div>
+                                    <div className="profile_dashboard_item share edit">
+                                        {Icon.Share2}
+                                        <span>{Post_Image.length + Post_Videos.length}</span>
+                                    </div>
+                                </div>
+                            </div>
                             <div className="post_right_btn_action">
-                                <button type='submit' role='submit' className={`btn_style1 ${isDisable ? 'disabled' : ''}`} disabled={isDisable}>Upload</button>
-                                <a href="/profile/posts" className='btn_style1 btn_style2'>Cancel</a>
+                                <button className={`btn_style1 btn_archived`} title='Archive'>{Icon.Archive}</button>
+                                <button type='submit' role='submit' className={`btn_style1 ${isDisable ? 'disabled' : ''}`} disabled={isDisable}>Save</button>
+                                <a href="/studio/posts" className='btn_style1 btn_style2'>Cancel</a>
                             </div>
                         </div>
                     </div>

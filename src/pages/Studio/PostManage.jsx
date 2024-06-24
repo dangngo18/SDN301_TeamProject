@@ -1,10 +1,10 @@
 import React from 'react'
-import { HeaderforStudio } from '../components/Header'
-import "../assets/styles/postManage.scss"
-import { Icon } from '../assets/icon/icons';
-import { ButtonStyle1 as Button } from '../components/button';
-import { PostLoopTab } from "../components/Post_loop";
-import { Post_Image,Post_Videos,Post_Archived } from '../Test/Jsontest';
+import { HeaderforStudio } from '../../components/Header'
+import "../../assets/styles/postManage.scss"
+import { Icon } from '../../assets/icon/icons';
+import { ButtonStyle1 as Button } from '../../components/button';
+import { PostLoopTab } from "../../components/Post_loop";
+import { Post_Image,Post_Videos,Post_Archived } from '../../Test/Jsontest';
 
 function Nopost() {
   return (
@@ -105,7 +105,7 @@ export default function PostManage() {
               </div>
             </div>
             <div className="post_right_btn_action">
-              <Button link="/post/upload" content="Upload" />
+              <Button link="/studio/post/upload" content="Upload" />
             </div>
           </div>
         </div>

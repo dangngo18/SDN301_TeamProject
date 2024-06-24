@@ -5,8 +5,9 @@ import Home from '../pages/Home'
 import Style from '../pages/Style'
 import Shop from '../pages/Shop'
 import FindEmail from '../pages/ForgotPass/FindEmail'
-import PostUpload from '../pages/PostUpload'
-import PostManage from '../pages/PostManage'
+import PostUpload from '../pages/Studio/PostUpload'
+import PostManage from '../pages/Studio/PostManage'
+import PostEdit from '../pages/Studio/PostEdit'
 import SignUp from '../pages/SignUp'
 import ForgotPass from '../pages/ForgotPass/ForgotPassword'
 import OTP from '../pages/ForgotPass/OTP'
@@ -40,12 +41,16 @@ const publicRoutes = [
         component: <FindEmail />
     },
     {
-        path: '/profile/posts',
+        path: '/studio/posts',
         component: <PostManage/>
     },
     {
-        path: '/post/upload',
+        path: '/studio/post/upload',
         component: <PostUpload/>
+    },
+    {
+        path: '/studio/post/:id',
+        component: <PostEdit/>
     },
     {
         path: '/SignUp',

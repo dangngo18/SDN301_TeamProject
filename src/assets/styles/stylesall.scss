@@ -87,6 +87,11 @@ textarea {
 
 .logo {
     margin-right: 28px;
+    a{
+        display: block;
+        height: fit-content;
+        line-height: 90%;
+    }
 }
 
 /* ============================= Reuse Style =============================*/
@@ -173,6 +178,7 @@ textarea {
             color: var(--Background-color);
             padding: 12px 13px;
             border-radius: 50%;
+            line-height: 90%;
 
             svg {
                 width: 16px;
@@ -207,7 +213,7 @@ textarea {
             font-style: normal;
             text-align: center;
             font-weight: 500;
-            line-height: normal;
+            line-height: 100%;
             text-transform: uppercase;
             border-radius: 36px;
             transition: 0.2s ease-in-out;
@@ -306,7 +312,7 @@ textarea {
         font-size: 14px;
         font-style: normal;
         font-weight: 600;
-        line-height: normal;
+        line-height: 100%;
         cursor: pointer;
         border-radius: 10px;
         border: 1px solid var(--Main-color, #FF385C);
