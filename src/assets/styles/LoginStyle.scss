@@ -1,0 +1,162 @@
+@import url("../../assets/styles/stylesall.scss");
+
+.container {
+  // display: flex;
+  justify-content: center;
+  width: 1920px;
+}
+
+form {
+  display: flex;
+  // max-width: 400px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  flex: 1 0 0;
+  padding-top: 60px;
+  padding-bottom: 160px;
+
+  h4 {
+    align-self: stretch;
+    color: #161823;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-bottom: 46px;
+  }
+
+  .email {
+    display: block;
+    span {
+      display: block;
+      color: #161823;
+      font-family: Roboto;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 18px;
+      text-transform: capitalize;
+      align-self: stretch;
+    }
+
+    input {
+      width: 400px;
+      height: 34px;
+      display: flex;
+      padding: 6px 30px 6px 0px;
+      align-items: center;
+      align-self: stretch;
+      border-bottom: 1px solid #d9d9d9;
+    }
+
+
+  }
+
+  .password {
+    display: block;
+    span {
+      display: block;
+      color: #161823;
+      font-family: Roboto;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 18px;
+      text-transform: capitalize;
+      align-self: stretch;
+    }
+
+    input {
+      width: 400px;
+      height: 34px;
+      display: flex;
+      padding: 6px 30px 6px 0px;
+      align-items: center;
+      align-self: stretch;
+      border-bottom: 1px solid #d9d9d9;
+    }
+
+
+  }
+
+  input {
+    display: block;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+  }
+
+}
+
+  .submit {
+    display: flex;
+    width: 400px;
+    height: 52px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    background: #ddd;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    color: #fff;
+
+  }
+  // .google-login {
+  //   margin-top: 16px; /* Khoảng cách giữa nút Đăng nhập và Đăng nhập bằng Google */
+  //   background-color: #ffffff; /* Màu nền của nút Đăng nhập bằng Google */
+  //   color: #000000; /* Màu chữ của nút Đăng nhập bằng Google */
+  //   border: none; /* Bỏ viền của nút Đăng nhập bằng Google */
+    
+  // }
+  
+  // .google-login:hover {
+  //   background-color: #000000; /* Màu nền khi di chuột qua nút Đăng nhập bằng Google */
+  // }
+
+  .additional-links {
+    margin-top: 16px; /* Khoảng cách giữa nút Đăng nhập bằng Google và các mục phía dưới */
+    display: flex; /* Sử dụng flexbox để các mục con được sắp xếp trên cùng một hàng */
+    justify-content: space-evenly; /* Căn các mục con để chúng được phân bố đều trên dòng */
+    align-items: center; /* Căn các mục con theo chiều dọc */
+    font-family: Roboto;
+    font-size: 14px;
+    color: #666;
+  
+    p {
+      cursor: pointer;
+      margin: 0;
+      padding: 0;
+      position: relative; /* Để có thể sử dụng absolute position */
+      display: inline-block; /* Hiển thị các mục trên cùng một hàng */
+      white-space: nowrap; /* Đảm bảo không bị ngắt dòng */
+    }
+  
+    p:not(:last-child) {
+      margin-right: 12px; /* Khoảng cách giữa các mục (trừ phần tử cuối cùng) */
+    }
+  
+    p:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -6px; /* Điều chỉnh vị trí của đường gạch thẳng đứng */
+      top: 0;
+      height: 100%;
+      width: 1px; /* Độ dài của đường gạch thẳng đứng */
+      background-color: #ccc; /* Màu sắc của đường gạch thẳng đứng */
+    }
+  }
+  
+  .additional-links p:hover {
+    color: #000;
+    text-decoration: underline;
+  }
+  
