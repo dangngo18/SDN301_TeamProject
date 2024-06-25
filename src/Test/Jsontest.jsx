@@ -149,3 +149,85 @@ export const product_tag =
             url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
         }
     ]
+
+export const userInfo = {
+    id: 1,
+    name: "Canisdang",
+    username: "h_dang",
+    bio: "I'm a web developer",
+    email: "h_dang@gmail.com",
+    urlImage: "https://i.ibb.co/7WW5vVq/p-e92be609f87443d9965a7a698062d6ed.jpg",
+    following: [
+        {
+            id: 1,
+            name: "j__c__y",
+            username: "@j__c__y",
+            urlImage: "https://i.ibb.co/7WW5vVq/p-e92be609f87443d9965a7a698062d6ed.jpg",
+            isFollow: false
+        },
+        {
+            id: 2,
+            name: "owl__heun",
+            username: "@owlheun",
+            urlImage: "https://i.ibb.co/wBdwTBr/p-12d2b2e94e624c8d914cb26d768a77a4.webp",
+            isFollow: true
+        },
+        {
+            id: 3,
+            name: "Kanidang",
+            username: "@hdang",
+            urlImage: "https://i.ibb.co/Kr7kqq3/p-95dcd80450ca42ddadf4dbcf323c4ac3.webp",
+            isFollow: true
+        }
+    ],
+    followers: [
+        {
+            id: 1,
+            name: "Kanidang",
+            username: "@hdang",
+            urlImage: "https://i.ibb.co/Kr7kqq3/p-95dcd80450ca42ddadf4dbcf323c4ac3.webp",
+            isFollow: true
+        },
+        {
+            id: 2,
+            name: "owl__heun",
+            username: "@owlheun",
+            urlImage: "https://i.ibb.co/wBdwTBr/p-12d2b2e94e624c8d914cb26d768a77a4.webp",
+            isFollow: true
+        }
+    ],
+    posts: 13,
+    tag_product: [
+        {
+            id: 1,
+            name: "Moonlight boot pride a",
+            price: 240000,
+            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+        },
+        {
+            id: 2,
+            name: "Moonlight boot pride b",
+            price: 240000,
+            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+        },
+        {
+            id: 3,
+            name: "Moonlight boot pride c",
+            price: 240000,
+            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+        },
+        {
+            id: 4,
+            name: "noonlight boot price d",
+            price: 240000,
+            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+        }
+        ,
+        {
+            id: 4,
+            name: "noonlight boot price d",
+            price: 240000,
+            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+        }
+    ]
+}    

@@ -3,23 +3,9 @@ import { HeaderforStudio } from '../../components/Header'
 import "../../assets/styles/postManage.scss"
 import { Icon } from '../../assets/icon/icons';
 import { ButtonStyle1 as Button } from '../../components/button';
-import { PostLoopTab } from "../../components/Post_loop";
+import { PostLoopTab,Nopost } from "../../components/Post_loop";
 import { Post_Image,Post_Videos,Post_Archived } from '../../Test/Jsontest';
 
-function Nopost() {
-  return (
-    <div className="nopost_container">
-      <div className="nopost_content">
-        <div className="nopost_content_icon">
-          {Icon.NoPostIcon}
-        </div>
-        <div className="nopost_content_text">
-          <h2 className="nopost_content_title">Upload your first post</h2>
-          <p className="nopost_content_description">Your posts will appear here</p>
-        </div>
-      </div>
-    </div>)
-}
 export default function PostManage() {
   const [currentTab, setCurrentTab] = React.useState('1');
   const tabItem = [

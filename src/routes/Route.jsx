@@ -14,6 +14,7 @@ import OTP from '../pages/ForgotPass/OTP'
 import ResetPassword from '../pages/ForgotPass/ResetPassword'
 import FinnishedReset from '../pages/ForgotPass/FinnishedReset'
 import NotFound from '../pages/NotFound'
+import UserProfile from '../pages/User/UserProfile'
 
 const publicRoutes = [
     {
@@ -75,6 +76,10 @@ const publicRoutes = [
     {
         path: '/Error',
         component: <NotFound />
+    },
+    {
+        path: '/user/profile',
+        component: <UserProfile/>,
     }
 ]
 
