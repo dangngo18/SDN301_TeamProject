@@ -53,7 +53,7 @@ export function HeaderAfterLogin() {
   return (
     <div className='HeaderBeforeLogin'>
       <div className='logo'>
-        <Link to='/'><img src="./img/Logo.jpg" alt="logo" /></Link>
+        <Link to='/'><img src="/img/Logo.jpg" alt="logo" /></Link>
       </div>
       <div className='HeaderSearchBox'>
         <input className='SearchBox' type="text" value={search} onChange={handleInputSearch} placeholder='Search your product...' />
@@ -84,7 +84,7 @@ export function HeaderAfterLogin() {
             {notificationCount != 0 && <span className="notification_count">{notificationCount}</span>}
           </div>
           <div className='HeaderProfile'>
-            <img className='ProfileAvatar' src="./img/OIP.png" alt="" />
+            <img className='ProfileAvatar' src="/img/OIP.png" alt="" />
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@ export function HeaderforStudio() {
   return (
     <div className='HeaderBeforeLogin'>
       <div className='logo'>
-        <Link to='/'><img src="../img/Logo.jpg" alt="logo" /></Link>
+        <Link to='/'><img src="/img/Logo.jpg" alt="logo" /></Link>
       </div>
       {/* nhớ sửa thành Link */}
       <div className='HeaderProfileAndLogin'>
@@ -124,7 +124,7 @@ export function HeaderforStudio() {
             {notificationCount != 0 && <span className="notification_count">{notificationCount}</span>}
           </div>
           <div className='HeaderProfile'>
-            <img className='ProfileAvatar' src="../img/OIP.png" alt="" />
+            <img className='ProfileAvatar' src="/img/OIP.png" alt="" />
           </div>
         </div>
       </div>
