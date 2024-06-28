@@ -15,7 +15,7 @@ import ResetPassword from '../pages/ForgotPass/ResetPassword'
 import FinnishedReset from '../pages/ForgotPass/FinnishedReset'
 import NotFound from '../pages/NotFound'
 import PostDetail from '../pages/PostDetail/PostDetail'
-import AnotherUserProfile from '../pages/AnotherUserProfile/AnotherUserProfile'
+// import AnotherUserProfile from '../pages/AnotherUserProfile/AnotherUserProfile'
 import UserProfile from '../pages/User/UserProfile'
 
 const publicRoutes = [
@@ -83,10 +83,10 @@ const publicRoutes = [
         path:'/style/post/:postid',
         component: <PostDetail/>
     },
-    {
-        path:'/User/:userid',
-        component: <AnotherUserProfile/>
-    },
+    // {
+    //     path:'/User/:userid',
+    //     component: <AnotherUserProfile/>
+    // },
     {
         path: '/user/profile/:idUser',
         component: <UserProfile/>,

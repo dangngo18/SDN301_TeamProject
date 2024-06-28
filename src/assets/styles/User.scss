@@ -624,13 +624,13 @@
 
 .post_left_body_macy {
     &_inner {
-        .Post_card1 {
+        .Post_card2 {
             &>a {
                 display: block;
                 width: fit-content;
                 height: fit-content;
 
-                .Post_card1_img {
+                .Post_card2_img {
                     position: relative;
                     border-radius: 10px;
                     overflow: hidden;
@@ -657,7 +657,7 @@
                     }
 
 
-                    .Post_card1_img_viewed {
+                    .Post_card2_img_viewed {
                         position: absolute;
                         left: 0;
                         bottom: 0;
@@ -693,7 +693,7 @@
                 }
             }
 
-            .Post_card1_data {
+            .Post_card2_data {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -746,7 +746,7 @@
 
             }
 
-            .Post_card1_content {
+            .Post_card2_content {
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;

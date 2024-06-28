@@ -104,14 +104,14 @@ export function PostMasonryLoop({ children, Posts, User }) {
       {
         Posts.map((post, index) => {
           return (
-            <div key={index} className='Post_card1'>
+            <div key={index} className='Post_card2'>
               <a href={`/studio/post/${post.id}`}>
-                <div className='Post_card1_img'>
+                <div className='Post_card2_img'>
                   <picture>
                     <img src={post.image[0].url} alt="" className={post.image[0].aspect} />
                   </picture>
 
-                  <div className="Post_card1_img_viewed">
+                  <div className="Post_card2_img_viewed">
                     {Icon.ViewIcon}
                     <span>{formatNumber(post.viewed)}</span>
                   </div>
@@ -121,7 +121,7 @@ export function PostMasonryLoop({ children, Posts, User }) {
                   </span>
                 </div>
               </a>
-              <div className="Post_card1_data">
+              <div className="Post_card2_data">
                 <a href={`/user/profile/${User.id}`} className="user_data">
                   <picture>
                     <img src={User.urlImage} alt="" />
@@ -133,7 +133,7 @@ export function PostMasonryLoop({ children, Posts, User }) {
                   <span>{formatNumber(post.like_number)}</span>
                 </div>
               </div>
-              <p className="Post_card1_content">
+              <p className="Post_card2_content">
                 {post.title} {post.description}
               </p>
             </div>
