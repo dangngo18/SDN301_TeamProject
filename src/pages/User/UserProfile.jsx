@@ -1,57 +1,234 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { HeaderforStyle } from '../../components/Header'
 import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
-import { userInfo } from '../../Test/Jsontest'
+import { ListUser } from '../../Test/Jsontest'
 import { Icon } from '../../assets/icon/icons'
 import '../../assets/styles/User.scss'
-import { PostLoopTab2, Nopost } from '../../components/Post_loop'
-import { Post_Image, Post_Videos, Post_Archived } from '../../Test/Jsontest'
-
-function ModalFollow({followList}){
-return(
-    <>
-    <div className="follow_layout">
-        <div className="follow_container">
-             <div className="follow_header"></div>
-             <div className="follow_body">
-                <nav className="follow_tabbar"></nav>
-                <div className="follow_list"></div>
-             </div>
-        </div>
-        <div className="follow_bg"></div>
-    </div>
-    </>
-)
-}
+import { useParams } from 'react-router-dom'
+import { Nopost, PostMasonryLoop } from '../../components/Post_loop'
 
 export default function UserProfile() {
-    const { id, name, username, bio, email, urlImage, following, followers, posts, tag_product } = userInfo
+    const { idUser } = useParams();
+    const [user, setUser] = useState(ListUser.find((e) => e.id === parseInt(idUser, 10)));
+    const { id, name, username, bio, email, urlImage, following, followers, posts, tag_product } = user
     const [currentTab, setCurrentTab] = React.useState('1');
+    const [currentFollow, setCurrentFollow] = React.useState('1');
+    const [showFollow,setShowFollow] = useState(false);
+
     const tabItem = [
         {
             id: 1,
             tab: "Image",
-            content: Post_Image
+            content: posts.Post_Image ? posts.Post_Image : [],
+            user: {id,name,urlImage}
         },
         {
             id: 2,
             tab: "Videos",
-            content: Post_Videos
+            content: posts.Post_Videos ? posts.Post_Videos : [],
+            user: {id,name,urlImage}
         },
         {
             id: 3,
             tab: "Archived",
-            content: Post_Archived
+            content: posts.Post_Archived ? posts.Post_Archived : [],
+            user: {id,name,urlImage}
         },
         {
-            id:4,
-            tab:"tag_products",
-            content:tag_product
+            id: 4,
+            tab: "tag_products",
+            content: tag_product
         }
     ];
     const handleTabClick = (e) => {
         setCurrentTab(e.target.id);
+    }
+
+    const handleOpenFollow = (followType) => {
+        setCurrentFollow(followType);
+        setShowFollow(true);
+        document.body.style.overflow = 'hidden';
+    };
+    function ModalFollow() {
+        const tabItems = [
+            {
+                id: 1,
+                tab: "Following",
+                content: following
+            },
+            {
+                id: 2,
+                tab: "Followers",
+                content: followers
+            }
+            
+        ];
+        const handleTab = (e) => {
+            setCurrentFollow(e.target.id);
+        }
+        return (
+            <>
+                <div id='follow-modal' className={`follow_layout ${showFollow ? 'show' : ''}`}>
+                    <div className="follow_container">
+                        <div className="follow_wrapper">
+                            <div className="follow_header">
+                                <picture>
+                                    <img src={urlImage} alt="avatar" />
+                                </picture>
+                                <span>{name}</span>
+                                <button className="closeModal" onClick={() => { setShowFollow(false); document.body.style.overflow = 'auto' }}>{Icon.Remove}</button>
+                            </div>
+                            <div className="follow_body">
+                                <nav>
+                                    <ul className="follow_tabbar">
+                                        {tabItems.map((tab, i) => {
+                                            return (
+                                                <li className={`tablist_item ${currentFollow === `${tab.id}` ? 'active' : ''}`} key={i}>
+                                                    <button type='button' id={tab.id} onClick={(e) => {handleTab(e)}} >{`${tab.tab} ${tab.content.length}`}</button>
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                </nav>
+                                <div className="follow_list_container">
+
+                                    {tabItems.map((tab, i) => {
+                                        return (
+                                            <div className="follow_list" key={i}>
+                                                {currentFollow === `${tab.id}` && (tab.content.length != 0 ? (
+                                                    tab.content.map((item, index) => {
+                                                        return (
+                                                            <div className="follow_item" key={index}>
+                                                                <Link className='follow_item_link' to={`/user/profile/${item.id}`}>
+                                                                    <div className="follow_item_avatar">
+                                                                        <img src={item.urlImage} alt="Avatar" />
+                                                                    </div>
+                                                                    <div className="follow_item_info">
+                                                                        <p className="follow_item_info_name">{item.name}</p>
+                                                                        <p className="follow_item_info_username">{item.username}</p>
+                                                                    </div>
+                                                                </Link>
+                                                                <button className={`follow_item_btn ${item.isFollow ? "followed" : ""}`} onClick={(e) => e.stopPropagation()}>
+                                                                    {item.isFollow ? "Following" : "Follow back"}
+                                                                </button>
+                                                            </div>
+                                                        )
+                                                    })
+
+                                                ) : <Nopost />)}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="follow_bg" onClick={() => { setShowFollow(false); document.body.style.overflow = "auto"; }}></div>
+                </div>
+            </>
+        )
+    }
+    const diaLogShow = useRef(null);
+    function ModalEdit() {
+        const [imageEdit, setImageEdit] = useState(urlImage);
+        const [usernameEdit, setUsernameEdit] = useState(username);
+        const [nameEdit, setNameEdit] = useState(name);
+        const [bioEdit, setBioEdit] = useState(bio);
+        const [isEditDisable, setIsEditDisable] = useState(true);
+
+        const maxChars = 255;
+
+        const handleTextArea = (event) => {
+            const inputText = event.target.value;
+            if (inputText.length <= maxChars) {
+                setBioEdit(inputText);
+            } else {
+                setBioEdit(inputText.substring(0, maxChars));
+            }
+        };
+
+        return (
+            <>
+                <dialog id='edit-modal' className="edit_layout" ref={diaLogShow}>
+                    <div className="edit_container">
+                        <form className="edit_wrapper">
+                            <div className="edit_header">
+                                <h3 className="edit_header_title">
+                                    Edit profile
+                                </h3>
+                                <button className="closeModal" type='button' onClick={(e) => { diaLogShow.current.close(); document.body.style.overflow = "auto"; }}>{Icon.Remove}</button>
+
+                            </div>
+                            <div className="edit_form">
+                                {/* ================ row 1 ========================= */}
+                                <div className="edit_form_row">
+                                    <div className="edit_form_col_1">
+                                        <h3>Profile photo</h3>
+                                    </div>
+                                    <div className="edit_form_col_2">
+                                        <div className="edit_form_col_2_image">
+                                            <img src={imageEdit} alt="Avatar" />
+                                            <button className="image_edit_btn">
+                                                {Icon.EditImage}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="edit_form_col_1"></div>
+                                </div>
+                                {/* ================ row 2 ========================= */}
+                                <div className="edit_form_row">
+                                    <div className="edit_form_col_1">
+                                        <h3>Username</h3>
+                                    </div>
+                                    <div className="edit_form_col_2">
+                                        <input type="text" name="username" placeholder='e.g. johndoe' onChange={(e) => { setUsernameEdit(e.target.value) }} value={usernameEdit} />
+                                        <p className='edit_form_col_2_url'>www.sufy.com/@{usernameEdit}</p>
+                                        <p className="edit_form_col_2_note">
+                                            Usernames can only contain letters, numbers, underscores, and
+                                            periods. Changing your username will also change your profile link.
+                                        </p>
+                                    </div>
+                                    <div className="edit_form_col_1"></div>
+                                </div>
+                                {/* ================ row 3 ========================= */}
+                                <div className="edit_form_row">
+                                    <div className="edit_form_col_1">
+                                        <h3>Name</h3>
+                                    </div>
+                                    <div className="edit_form_col_2">
+                                        <input type="text" name="name" placeholder='e.g. John Doe' onChange={(e) => setNameEdit(e.target.value)} value={nameEdit} />
+                                        <p className="edit_form_col_2_note">
+                                            Your nickname can only be changed once every 7 days.
+                                        </p>
+                                    </div>
+                                    <div className="edit_form_col_1"></div>
+                                </div>
+                                {/* ================ row 4 ========================= */}
+                                <div className="edit_form_row">
+                                    <div className="edit_form_col_1">
+                                        <h3>Bio</h3>
+                                    </div>
+                                    <div className="edit_form_col_2">
+                                        <textarea rows={5} cols={51} name="bio" placeholder='e.g. I love to travel' onChange={handleTextArea} value={bioEdit}></textarea>
+                                        <p className="edit_form_col_2_note">
+                                            {bioEdit.length}/{maxChars}
+                                        </p>
+                                    </div>
+                                    <div className="edit_form_col_1"></div>
+                                </div>
+
+                            </div>
+                            <div className="edit_action_btn">
+                                <button type="reset" className='btn_cancel' onClick={() => { diaLogShow.current.close(); document.body.style.overflow = "auto"; }}>Cancel</button>
+                                <button type="submit" className={`btn_submit ${(imageEdit != urlImage) || (usernameEdit != username) || (nameEdit != name) || (bioEdit != bio) ? "" : "disabled"}`} disabled={(imageEdit != urlImage) || (usernameEdit != username) || (nameEdit != name) || (bioEdit != bio) ? false : true}>Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="edit_bg" onClick={() => { diaLogShow.current.close(); document.body.style.overflow = "auto"; }}></div>
+                </dialog>
+            </>
+        )
     }
     return (
         <>
@@ -64,12 +241,12 @@ export default function UserProfile() {
                             <div className="top_info_data_name">
                                 <h2>{name}</h2>
                                 <div className="upload_button">
-                                    <button ><span>{Icon.EditIcon}</span>Edit profile</button>
+                                    <button onClick={() => { diaLogShow.current.show(); document.body.style.overflow = "hidden"; }}><span>{Icon.EditIcon}</span>Edit profile</button>
                                 </div>
                             </div>
                             <ul className="top_info_data_followList">
-                                <li className="followList_item">Followers <span>{followers.length}</span></li>
-                                <li className="followList_item">Following <span>{following.length}</span></li>
+                                <li className="followList_item" onClick={() => { handleOpenFollow('1'); }}>Following <span>{following.length}</span></li>
+                                <li className="followList_item" onClick={() => { handleOpenFollow('2'); }}>Followers <span>{followers.length}</span></li>
                             </ul>
                             <div className="top_info_data_bio">
                                 <p>{bio}</p>
@@ -77,7 +254,7 @@ export default function UserProfile() {
                         </div>
                     </div>
                     <div className="user_bottom_info">
-                        <div className="post_col_left">
+                        <div className="post_col_left post_col_left_profile">
                             <div className="post_left_header">
                                 <nav>
                                     <ul className="tablist" arial-label="TabPost">
@@ -96,8 +273,12 @@ export default function UserProfile() {
                                     <div className="post_left_body_wrapper">
                                         {tabItem.map((tab, i) => {
                                             return (
-                                                <div className="post_left_body_item" key={i}>
-                                                    {currentTab === `${tab.id}` && (tab.content.length != 0 ? <PostLoopTab2 Posts={tab.content} /> : <Nopost />)}
+                                                <div className="post_left_body_macy" id='body-macy' key={i}>
+                                                    {currentTab === `${tab.id}` && (tab.content.length != 0 
+                                                    ? 
+                                                    <PostMasonryLoop Posts={tab.content} User={tab.user}/> 
+                                                    : 
+                                                    <Nopost />)}
                                                 </div>
                                             );
                                         })}
@@ -108,6 +289,8 @@ export default function UserProfile() {
                     </div>
                 </div>
             </main>
+            <ModalFollow />
+            <ModalEdit />
             <Footer />
         </>
     )

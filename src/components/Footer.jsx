@@ -50,7 +50,7 @@ export default function Footer() {
       <div className='Footer2'>
         <div className='Footer_list2'>
           {footerlist2.map((item, index) => (
-            <div className='Item_Icon' >
+            <div className='Item_Icon' key={index}>
               <div>{item}</div>
             </div>
           ))}

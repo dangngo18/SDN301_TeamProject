@@ -78,7 +78,7 @@ const publicRoutes = [
         component: <NotFound />
     },
     {
-        path: '/user/profile',
+        path: '/user/profile/:idUser',
         component: <UserProfile/>,
     }
 ]

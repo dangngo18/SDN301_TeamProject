@@ -16,8 +16,8 @@ export const Icon = {
       </g>
     </g>
     <defs>
-      <filter id="filter0_d_526_1638" x="0.666504" y="0.166992" width="19.6667" height="19.666" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <filter id="filter0_d_526_1638" x="0.666504" y="0.166992" width="19.6667" height="19.666" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
         <feOffset />
         <feGaussianBlur stdDeviation="1" />
@@ -50,10 +50,9 @@ export const Icon = {
   , Right: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="#ffffff" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg>
   , Bag: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z" /></svg>
   , RightBanner: <svg xmlns="http://www.w3.org/2000/svg" width="26" height="50" viewBox="0 0 26 50" fill="none">
-    <path d="M1.25 1.5L24.75 25L1.25 48.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-  </svg>
+    <path d="M1.25 1.5L24.75 25L1.25 48.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /> </svg>
   , LeftBanner: <svg xmlns="http://www.w3.org/2000/svg" width="26" height="50" viewBox="0 0 26 50" fill="none">
-    <path d="M24.75 48.5L1.25 25L24.75 1.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-  </svg>
+    <path d="M24.75 48.5L1.25 25L24.75 1.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /> </svg>
+  , EditImage: <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M1.7002 14H13.4002M8.8502 1L11.4502 3.6L4.3002 10.75H1.7002V8.15L8.8502 1Z" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/> </svg>
 }
 
