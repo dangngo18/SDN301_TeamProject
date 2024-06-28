@@ -197,22 +197,22 @@ export default function Home() {
     return (
         <div>
             {isLogin ? <HeaderAfterLogin /> : <Header />}
-            <div className='sub_menu'>
+            <ul className='sub_menu'>
                 {menuItems.map((item, index) => (
-                    <div
-                        className={item.select ? 'sub_menu_item_selected' : 'sub_menu_item'}
+                    <li
+                        className={`sub_menu_item ${item.select ? 'active' : ''}`}
                         onClick={() => handleSelect(index)}
                         key={'item' + index}
                     >
-                        <div>
+                        <span>
                             {item.icon}
-                        </div>
-                        <div className='sub_menu_text'>
+                        </span>
+                        <h3 className='sub_menu_text'>
                             {item.text}
-                        </div>
-                    </div>
+                        </h3>
+                    </li>
                 ))}
-            </div>
+            </ul>
             <HomeBanner />
             <section className='category'>
                 <Category item={category} />

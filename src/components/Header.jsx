@@ -37,7 +37,7 @@ export function Header() {
             ))}
           </ul>
         </nav>
-        <button className='LoginButton'>Login</button>
+        <button className='LoginButton' onClick={() => window.location.href='/login'}>Login</button>
       </div>
     </div>
   )
@@ -83,7 +83,7 @@ export function HeaderAfterLogin() {
             {Icon.Bell}
             {notificationCount != 0 && <span className="notification_count">{notificationCount}</span>}
           </div>
-          <div className='HeaderProfile'>
+          <div className='HeaderProfile' onClick={() => window.location.href='/user/profile/1'}>
             <img className='ProfileAvatar' src="../img/OIP.png" alt="" />
           </div>
         </div>
@@ -134,7 +134,7 @@ export function HeaderforStyle() {
             {Icon.Bell}
             {notificationCount != 0 && <span className="notification_count">{notificationCount}</span>}
           </div>
-          <div className='HeaderProfile'>
+          <div className='HeaderProfile' onClick={() => window.location.href='/user/profile/1'}>
             <img className='ProfileAvatar' src="../../img/OIP.png" alt="" />
           </div>
         </div>
@@ -171,7 +171,7 @@ export function HeaderforStudio() {
             {Icon.Bell}
             {notificationCount != 0 && <span className="notification_count">{notificationCount}</span>}
           </div>
-          <div className='HeaderProfile'>
+          <div className='HeaderProfile' onClick={() => window.location.href='/user/profile/1'}>
             <img className='ProfileAvatar' src="../../img/OIP.png" alt="" />
           </div>
         </div>
