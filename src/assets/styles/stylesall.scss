@@ -90,7 +90,11 @@ textarea {
     a{
         display: block;
         height: fit-content;
-        line-height: 90%;
+        line-height: 60%;
+        img{
+            height: 50px;
+            width: auto;
+        }
     }
 }
 
@@ -285,7 +289,7 @@ textarea {
     align-items: center;
     justify-content: center;
     border: 1px solid var(--Gray-text-color);
-    border-radius: 50%;
+    border-radius: 100%;
     overflow: hidden;
     padding: 3px;
 
@@ -294,7 +298,7 @@ textarea {
         width: 40px;
         height: 40px;
         object-fit: cover;
-        border-radius: 50%;
+        border-radius: 100%;
         cursor: pointer;
     }
 }

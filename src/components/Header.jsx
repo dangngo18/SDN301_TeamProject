@@ -1,6 +1,7 @@
 import React from 'react'
 import { Icon } from '../assets/icon/icons';
 import { Link } from 'react-router-dom';
+import {Logo} from '../config'
 
 const Menu = ["Home", "Style", "Shop"]
 
@@ -12,7 +13,7 @@ export function Header() {
   return (
     <div className='HeaderBeforeLogin'>
       <div className='logo'>
-        <Link to='/'><img src="./img/Logo.jpg" alt="logo" /></Link>
+        <Link to='/'><img src={Logo} alt="logo"/></Link>
       </div>
       <div className='HeaderSearchBox'>
         <input className='SearchBox' type="text" value={search} onChange={handleInputSearch} placeholder='Search your product...' />
@@ -53,7 +54,7 @@ export function HeaderAfterLogin() {
   return (
     <div className='HeaderBeforeLogin'>
       <div className='logo'>
-        <Link to='/'><img src="../img/Logo.jpg" alt="logo" /></Link>
+        <Link to='/'><img src={Logo} alt="logo" /></Link>
       </div>
       <div className='HeaderSearchBox'>
         <input className='SearchBox' type="text" value={search} onChange={handleInputSearch} placeholder='Search your product...' />
@@ -101,7 +102,7 @@ export function HeaderforStyle() {
   return (
     <div className='HeaderBeforeLogin'>
       <div className='logo'>
-        <Link to='/'><img src="../../img/Logo.jpg" alt="logo" /></Link>
+        <Link to='/'><img src={Logo} alt="logo" /></Link>
       </div>
       <div className='HeaderSearchBox'>
         <input className='SearchBox' type="text" value={search} onChange={handleInputSearch} placeholder='Search your product...' />
@@ -149,7 +150,7 @@ export function HeaderforStudio() {
   return (
     <div className='HeaderBeforeLogin'>
       <div className='logo'>
-        <Link to='/'><img src="../../img/Logo.jpg" alt="logo" /></Link>
+        <Link to='/'><img src={Logo} alt="logo" /></Link>
       </div>
       {/* nhớ sửa thành Link */}
       <div className='HeaderProfileAndLogin'>
