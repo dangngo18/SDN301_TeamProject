@@ -9,7 +9,6 @@ export default function SignUp() {
     password: "",
     phone: "",
     requiredCheckbox: false,
-    optionalCheckbox: false,
   });
 
   const [error, setError] = useState({});
@@ -25,8 +24,7 @@ export default function SignUp() {
 
   const validate = () => {
     const error = {};
-    const { email, password, phone, requiredCheckbox, optionalCheckbox } =
-      formData;
+    const { email, password, phone, requiredCheckbox } = formData;
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordPattern = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,16}$/;
@@ -44,10 +42,6 @@ export default function SignUp() {
     }
     if (!requiredCheckbox) {
       error.requiredCheckbox = "You must agree to the term of use.";
-    }
-    if (!optionalCheckbox) {
-      error.optionalCheckbox =
-        "You must agree to receiving advertising information.";
     }
 
     setError(error);
@@ -104,7 +98,7 @@ export default function SignUp() {
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? (Icon.Hide) : (Icon.Show)}
+                {showPassword ? Icon.Hide : Icon.Show}
               </button>
             </div>
             <span className="error">
@@ -149,9 +143,6 @@ export default function SignUp() {
                 [Optional] I agree to receiving advertising information.
               </span>
             </div>
-            <span className="error">
-              {submissionAttempted && error.optionalCheckbox}
-            </span>
           </div>
           <input
             type="submit"
