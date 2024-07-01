@@ -8,6 +8,10 @@ import { Post_Image,Post_Videos,Post_Archived } from '../../Test/Jsontest';
 
 export default function PostManage() {
   const [currentTab, setCurrentTab] = React.useState('1');
+  const [post, setPost] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
+  
+
   const tabItem = [
     {
       id: 1,

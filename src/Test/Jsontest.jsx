@@ -663,3 +663,196 @@ export const ListUser = [
         ]
     }
 ]
+export const ForYou = [
+    {
+      name: "@h_anh",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg",
+    },
+    {
+      name: "@h_anh",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg",
+    },
+    {
+      name: "@h_anh",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg",
+    },
+
+    {
+      name: "@h_dang",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg",
+    },
+    {
+      name: "@h_anh",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg",
+    },
+    {
+      name: "@h_dang",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg",
+    },
+  ];
+
+  export const postPopular = [
+    {
+      name: "@a_khoi",
+      title: "hihi",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "hihas dkfhakl sdhfakl sdjh fklasd hfklashdf klahsdkhfkal hsdkfhaksl dlhfk ahsd kfhe iwuyqriy qweioy ri qyweir",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "hihi",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "hihi alsdhjf kjah  sdkflahsdlkf hasdlk halskdhfa ksdhfjkasdhfk",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+  ];
+
+  export const postNewest = [
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+    },
+
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+      heihgt: 384,
+    },
+    {
+      name: "@a_khoi",
+      title: "haha",
+      avt: "https://file3.qdnd.vn/data/images/0/2023/05/03/vuhuyen/khanhphan.jpg?dpi=150&quality=100&w=870",
+      imgURL:
+        "https://videos.pexels.com/video-files/2098988/2098988-uhd_2560_1440_30fps.mp4",
+      lover: "123",
+      heihgt: 285,
+    },
+  ];

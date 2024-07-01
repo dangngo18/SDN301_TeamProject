@@ -1,4 +1,5 @@
-import React, { useRef, useMemo, useEffect } from 'react'
+import React, { useRef, useMemo, useEffect,useState } from 'react'
+import Card from "react-bootstrap/Card";
 import { Icon } from '../assets/icon/icons'
 import Macy from 'macy';
 
@@ -141,6 +142,96 @@ export function PostMasonryLoop({ children, Posts, User }) {
         }
         )
       }
+    </div>
+  );
+}
+
+export function StylePostMasonryLoop({ children, Posts }) {
+  const containerRef = useRef();
+  const childCount = React.Children.count(children);
+  const options = useMemo(
+    () => ({
+      // columns: 3,
+      margin: {
+        x: 25,
+        y: 44,
+      },
+      breakAt: {
+        1215: 4,
+        // 1214: 3,
+        992: 3,
+        520: 2,
+        400: 1,
+      },
+    }),
+    []
+  );
+
+  const isVideo = (url) => {
+    const videoExtensions = ["mp4", "webm", "ogg"];
+    const extension = url.split(".").pop();
+    return videoExtensions.includes(extension);
+  };
+
+  const [isRed, setIsRed] = useState(false);
+
+  const handleClick = () => {
+    setIsRed(!isRed);
+  };
+  const { macy } = useMasonry(containerRef, options, childCount);
+  return (
+    <div ref={containerRef} className="post_left_body_macy_inner">
+      {Posts.map((post, index) => {
+        return (
+          <div className="postContainer" key={index}>
+            <div className="postCard-container">
+              {isVideo(post.imgURL) ? (
+                <video controls className="postVid-container">
+                  <source
+                    src={post.imgURL}
+                    type={`video/${post.imgURL.split(".").pop()}`}
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <Card.Img
+                  variant="top"
+                  src={post.imgURL}
+                  className="postImg-container"
+                />
+              )}
+
+              <Card.Body>
+                <Card.Title className="postTitle">
+                  <button className="postButton">
+                    <img src={post.avt} className="postAvt" />
+                    <span className="postName">{post.name}</span>
+                  </button>
+                  <span className="postLover">
+                    <button
+                      className="postIcon"
+                      onClick={handleClick}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        padding: 0,
+                        cursor: "pointer",
+                      }}
+                    >
+                      <span style={{ fill: isRed ? "#ff385c" : "#6a6a6a" }}>
+                        {Icon.Love}
+                      </span>
+                    </button>
+                    <span>{post.lover}</span>
+                  </span>
+                </Card.Title>
+
+                <Card.Text className="postText">{post.title}</Card.Text>
+              </Card.Body>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

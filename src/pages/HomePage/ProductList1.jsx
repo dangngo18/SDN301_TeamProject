@@ -15,7 +15,7 @@ export function ProductList1({products}) {
             </div>
             <div className='productlist-1-product'>
                 {products.map((product, index) => (
-                    <ProductCard product={product} />
+                    <ProductCard product={product} key={index}/>
                 ))}
             </div>
             <div className='ProductList-1-see-more-button'>
