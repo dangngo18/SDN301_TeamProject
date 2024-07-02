@@ -46,8 +46,10 @@ const Login = () => {
           password: formData.password
         });
         console.log('Login successful');
-        const { token } = response.data;
+        const { token, userId } = response.data;
+        console.log(response.data);
         localStorage.setItem('token', token);
+        localStorage.setItem('userId', userId);
       } catch (error) {
         console.error('Login failed:', error.response ? error.response.data : error.message);
       }

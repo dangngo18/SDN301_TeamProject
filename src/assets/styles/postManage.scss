@@ -1,3 +1,6 @@
+ol, ul {
+    padding-left: 0;
+}
 .post_main {
     width: 100%;
     min-height: calc(100vh - 100px);
@@ -245,9 +248,10 @@
     .post_left_body_item {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: flex-start;
         row-gap: 12px;
+        column-gap: 7.62px;
 
         .Post_card1 {
             overflow: hidden;
@@ -430,7 +434,7 @@
         .post_image_item {
             position: relative;
 
-            img {
+            img,video {
                 width: 100%;
                 height: 100%;
             }
@@ -446,6 +450,7 @@
                 opacity: 0;
                 visibility: hidden;
                 transition: 0.3s ease-in-out;
+                z-index: 10;
 
                 .btnRemove,
                 .btnView {
@@ -471,7 +476,7 @@
             width: 123px;
             height: 164px;
 
-            img {
+            img,video {
                 object-fit: cover;
                 object-position: center;
             }

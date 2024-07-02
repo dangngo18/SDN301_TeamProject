@@ -215,35 +215,35 @@ export const Post_Archived = []
 export const product_tag =
     [
         {
-            id: 1,
-            name: "Moonlight boot pride a",
+            productId: '63c4a2b8e12f3b1f32d42f9c',
+            productName: "Moonlight boot pride a",
             price: 240000,
-            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+            urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
         },
         {
-            id: 2,
-            name: "Moonlight boot pride b",
+            productId: '1a789d4f234b021e21e8bffe',
+            productName: "Moonlight boot pride b",
             price: 240000,
-            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+            urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
         },
         {
-            id: 3,
-            name: "Moonlight boot pride c",
+            productId: 'dfc12b1a1b222df012c17f2e',
+            productName: "Moonlight boot pride c",
             price: 240000,
-            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+            urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
         },
         {
-            id: 4,
-            name: "noonlight boot price d",
+            productId: '48210b921234e7f31ab4c123',
+            productName: "noonlight boot price d",
             price: 240000,
-            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+            urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
         }
         ,
         {
-            id: 4,
-            name: "noonlight boot price d",
+            productId: '0ebf3d8a21e23f90212b4f1a',
+            productName: "noonlight boot price d",
             price: 240000,
-            url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+            urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
         }
     ]
 
@@ -549,35 +549,35 @@ export const ListUser = [
 
         tag_product: [
             {
-                id: 1,
-                name: "Moonlight boot pride a",
+                productId: 1,
+                productName: "Moonlight boot pride a",
                 price: 240000,
-                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+                urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
             },
             {
-                id: 2,
-                name: "Moonlight boot pride b",
+                productId: 2,
+                productName: "Moonlight boot pride b",
                 price: 240000,
-                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+                urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
             },
             {
-                id: 3,
-                name: "Moonlight boot pride c",
+                productId: 3,
+                productName: "Moonlight boot pride c",
                 price: 240000,
-                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+                urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
             },
             {
-                id: 4,
-                name: "noonlight boot price d",
+                productId: 4,
+                productName: "noonlight boot price d",
                 price: 240000,
-                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+                urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
             }
             ,
             {
-                id: 4,
-                name: "noonlight boot price d",
+                productId: 4,
+                productName: "noonlight boot price d",
                 price: 240000,
-                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+                urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
             }
         ]
     },

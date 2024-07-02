@@ -7,40 +7,83 @@ import { Icon } from '../../assets/icon/icons'
 import '../../assets/styles/User.scss'
 import { useParams } from 'react-router-dom'
 import { Nopost, PostMasonryLoop } from '../../components/Post_loop'
+import axios from 'axios'
 
 export default function UserProfile() {
+    const [currentTab, setCurrentTab] = useState('1');
+    const [currentFollow, setCurrentFollow] = useState('1');
+    const [showFollow, setShowFollow] = useState(false);
+    const diaLogShow = useRef(null);
+    const token = localStorage.getItem('token');
     const { idUser } = useParams();
-    const [user, setUser] = useState(ListUser.find((e) => e.id === parseInt(idUser, 10)));
-    const { id, name, username, bio, email, urlImage, following, followers, posts, tag_product } = user
-    const [currentTab, setCurrentTab] = React.useState('1');
-    const [currentFollow, setCurrentFollow] = React.useState('1');
-    const [showFollow,setShowFollow] = useState(false);
+    const [user, setUser] = useState(null);
+    const [posts, setPosts] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const userResponse = await axios.get(`http://localhost:8080/user/${idUser}`);
+                console.log("User Data", userResponse.data);
+                setUser(userResponse.data);
+
+                const postsResponse = await axios.get(`http://localhost:8080/style/posts/user/${idUser}`);
+                console.log("Post Data", postsResponse.data);
+                setPosts(postsResponse.data);
+
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        fetchData();
+    }, [idUser]);
+
+    if (!user || !posts) {
+        return <div className='loading'></div>
+    }
+    console.log("User" + user)
+    console.log("Post" + posts)
+    const users = {
+        userId: user.userId,
+        profileName: user.profileName || "",
+        username: user.username || "",
+        bio: user.bio || "",
+        email: user.email || "",
+        urlImage: user.urlImage || "",
+        following: user.following || [],
+        followers: user.followers || [],
+        productTags: user.productTags || []
+    };
+
+    const { userId, profileName, username, bio, email, urlImage, following, followers, productTags } = users;
+
+
 
     const tabItem = [
         {
             id: 1,
             tab: "Image",
-            content: posts.Post_Image ? posts.Post_Image : [],
-            user: {id,name,urlImage}
+            content: posts.length != 0 ? posts : null,
+            user: { userId, profileName, urlImage }
         },
         {
             id: 2,
             tab: "Videos",
-            content: posts.Post_Videos ? posts.Post_Videos : [],
-            user: {id,name,urlImage}
+            content: posts.length != 0 ? posts : null,
+            user: { userId, profileName, urlImage }
         },
         {
             id: 3,
             tab: "Archived",
-            content: posts.Post_Archived ? posts.Post_Archived : [],
-            user: {id,name,urlImage}
+            content: posts.length != 0 ? posts : null,
+            user: { userId, profileName, urlImage }
         },
         {
             id: 4,
             tab: "tag_products",
-            content: tag_product
+            content: productTags
         }
     ];
+
     const handleTabClick = (e) => {
         setCurrentTab(e.target.id);
     }
@@ -50,6 +93,7 @@ export default function UserProfile() {
         setShowFollow(true);
         document.body.style.overflow = 'hidden';
     };
+
     function ModalFollow() {
         const tabItems = [
             {
@@ -62,8 +106,8 @@ export default function UserProfile() {
                 tab: "Followers",
                 content: followers
             }
-            
         ];
+
         const handleTab = (e) => {
             setCurrentFollow(e.target.id);
         }
@@ -85,7 +129,7 @@ export default function UserProfile() {
                                         {tabItems.map((tab, i) => {
                                             return (
                                                 <li className={`tablist_item ${currentFollow === `${tab.id}` ? 'active' : ''}`} key={i}>
-                                                    <button type='button' id={tab.id} onClick={(e) => {handleTab(e)}} >{`${tab.tab} ${tab.content.length}`}</button>
+                                                    <button type='button' id={tab.id} onClick={(e) => { handleTab(e) }} >{`${tab.tab} ${tab.content.length}`}</button>
                                                 </li>
                                             );
                                         })}
@@ -129,11 +173,10 @@ export default function UserProfile() {
             </>
         )
     }
-    const diaLogShow = useRef(null);
     function ModalEdit() {
         const [imageEdit, setImageEdit] = useState(urlImage);
         const [usernameEdit, setUsernameEdit] = useState(username);
-        const [nameEdit, setNameEdit] = useState(name);
+        const [nameEdit, setNameEdit] = useState(profileName);
         const [bioEdit, setBioEdit] = useState(bio);
         const [isEditDisable, setIsEditDisable] = useState(true);
 
@@ -221,7 +264,7 @@ export default function UserProfile() {
                             </div>
                             <div className="edit_action_btn">
                                 <button type="reset" className='btn_cancel' onClick={() => { diaLogShow.current.close(); document.body.style.overflow = "auto"; }}>Cancel</button>
-                                <button type="submit" className={`btn_submit ${(imageEdit != urlImage) || (usernameEdit != username) || (nameEdit != name) || (bioEdit != bio) ? "" : "disabled"}`} disabled={(imageEdit != urlImage) || (usernameEdit != username) || (nameEdit != name) || (bioEdit != bio) ? false : true}>Save</button>
+                                <button type="submit" className={`btn_submit ${(imageEdit != urlImage) || (usernameEdit != username) || (nameEdit != profileName) || (bioEdit != bio) ? "" : "disabled"}`} disabled={(imageEdit != urlImage) || (usernameEdit != username) || (nameEdit != profileName) || (bioEdit != bio) ? false : true}>Save</button>
                             </div>
                         </form>
                     </div>
@@ -239,14 +282,14 @@ export default function UserProfile() {
                         <Link className="top_info_image" to={urlImage}><img src={urlImage} alt="Avatar" /></Link>
                         <div className="top_info_data">
                             <div className="top_info_data_name">
-                                <h2>{name}</h2>
+                                <h2>{profileName}</h2>
                                 <div className="upload_button">
                                     <button onClick={() => { diaLogShow.current.show(); document.body.style.overflow = "hidden"; }}><span>{Icon.EditIcon}</span>Edit profile</button>
                                 </div>
                             </div>
                             <ul className="top_info_data_followList">
-                                <li className="followList_item" onClick={() => { handleOpenFollow('1'); }}>Following <span>{following.length}</span></li>
-                                <li className="followList_item" onClick={() => { handleOpenFollow('2'); }}>Followers <span>{followers.length}</span></li>
+                                <li className="followList_item" onClick={() => { handleOpenFollow('1'); }}>Following <span>{following != null ? following.length : ""}</span></li>
+                                <li className="followList_item" onClick={() => { handleOpenFollow('2'); }}>Followers <span>{followers != null ? followers.length : ""}</span></li>
                             </ul>
                             <div className="top_info_data_bio">
                                 <p>{bio}</p>
@@ -261,7 +304,7 @@ export default function UserProfile() {
                                         {tabItem.map((tab, i) => {
                                             return (
                                                 <li className={`tablist_item ${currentTab === `${tab.id}` ? 'active' : ''}`} key={i}>
-                                                    <input type="button" id={tab.id} onClick={(handleTabClick)} value={`${tab.tab} ${tab.content.length}`} />
+                                                    <input type="button" id={tab.id} onClick={(handleTabClick)} value={`${tab.tab} ${tab.content != null ? tab.content.length : ''}`} />
                                                 </li>
                                             );
                                         })}
@@ -272,13 +315,14 @@ export default function UserProfile() {
                                 <div className="post_left_body_container">
                                     <div className="post_left_body_wrapper">
                                         {tabItem.map((tab, i) => {
+                                            console.log(tab.content)
                                             return (
                                                 <div className="post_left_body_macy" id='body-macy' key={i}>
-                                                    {currentTab === `${tab.id}` && (tab.content.length != 0 
-                                                    ? 
-                                                    <PostMasonryLoop Posts={tab.content} User={tab.user}/> 
-                                                    : 
-                                                    <Nopost />)}
+                                                    {currentTab === tab.id && (tab.content
+                                                        ?
+                                                        <PostMasonryLoop Posts={tab.content} User={tab.user} />
+                                                        :
+                                                        <Nopost />)}
                                                 </div>
                                             );
                                         })}
@@ -293,5 +337,6 @@ export default function UserProfile() {
             <ModalEdit />
             <Footer />
         </>
+
     )
 }

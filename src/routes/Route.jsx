@@ -73,13 +73,13 @@ const publicRoutes = [
     {
         path:'/style/post/:postid',
         component: <PostDetail/>
-    }    
-]
-const privateRoute =[
+    },
     {
         path: '/user/profile/:idUser',
         component: <UserProfile/>,
-    },
+    }   
+]
+const privateRoute =[
     {
         path: '/studio/posts',
         component: <PostManage/>

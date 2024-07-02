@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { HeaderforStudio } from '../../components/Header'
 import "../../assets/styles/postManage.scss"
 import { Icon } from '../../assets/icon/icons';
@@ -10,13 +10,31 @@ export default function PostManage() {
   const [currentTab, setCurrentTab] = React.useState('1');
   const [post, setPost] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
-  
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
 
+  useEffect(() => {
+    const fetchPosts = async () =>{
+      setIsLoading(true);
+      const response = await fetch(`http://localhost:8080/studio/posts`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setPost(data);
+      setIsLoading(false);
+    }
+    fetchPosts();
+  },[])
+  console.log(post)
   const tabItem = [
     {
       id: 1,
       tab: "Image",
-      content: Post_Image
+      content: post
     },
     {
       id: 2,
@@ -44,7 +62,7 @@ export default function PostManage() {
                   {tabItem.map((tab, i) => {
                     return (
                       <li className={`tablist_item ${currentTab === `${tab.id}` ? 'active' : ''}`} key={i}>
-                        <input type="button" id={tab.id} onClick={(handleTabClick)} value={`${tab.tab} ${tab.content.length}`} />
+                        <input type="button" id={tab.id} onClick={(handleTabClick)} value={`${tab.tab} ${tab.content != null ? tab.content.length : "0"}`} />
                       </li>
                     );
                   })}
@@ -63,7 +81,7 @@ export default function PostManage() {
                   {tabItem.map((tab, i) => {
                     return (
                       <div className="post_left_body_item" key={i}>
-                        {currentTab === `${tab.id}` && (tab.content.length != 0 ? <PostLoopTab Posts={tab.content}/> : <Nopost/>)}
+                        {currentTab === `${tab.id}` && (tab.content.length != 0 ? <><PostLoopTab Posts={tab.content}/></> : <Nopost/>)}
                       </div>
                     );
                   })}
