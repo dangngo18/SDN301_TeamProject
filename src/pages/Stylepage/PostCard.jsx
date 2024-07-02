@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import { Icon } from "../../assets/icon/icons";
 import { useState } from "react";
 
-const PostCard = ({ name, title, avt, imgURL, lover }) => {
+const PostCard = ({ name, title, avt, image, type, lover }) => {
   const isVideo = (url) => {
     const videoExtensions = ["mp4", "webm", "ogg"];
     const extension = url.split(".").pop();
@@ -19,14 +19,29 @@ const PostCard = ({ name, title, avt, imgURL, lover }) => {
   return (
     <div className="postContainer">
       <div className="postCard-container">
-        {isVideo(imgURL) ? (
-          <video controls className="postVid-container">
-            <source src={imgURL} type={`video/${imgURL.split(".").pop()}`} />
-            Your browser does not support the video tag.
-          </video>
-        ) : (
-          <Card.Img variant="top" src={imgURL} className="postImg-container" />
-        )}
+        <div className="media-container">
+          {isVideo(image) ? (
+            <video controls className="postVid-container">
+              <source
+                src={image[0].url}
+                type={`video/${image.split(".").pop()}`}
+                className={image[0].aspect}
+              />
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <Card.Img
+              variant="top"
+              src={image[0].aspect}
+              className="postImg-container"
+            />
+          )}
+
+          <div className="overlay">
+            {image.length > 1 ? Icon.MultiImage : ""}
+            {type === 1 ? Icon.PlayIcon : ""}
+          </div>
+        </div>
 
         <Card.Body>
           <Card.Title className="postTitle">
