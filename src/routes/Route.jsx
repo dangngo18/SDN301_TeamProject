@@ -2,7 +2,7 @@ import React from 'react'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Home from '../pages/HomePage/Home'
-import Style from '../pages/Style'
+import Style from '../pages/Stylepage/Style'
 import Shop from '../pages/Shop'
 import FindEmail from '../pages/ForgotPass/FindEmail'
 import PostUpload from '../pages/Studio/PostUpload'
@@ -17,6 +17,8 @@ import NotFound from '../pages/NotFound'
 import PostDetail from '../pages/PostDetail/PostDetail'
 // import AnotherUserProfile from '../pages/AnotherUserProfile/AnotherUserProfile'
 import UserProfile from '../pages/User/UserProfile'
+import axios from 'axios';
+
 
 const publicRoutes = [
     {
@@ -32,16 +34,51 @@ const publicRoutes = [
         component: <Register />
     },
     {
-        path: '/Style',
+        path: '/style',
         component: <Style />
     },
     {
-        path: '/Shop',
+        path: '/shop',
         component: <Shop />
     },
     {
-        path: '/FindEmail',
+        path: '/findemail',
         component: <FindEmail />
+    },
+    
+    {
+        path: '/signup',
+        component: <SignUp />
+    },
+      {
+        path: '/forgotpass',
+        component: <ForgotPass />
+    },
+    {
+        path: '/otp',
+        component: <OTP />
+    },
+    {
+        path: '/resetpassword',
+        component: <ResetPassword />
+    },
+    {
+        path: '/finnishedreset',
+        component: <FinnishedReset />
+    },
+    {
+        path: '/error',
+        component: <NotFound />
+    },
+    {
+        path:'/style/post/:postid',
+        component: <PostDetail/>
+    }    
+]
+const privateRoute =[
+    {
+        path: '/user/profile/:idUser',
+        component: <UserProfile/>,
     },
     {
         path: '/studio/posts',
@@ -54,44 +91,8 @@ const publicRoutes = [
     {
         path: '/studio/post/:id',
         component: <PostEdit/>
-    },
-    {
-        path: '/SignUp',
-        component: <SignUp />
-    },
-      {
-        path: '/ForgotPass',
-        component: <ForgotPass />
-    },
-    {
-        path: '/OTP',
-        component: <OTP />
-    },
-    {
-        path: '/ResetPassword',
-        component: <ResetPassword />
-    },
-    {
-        path: '/FinnishedReset',
-        component: <FinnishedReset />
-    },
-    {
-        path: '/Error',
-        component: <NotFound />
-    },
-    {
-        path:'/style/post/:postid',
-        component: <PostDetail/>
-    },
-    // {
-    //     path:'/User/:userid',
-    //     component: <AnotherUserProfile/>
-    // },
-    {
-        path: '/user/profile/:idUser',
-        component: <UserProfile/>,
     }
 ]
 
-export { publicRoutes }
+export { publicRoutes, privateRoute }
 

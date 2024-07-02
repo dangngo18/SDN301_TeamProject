@@ -40,7 +40,10 @@ svg {
     width: 24px;
     height: 24px;
 }
-
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
 button {
     border: none;
     background: none;
@@ -102,6 +105,7 @@ textarea {
 .container {
     max-width: var(--Max-container);
     margin: 0 auto;
+    padding: 0;
 }
 
 .section {
@@ -201,12 +205,12 @@ textarea {
 
 .nav {
     display: flex;
-    justify-content: center;
     align-items: center;
 
     & .ListMenu {
         display: flex;
         padding: 16px 24px;
+        margin-bottom: 0;
 
         & .Menu {
             padding: 10px 16px;

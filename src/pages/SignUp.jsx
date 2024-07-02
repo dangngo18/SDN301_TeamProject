@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import "../assets/styles/SignUpStyle.scss";
 import { useEffect, useState } from "react";
 import { Icon } from "../assets/icon/icons";
+import axios from "axios";
 export default function SignUp() {
   const [formData, setFormData] = useState({
     email: "",
@@ -16,6 +17,7 @@ export default function SignUp() {
   const [valid, setValid] = useState(false);
   const [submissionAttempted, setSubmissionAttemped] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isDisabled,setDisable] = useState(true);
 
   useEffect(() => {
     if (submissionAttempted) {
@@ -45,10 +47,6 @@ export default function SignUp() {
     if (!requiredCheckbox) {
       error.requiredCheckbox = "You must agree to the term of use.";
     }
-    if (!optionalCheckbox) {
-      error.optionalCheckbox =
-        "You must agree to receiving advertising information.";
-    }
 
     setError(error);
     setValid(Object.keys(error).length === 0);
@@ -56,18 +54,36 @@ export default function SignUp() {
 
   const handleChange = (e) => {
     const { id, value, checked, type } = e.target;
+    if(value.length > 0){
+      setDisable(false);
+    }else{
+      setDisable(true);
+    }
     setFormData((prevData) => ({
       ...prevData,
       [id]: type === "checkbox" ? checked : value,
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setSubmissionAttemped(true);
-    validate();
+    // validate();
     if (valid) {
-      console.log("Sign up successfully!");
+      try {
+        const response = await axios.post('http://localhost:8080/auth/signup', {
+          username: formData.email.split("@")[0],
+          email: formData.email,
+          phone: formData.phone,
+          isAcceptMarketing: formData.optionalCheckbox,
+          password: formData.password
+        });
+        console.log('Sign up successful:', response.data);
+        // const { token } = response.data;
+        // localStorage.setItem('token', token);
+      } catch (error) {
+        console.error('singup failed:', error.response ? error.response.data : error.message);
+      }
     }
   };
 
@@ -156,8 +172,7 @@ export default function SignUp() {
           <input
             type="submit"
             value="Sign Up"
-            className="submit"
-            style={{ backgroundColor: valid ? "#161823" : "#ddd" }}
+            className={`submit ${isDisabled ? "disabled" : ""}`} disabled={isDisabled}
           />
 
           <span className="ask_account">

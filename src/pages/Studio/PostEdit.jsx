@@ -51,7 +51,7 @@ export default function PostEdit() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        const flag = false;
+        let flag = false;
         if (postTitle === '') {
             flag = true;
         }
