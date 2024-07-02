@@ -5,20 +5,12 @@
 // <----------StrCard.scss---------->
 
 .card-container {
-    display: table-cell;
-    width: 1215px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    object-fit: cover;
-
-    h2 {
-        display: flex;
-        justify-content: center;
-        padding-top: 16px;
-        padding-bottom: 16px;
-        margin-bottom: 0;
-    }
+  display: table-cell;
+  width: 1215px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  object-fit: cover;
 
   .img-container {
     position: relative;
@@ -125,7 +117,7 @@
   }
 }
 
-.NavMenu {
+.menuHeader {
   display: flex;
   width: 1215px;
   align-items: center;
@@ -140,14 +132,29 @@
   }
 }
 
-
-
 .str-container {
-  width: 1215px;
   display: flex;
-  justify-content: center;
+  width: 1215px;
   flex-direction: column;
   align-items: center;
+
+  .str {
+    display: flex;
+    margin-left: 8px;
+
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+  }
+
+  h2 {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin-bottom: 0;
+  }
 }
 
 .sub-post {
@@ -266,7 +273,6 @@
       display: flex;
       max-width: 1215px;
       justify-content: center;
-      border-bottom: 1px solid #d9d9d9;
 
       .tab-pane {
         width: 1215px;
@@ -313,14 +319,15 @@
   position: relative;
   overflow: hidden;
   width: 285px;
+  border-radius: 10px;
 
   .postImg-container {
     width: 285px;
     height: fit-content;
-    border-radius: 10px;
     background: lightgray 50% / cover no-repeat;
     object-fit: cover;
-    x img {
+
+    img {
       width: 100%;
       object-fit: cover;
       object-position: center;
@@ -385,6 +392,14 @@
     align-items: center;
     align-self: stretch;
     padding: 8px 4px 6px 4px;
+    overflow: hidden;
+    color: var(--Title-color, #161823);
+    text-overflow: ellipsis;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 
   .postButton {

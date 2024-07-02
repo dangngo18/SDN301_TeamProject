@@ -73,7 +73,7 @@ export default function Style() {
                     "forYou",
                     <div className="str-container">
                       <Row
-                        className="row"
+                        className="str"
                         style={{ overflowX: "auto", whiteSpace: "nowrap" }}
                       >
                         {ForYou.slice(0, 6).map((item, index) => (
