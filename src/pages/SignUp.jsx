@@ -4,6 +4,7 @@ import "../assets/styles/SignUpStyle.scss";
 import { useEffect, useState } from "react";
 import { Icon } from "../assets/icon/icons";
 import axios from "axios";
+import Main from "../ultils/container";
 export default function SignUp() {
   const [formData, setFormData] = useState({
     email: "",
@@ -17,7 +18,7 @@ export default function SignUp() {
   const [valid, setValid] = useState(false);
   const [submissionAttempted, setSubmissionAttemped] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [isDisabled,setDisable] = useState(true);
+  const [isDisabled, setDisable] = useState(true);
 
   useEffect(() => {
     if (submissionAttempted) {
@@ -54,9 +55,9 @@ export default function SignUp() {
 
   const handleChange = (e) => {
     const { id, value, checked, type } = e.target;
-    if(value.length > 0){
+    if (value.length > 0) {
       setDisable(false);
-    }else{
+    } else {
       setDisable(true);
     }
     setFormData((prevData) => ({
@@ -88,8 +89,7 @@ export default function SignUp() {
   };
 
   return (
-    <div>
-      <Header />
+    <Main>
       <div className="container">
         <form onSubmit={handleSubmit} className="formSignup">
           <h4>Join for your experience</h4>
@@ -180,7 +180,6 @@ export default function SignUp() {
           </span>
         </form>
       </div>
-      <Footer />
-    </div>
+    </Main>
   );
 }

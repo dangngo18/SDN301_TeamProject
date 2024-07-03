@@ -15,6 +15,7 @@ import StrCard from "./StrCard";
 import { StylePostMasonryLoop } from "../../components/Post_loop";
 import { useState, useEffect } from "react";
 import { ForYou, postPopular, postNewest } from "../../Test/Jsontest";
+import Main from "../../ultils/container";
 
 export default function Style() {
   const [activeKey, setActiveKey] = useState("forYou");
@@ -42,8 +43,7 @@ export default function Style() {
   );
 
   return (
-    <div>
-      <HeaderforStyle />
+    <Main>
       <main className="project" id="project">
         <Container className="container">
           <Row className="str-container">
@@ -134,7 +134,6 @@ export default function Style() {
           </Row>
         </Container>
       </main>
-      <Footer />
-    </div>
+    </Main>
   );
 }

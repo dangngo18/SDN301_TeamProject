@@ -3,6 +3,7 @@ import { HeaderAfterLogin } from '../../components/Header'
 import Footer from '../../components/Footer'
 import { checkOTP } from '../../ultils/validation'
 import { useNavigate } from 'react-router-dom'
+import Main from '../../ultils/container'
 export default function OTP() {
   const [otp, setOtp] = React.useState('123456') //set OTP here
   const [inputotp, setInputOtp] = React.useState('')
@@ -11,22 +12,21 @@ export default function OTP() {
   const handleSubmit = (e) => {
     const result = checkOTP(inputotp)
     let check = true
-    if(result){
+    if (result) {
       check = false
       setError(result)
-    }else if(inputotp !== otp){
+    } else if (inputotp !== otp) {
       check = false
       setError('OTP is not correct')
     }
-    if(check){
+    if (check) {
       navigate('/Style')
-    }else{
+    } else {
       e.preventDefault()
     }
   }
   return (
-    <div>
-      <HeaderAfterLogin />
+    <Main>
       <div className='ForgotGroup_Container'>
         <div className='ForgotGroup_FormContainer'>
           <div className='ForgotGroup_Form'>
@@ -53,7 +53,6 @@ export default function OTP() {
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </Main>
   )
 }

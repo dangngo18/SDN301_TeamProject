@@ -2,11 +2,11 @@ import React from 'react'
 import { HeaderAfterLogin } from '../../components/Header'
 import Footer from '../../components/Footer'
 import { useNavigate } from 'react-router-dom'
+import Main from '../../ultils/container'
 export default function FinnishedReset() {
     const navigate = useNavigate()
     return (
-        <div>
-            <HeaderAfterLogin />
+        <Main>
             <div>
                 <div className='ForgotGroup_Container'>
                     <div className='ForgotGroup_FormContainer'>
@@ -30,7 +30,6 @@ export default function FinnishedReset() {
                     </div>
                 </div>
             </div>
-            <Footer />
-        </div>
+        </Main>
     )
 }

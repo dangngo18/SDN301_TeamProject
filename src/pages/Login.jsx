@@ -6,8 +6,11 @@ import { Icon } from "../assets/icon/icons";
 import { Logo } from '../config'
 import { validateEmail, validatePassword } from "../ultils/validation";
 import axios from "axios";
+import Main from "../ultils/container";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [isDisabled, setDisable] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
@@ -16,9 +19,9 @@ const Login = () => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    if(value.length > 0){
+    if (value.length > 0) {
       setDisable(false);
-    }else{
+    } else {
       setDisable(true);
     }
     setFormData((prevData) => ({
@@ -38,8 +41,8 @@ const Login = () => {
       alert("Please enter a valid password");
       flag = true;
     }
-    if (flag){
-    }else{
+    if (flag) {
+    } else {
       try {
         const response = await axios.post('http://localhost:8080/auth/login', {
           email: formData.email,
@@ -49,7 +52,7 @@ const Login = () => {
         const { token, userId } = response.data;
         console.log(response.data);
         localStorage.setItem('token', token);
-        localStorage.setItem('userId', userId);
+        navigate('/');
       } catch (error) {
         console.error('Login failed:', error.response ? error.response.data : error.message);
       }
@@ -66,42 +69,42 @@ const Login = () => {
 
   return (
     <>
-      <Header />
-      <main className="login_main">
-        <div className="login_container">
-          <div className="login_header">
-            <picture>
-              <img src={Logo} alt="" />
-            </picture>
-            <span>Surf your styles</span>
-          </div>
-          <div className="login_form">
-            <form>
-              <div className="login_local_input">
-                <div className="login_input_row">
-                  <h3>Email Address</h3>
-                  <input type="email" name="email" id="email" placeholder="e.g sufy@sufystyles.com" value={formData.email} onChange={handleChange} />
+      <Main>
+        <main className="login_main">
+          <div className="login_container">
+            <div className="login_header">
+              <picture>
+                <img src={Logo} alt="" />
+              </picture>
+              <span>Surf your styles</span>
+            </div>
+            <div className="login_form">
+              <form>
+                <div className="login_local_input">
+                  <div className="login_input_row">
+                    <h3>Email Address</h3>
+                    <input type="email" name="email" id="email" placeholder="e.g sufy@sufystyles.com" value={formData.email} onChange={handleChange} />
+                  </div>
+                  <div className="login_input_row">
+                    <h3>Password</h3>
+                    <input type="password" name="password" id="password" placeholder="enter your password" value={formData.password} onChange={handleChange} />
+                  </div>
                 </div>
-                <div className="login_input_row">
-                  <h3>Password</h3>
-                  <input type="password" name="password" id="password" placeholder="enter your password" value={formData.password} onChange={handleChange} />
+                <button className={`login_btn_submit btn_style1 ${isDisabled ? "disabled" : ""}`} disabled={isDisabled} type="submit" onClick={handleLogin}>Login</button>
+                <ul className="additional_link_list">
+                  <li className="additional_link_item"><a href="/signup">Email Sign Up</a></li>
+                  <li className="additional_link_item"><a href="/findemail">Find Your Email</a></li>
+                  <li className="additional_link_item"><a href="/forgotpass">Forgot Password</a></li>
+                </ul>
+                <div className="additional_login_select">
+                  <button className="additional_login_option" onClick={handleGoogleLogin}>{Icon.Google} Log in with google</button>
+                  <button className="additional_login_option" onClick={handleGoogleLogin}>{Icon.FaceBook} Sign in with facebook</button>
                 </div>
-              </div>
-              <button className={`login_btn_submit btn_style1 ${isDisabled ? "disabled" : ""}`} disabled={isDisabled} type="submit" onClick={handleLogin}>Login</button>
-              <ul className="additional_link_list">
-                <li className="additional_link_item"><a href="/signup">Email Sign Up</a></li>
-                <li className="additional_link_item"><a href="/findemail">Find Your Email</a></li>
-                <li className="additional_link_item"><a href="/forgotpass">Forgot Password</a></li>
-              </ul>
-              <div className="additional_login_select">
-                <button className="additional_login_option" onClick={handleGoogleLogin}>{Icon.Google} Log in with google</button>
-                <button className="additional_login_option" onClick={handleGoogleLogin}>{Icon.FaceBook} Sign in with facebook</button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
-      </main>
-      <Footer />
+        </main>
+      </Main>
     </>
   );
 };

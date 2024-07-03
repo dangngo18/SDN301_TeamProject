@@ -3,6 +3,7 @@ import { HeaderAfterLogin } from '../../components/Header'
 import Footer from '../../components/Footer'
 import { validatePhoneNumber, validateEmail } from '../../ultils/validation';
 import { useNavigate } from 'react-router-dom';
+import Main from '../../ultils/container';
 export default function ForgotPassword() {
     const navigate = useNavigate();
     const [field, setField] = React.useState({
@@ -40,8 +41,8 @@ export default function ForgotPassword() {
 
     const isFormValid = field.email && field.phone;
     return (
-        <div>
-            <HeaderAfterLogin />
+        <Main>
+
             <div>
                 <div className='ForgotGroup_Container'>
                     <div className='ForgotGroup_FormContainer'>
@@ -75,7 +76,6 @@ export default function ForgotPassword() {
                     </div>
                 </div>
             </div>
-            <Footer />
-        </div>
+        </Main>
     )
 }

@@ -2,11 +2,11 @@ import React from 'react'
 import Footer from '../components/Footer'
 import { HeaderAfterLogin } from '../components/Header'
 import { useNavigate } from 'react-router-dom'
+import Main from '../ultils/container'
 export default function NotFound() {
   const navigate = useNavigate()
   return (
-    <div>
-      <HeaderAfterLogin />
+    <Main>
       <div>
         <div className='ForgotGroup_Container'>
           <div className='ForgotGroup_FormContainer'>
@@ -23,14 +23,13 @@ export default function NotFound() {
               </div>
             </div>
             <div className='ForgotGroup_FormBtn'>
-              <button onClick={() => navigate('/')}  className={'ForgotGroup_FormBtn_Return'} >
+              <button onClick={() => navigate('/')} className={'ForgotGroup_FormBtn_Return'} >
                 Return to Home
               </button>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </Main>
   )
 }

@@ -8,6 +8,7 @@ import '../../assets/styles/User.scss'
 import { useParams } from 'react-router-dom'
 import { Nopost, PostMasonryLoop } from '../../components/Post_loop'
 import axios from 'axios'
+import Main from '../../ultils/container'
 
 export default function UserProfile() {
     const [currentTab, setCurrentTab] = useState('1');
@@ -275,68 +276,68 @@ export default function UserProfile() {
     }
     return (
         <>
-            <HeaderforStyle />
-            <main className="user_profile">
-                <div className="user_container container">
-                    <div className="user_top_info">
-                        <Link className="top_info_image" to={urlImage}><img src={urlImage} alt="Avatar" /></Link>
-                        <div className="top_info_data">
-                            <div className="top_info_data_name">
-                                <h2>{profileName}</h2>
-                                <div className="upload_button">
-                                    <button onClick={() => { diaLogShow.current.show(); document.body.style.overflow = "hidden"; }}><span>{Icon.EditIcon}</span>Edit profile</button>
+            <Main>
+
+                <main className="user_profile">
+                    <div className="user_container container">
+                        <div className="user_top_info">
+                            <Link className="top_info_image" to={urlImage}><img src={urlImage} alt="Avatar" /></Link>
+                            <div className="top_info_data">
+                                <div className="top_info_data_name">
+                                    <h2>{profileName}</h2>
+                                    <div className="upload_button">
+                                        <button onClick={() => { diaLogShow.current.show(); document.body.style.overflow = "hidden"; }}><span>{Icon.EditIcon}</span>Edit profile</button>
+                                    </div>
+                                </div>
+                                <ul className="top_info_data_followList">
+                                    <li className="followList_item" onClick={() => { handleOpenFollow('1'); }}>Following <span>{following != null ? following.length : ""}</span></li>
+                                    <li className="followList_item" onClick={() => { handleOpenFollow('2'); }}>Followers <span>{followers != null ? followers.length : ""}</span></li>
+                                </ul>
+                                <div className="top_info_data_bio">
+                                    <p>{bio}</p>
                                 </div>
                             </div>
-                            <ul className="top_info_data_followList">
-                                <li className="followList_item" onClick={() => { handleOpenFollow('1'); }}>Following <span>{following != null ? following.length : ""}</span></li>
-                                <li className="followList_item" onClick={() => { handleOpenFollow('2'); }}>Followers <span>{followers != null ? followers.length : ""}</span></li>
-                            </ul>
-                            <div className="top_info_data_bio">
-                                <p>{bio}</p>
-                            </div>
                         </div>
-                    </div>
-                    <div className="user_bottom_info">
-                        <div className="post_col_left post_col_left_profile">
-                            <div className="post_left_header">
-                                <nav>
-                                    <ul className="tablist" arial-label="TabPost">
-                                        {tabItem.map((tab, i) => {
-                                            return (
-                                                <li className={`tablist_item ${currentTab === `${tab.id}` ? 'active' : ''}`} key={i}>
-                                                    <input type="button" id={tab.id} onClick={(handleTabClick)} value={`${tab.tab} ${tab.content != null ? tab.content.length : ''}`} />
-                                                </li>
-                                            );
-                                        })}
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div className="post_left_body">
-                                <div className="post_left_body_container">
-                                    <div className="post_left_body_wrapper">
-                                        {tabItem.map((tab, i) => {
-                                            console.log(tab.content)
-                                            return (
-                                                <div className="post_left_body_macy" id='body-macy' key={i}>
-                                                    {currentTab === tab.id && (tab.content
-                                                        ?
-                                                        <PostMasonryLoop Posts={tab.content} User={tab.user} />
-                                                        :
-                                                        <Nopost />)}
-                                                </div>
-                                            );
-                                        })}
+                        <div className="user_bottom_info">
+                            <div className="post_col_left post_col_left_profile">
+                                <div className="post_left_header">
+                                    <nav>
+                                        <ul className="tablist" arial-label="TabPost">
+                                            {tabItem.map((tab, i) => {
+                                                return (
+                                                    <li className={`tablist_item ${currentTab === `${tab.id}` ? 'active' : ''}`} key={i}>
+                                                        <input type="button" id={tab.id} onClick={(handleTabClick)} value={`${tab.tab} ${tab.content != null ? tab.content.length : ''}`} />
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div className="post_left_body">
+                                    <div className="post_left_body_container">
+                                        <div className="post_left_body_wrapper">
+                                            {tabItem.map((tab, i) => {
+                                                console.log(tab.content)
+                                                return (
+                                                    <div className="post_left_body_macy" id='body-macy' key={i}>
+                                                        {currentTab === tab.id && (tab.content
+                                                            ?
+                                                            <PostMasonryLoop Posts={tab.content} User={tab.user} />
+                                                            :
+                                                            <Nopost />)}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </main>
-            <ModalFollow />
-            <ModalEdit />
-            <Footer />
+                </main>
+                <ModalFollow />
+                <ModalEdit />
+            </Main>
         </>
-
     )
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import Login from '../pages/Login'
-import Register from '../pages/Register'
 import Home from '../pages/HomePage/Home'
 import Style from '../pages/Stylepage/Style'
 import Shop from '../pages/Shop'
@@ -17,8 +16,6 @@ import NotFound from '../pages/NotFound'
 import PostDetail from '../pages/PostDetail/PostDetail'
 // import AnotherUserProfile from '../pages/AnotherUserProfile/AnotherUserProfile'
 import UserProfile from '../pages/User/UserProfile'
-import axios from 'axios';
-
 
 const publicRoutes = [
     {
@@ -28,10 +25,6 @@ const publicRoutes = [
     {
         path: '/login',
         component: <Login />
-    },
-    {
-        path: '/register',
-        component: <Register />
     },
     {
         path: '/style',
@@ -67,7 +60,7 @@ const publicRoutes = [
         component: <FinnishedReset />
     },
     {
-        path: '/error',
+        path: '/404/notfound',
         component: <NotFound />
     },
     {
@@ -77,9 +70,7 @@ const publicRoutes = [
     {
         path: '/user/profile/:idUser',
         component: <UserProfile/>,
-    }   
-]
-const privateRoute =[
+    },
     {
         path: '/studio/posts',
         component: <PostManage/>
@@ -89,10 +80,10 @@ const privateRoute =[
         component: <PostUpload/>
     },
     {
-        path: '/studio/post/:id',
+        path: '/studio/post/:postId',
         component: <PostEdit/>
     }
-]
 
-export { publicRoutes, privateRoute }
+]
+export { publicRoutes}
 

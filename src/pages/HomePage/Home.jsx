@@ -10,6 +10,7 @@ import { ProductList1 } from './ProductList1';
 import MediaList from './MediaList';
 import Productlist2 from './Productlist2';
 import ProductList3 from './ProductList3';
+import Main from '../../ultils/container';
 
 export default function Home() {
     const [menuItems, setMenuItems] = React.useState([
@@ -151,38 +152,38 @@ export default function Home() {
             "id": 1,
             "username": "@h_dang",
             "image": "public/img/Rectangle 12.png",
-            "profileimg":"public/img/OIP.png"
-            
+            "profileimg": "public/img/OIP.png"
+
         },
         {
             "id": 2,
             "username": "@h_dang",
             "image": "public/img/Rectangle 12.png",
-            "profileimg":"public/img/OIP.png"
+            "profileimg": "public/img/OIP.png"
         },
         {
             "id": 3,
             "username": "@h_dang",
             "image": "public/img/Rectangle 12.png",
-            "profileimg":"public/img/OIP.png"
+            "profileimg": "public/img/OIP.png"
         },
         {
             "id": 4,
             "username": "@h_dang",
             "image": "public/img/Rectangle 12.png",
-            "profileimg":"public/img/OIP.png"
+            "profileimg": "public/img/OIP.png"
         },
         {
             "id": 5,
             "username": "@h_dang",
             "image": "public/img/Rectangle 12.png",
-            "profileimg":"public/img/OIP.png"
+            "profileimg": "public/img/OIP.png"
         },
         {
             "id": 6,
             "username": "@h_dang",
             "image": "public/img/Rectangle 12.png",
-            "profileimg":"public/img/OIP.png"
+            "profileimg": "public/img/OIP.png"
         },
     ]
     const handleSelect = (index) => {
@@ -195,8 +196,7 @@ export default function Home() {
     };
 
     return (
-        <div>
-            {isLogin ? <HeaderAfterLogin /> : <Header />}
+        <Main>
             <ul className='sub_menu'>
                 {menuItems.map((item, index) => (
                     <li
@@ -224,13 +224,12 @@ export default function Home() {
                 <MediaList media={media} />
             </section>
             <section className='productlist-2'>
-                <Productlist2 products={products}/>
+                <Productlist2 products={products} />
             </section>
             <section className='productlist-3'>
-                <ProductList3 products={products}/>
+                <ProductList3 products={products} />
             </section>
-            <Footer />
-        </div>
+        </Main>
     );
 }
 

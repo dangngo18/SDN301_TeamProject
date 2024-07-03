@@ -3,6 +3,7 @@ import { HeaderAfterLogin } from '../../components/Header'
 import Footer from '../../components/Footer'
 import { useNavigate } from 'react-router-dom';
 import { validatePassword } from '../../ultils/validation';
+import Main from '../../ultils/container';
 export default function ResetPassword() {
   const navigate = useNavigate();
   const [field, setField] = React.useState({
@@ -39,8 +40,8 @@ export default function ResetPassword() {
   const isFormValid = field.newpassword && field.repassword;
   console.log(error)
   return (
-    <div>
-      <HeaderAfterLogin />
+    <Main>
+
       <div>
         <div className='ForgotGroup_Container'>
           <div className='ForgotGroup_FormContainer'>
@@ -74,7 +75,6 @@ export default function ResetPassword() {
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </Main>
   )
 }

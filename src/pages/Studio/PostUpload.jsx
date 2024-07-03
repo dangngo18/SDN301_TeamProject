@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import { ImageUploadAPI } from '../../config';
 import { useNavigate } from 'react-router-dom';
+import Main from '../../ultils/container';
 
 
 export default function PostUpload() {
@@ -117,7 +118,7 @@ export default function PostUpload() {
     }
 
     const removeProduct = (id) => {
-        setProductTags(productTags.filter((product) => product.id !== id));
+        setProductTags(productTags.filter((product) => product.productId !== id));
     }
     // =================================================== Form prepairing =====================================
 
@@ -137,9 +138,9 @@ export default function PostUpload() {
             const base64 = await toBase64(media.file);
             const formData = new FormData();
             formData.append('image', base64);
-    
+
             try {
-                const response = await fetch(`https://api.imgbb.com/1/upload?expiration=600&key=${ImageUploadAPI}`, {
+                const response = await fetch(`https://api.imgbb.com/1/upload?key=${ImageUploadAPI}`, {
                     method: 'POST',
                     body: formData
                 });
@@ -170,15 +171,15 @@ export default function PostUpload() {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    'Content-Type':'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(postData)
             })
             console.log("Json Data ", JSON.stringify(postData));
-            console.log("Response ",response);
+            console.log("Response ", response);
             return await response;
         } catch (err) {
-              console.log(err);
+            console.log(err);
         }
     }
 
@@ -217,7 +218,7 @@ export default function PostUpload() {
             const result = await postDataToServer(postData); // Ensure this function handles the async call properly
             if (result.status === 200) {
                 navigate("/studio/posts");
-            }else{
+            } else {
                 console.log("Upload Fail");
             }
         }
@@ -359,92 +360,93 @@ export default function PostUpload() {
     // ================================================== Main Component =============================
     return (
         <>
-            <HeaderforStudio />
-            <main className="post_main">
-                <form onSubmit={handleSubmit} className='new-post-form'>
-                    <div className="post_container container">
-                        <div className="post_col_left">
-                            <div className="post_left_header">
-                                <h2>New Post</h2>
-                            </div>
-                            <div className="post_left_body">
-                                <div className="post_left_body_container">
-                                    <div className="post_left_body_form">
-                                        <div className="post_image">
-                                            <div className={`post_image_drag_area`} >
-                                                {postMedia.length > 0 ?
-                                                    (
-                                                        <div className={`post_image_container`}>
+            <Main>
+                <main className="post_main">
+                    <form onSubmit={handleSubmit} className='new-post-form'>
+                        <div className="post_container container">
+                            <div className="post_col_left">
+                                <div className="post_left_header">
+                                    <h2>New Post</h2>
+                                </div>
+                                <div className="post_left_body">
+                                    <div className="post_left_body_container">
+                                        <div className="post_left_body_form">
+                                            <div className="post_image">
+                                                <div className={`post_image_drag_area`} >
+                                                    {postMedia.length > 0 ?
+                                                        (
+                                                            <div className={`post_image_container`}>
 
-                                                            {renderMedia()}
+                                                                {renderMedia()}
 
+                                                                <LabelInput />
+                                                            </div>
+                                                        ) :
+                                                        (
                                                             <LabelInput />
-                                                        </div>
-                                                    ) :
-                                                    (
-                                                        <LabelInput />
-                                                    )}
-                                                <input id="post_image_input" type="file" accept="image/*,video/*" style={{ display: 'none' }} multiple onChange={onFileSelect} />
+                                                        )}
+                                                    <input id="post_image_input" type="file" accept="image/*,video/*" style={{ display: 'none' }} multiple onChange={onFileSelect} />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="post_title">
-                                            <h2>Post title *</h2>
-                                            <input type='text' placeholder='Hightlight your post with a title' value={postTitle} onChange={(e) => setPostTitle(e.target.value)} />
-                                        </div>
-                                        <div className="post_description">
-                                            <h2>Description</h2>
-                                            <textarea placeholder='Describe something about your post' value={postDescription} onChange={(e) => setPostDescription(e.target.value)} rows={4} />
-                                            <p>0/255</p>
-                                        </div>
-                                        <div className="post_title post_search">
-                                            <h2>Tag products</h2>
-                                            <div className='Search_box'>
-                                                <input type='text' placeholder='Search a product you want to tag in' value={searchInput} onChange={(e) => setSearchInput(e.target.value)} onFocus={handleFocus} onBlur={handleBlur} />
-                                                <button className='btn_style1'>{Icon.Search}</button>
+                                            <div className="post_title">
+                                                <h2>Post title *</h2>
+                                                <input type='text' placeholder='Hightlight your post with a title' value={postTitle} onChange={(e) => setPostTitle(e.target.value)} />
                                             </div>
-                                            <div className="post_product_list">
-                                                {renderProductTags()}
+                                            <div className="post_description">
+                                                <h2>Description</h2>
+                                                <textarea placeholder='Describe something about your post' value={postDescription} onChange={(e) => setPostDescription(e.target.value)} rows={4} />
+                                                <p>0/255</p>
                                             </div>
-                                        </div>
-                                        <div className={`post_search_result ${isFocused ? 'show' : ''}`}>
-                                            {searchResult()}
-                                        </div>
+                                            <div className="post_title post_search">
+                                                <h2>Tag products</h2>
+                                                <div className='Search_box'>
+                                                    <input type='text' placeholder='Search a product you want to tag in' value={searchInput} onChange={(e) => setSearchInput(e.target.value)} onFocus={handleFocus} onBlur={handleBlur} />
+                                                    <button className='btn_style1'>{Icon.Search}</button>
+                                                </div>
+                                                <div className="post_product_list">
+                                                    {renderProductTags()}
+                                                </div>
+                                            </div>
+                                            <div className={`post_search_result ${isFocused ? 'show' : ''}`}>
+                                                {searchResult()}
+                                            </div>
 
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div className="post_col_right">
+                                <div className="post_right_profile">
+                                    <div className="post_right_profile_info">
+                                        <picture className="post_right_profile-img">
+                                            <img src="../../img/Bloons 6のTwitterイラスト検索結果。.png" alt="" />
+                                        </picture>
+                                        <span className='post_right_profile-name'>@hdang_n</span>
+                                    </div>
+                                    <div className="post_right_profile_dashboard">
+                                        <div className="profile_dashboard_item">
+                                            Following
+                                            <span>166</span>
+                                        </div>
+                                        <div className="profile_dashboard_item">
+                                            Followers
+                                            <span>2,904</span>
+                                        </div>
+                                        <div className="profile_dashboard_item">
+                                            Posts
+                                            <span>{Post_Image.length + Post_Videos.length}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="post_right_btn_action">
+                                    <button type='submit' role='submit' className={`btn_style1 ${isDisable ? 'disabled' : ''}`} disabled={isDisable}>Upload</button>
+                                    <a href="/studio/posts" className='btn_style1 btn_style2'>Cancel</a>
                                 </div>
                             </div>
                         </div>
-                        <div className="post_col_right">
-                            <div className="post_right_profile">
-                                <div className="post_right_profile_info">
-                                    <picture className="post_right_profile-img">
-                                        <img src="../../img/Bloons 6のTwitterイラスト検索結果。.png" alt="" />
-                                    </picture>
-                                    <span className='post_right_profile-name'>@hdang_n</span>
-                                </div>
-                                <div className="post_right_profile_dashboard">
-                                    <div className="profile_dashboard_item">
-                                        Following
-                                        <span>166</span>
-                                    </div>
-                                    <div className="profile_dashboard_item">
-                                        Followers
-                                        <span>2,904</span>
-                                    </div>
-                                    <div className="profile_dashboard_item">
-                                        Posts
-                                        <span>{Post_Image.length + Post_Videos.length}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="post_right_btn_action">
-                                <button type='submit' role='submit' className={`btn_style1 ${isDisable ? 'disabled' : ''}`} disabled={isDisable}>Upload</button>
-                                <a href="/studio/posts" className='btn_style1 btn_style2'>Cancel</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </main>
+                    </form>
+                </main>
+            </Main>
         </>
     )
 }
