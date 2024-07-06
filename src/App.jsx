@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
 import 'swiper/css';
+// import 'swiper/swiper-bundle.min.css';
 import "./assets/styles/stylesall.scss";
 import { publicRoutes } from './routes/Route';
 import { Route, Routes, useNavigate } from 'react-router-dom';
@@ -10,11 +9,6 @@ import NotFound from './pages/NotFound';
 function App() {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
-
-  // const PrivateRouteWrapper = ({ element: Component, ...rest }) => {
-  //   const token = localStorage.getItem('token');
-  //   return token ? Component : navigate('/login');
-  // };
 
   return (
     <>

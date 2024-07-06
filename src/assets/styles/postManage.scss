@@ -257,7 +257,7 @@ ul {
         justify-content: flex-start;
         align-items: flex-start;
         row-gap: 12px;
-        column-gap: 7.62px;
+        column-gap: 7px;
 
         .Post_card1 {
             overflow: hidden;
@@ -268,6 +268,16 @@ ul {
                 position: relative;
                 overflow: hidden;
                 border-radius: 10px;
+                picture{
+                    display: block;
+                    height: fit-content;
+                    line-height: 60%;
+                    img{
+                        height: 204px;
+                        object-fit: cover; 
+                        width: 154px;
+                    }
+                }
 
                 :before {
                     position: absolute;

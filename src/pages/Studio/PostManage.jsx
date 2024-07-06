@@ -3,7 +3,7 @@ import { HeaderforStudio } from '../../components/Header'
 import "../../assets/styles/postManage.scss"
 import { Icon } from '../../assets/icon/icons';
 import { ButtonStyle1 as Button } from '../../components/button';
-import { PostLoopTab, Nopost } from "../../components/Post_loop";
+import { PostLoopTab,Nopost } from "../../components/Post_loop";
 import { Post_Image, Post_Videos, Post_Archived } from '../../Test/Jsontest';
 import Main from '../../ultils/container';
 

@@ -167,7 +167,7 @@ export default function PostUpload() {
     async function postDataToServer(postData) {
         try {
 
-            const response = await fetch('http://localhost:8080/studio/upload', {
+            const response = await fetch(`${API}/studio/upload`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,

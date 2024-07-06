@@ -1,7 +1,6 @@
 import React from 'react'
 import Login from '../pages/Login'
 import Home from '../pages/HomePage/Home'
-import Style from '../pages/Stylepage/Style'
 import Shop from '../pages/Shop'
 import FindEmail from '../pages/ForgotPass/FindEmail'
 import PostUpload from '../pages/Studio/PostUpload'
@@ -14,8 +13,8 @@ import ResetPassword from '../pages/ForgotPass/ResetPassword'
 import FinnishedReset from '../pages/ForgotPass/FinnishedReset'
 import NotFound from '../pages/NotFound'
 import PostDetail from '../pages/PostDetail/PostDetail'
-// import AnotherUserProfile from '../pages/AnotherUserProfile/AnotherUserProfile'
 import UserProfile from '../pages/User/UserProfile'
+import MainStyle from '../pages/StylePage/MainStyle'
 
 const publicRoutes = [
     {
@@ -28,7 +27,7 @@ const publicRoutes = [
     },
     {
         path: '/style',
-        component: <Style />
+        component: <MainStyle/>
     },
     {
         path: '/shop',
@@ -64,7 +63,7 @@ const publicRoutes = [
         component: <NotFound />
     },
     {
-        path:'/style/post/:postid',
+        path:'/style/post/:postId',
         component: <PostDetail/>
     },
     {

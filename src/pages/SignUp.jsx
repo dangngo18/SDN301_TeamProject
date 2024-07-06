@@ -72,8 +72,9 @@ export default function SignUp() {
     // validate();
     if (valid) {
       try {
-        const response = await axios.post('http://localhost:8080/auth/signup', {
+        const response = await axios.post(`${API}/auth/signup`, {
           username: formData.email.split("@")[0],
+          profileName: formData.email.split("@")[0],
           email: formData.email,
           phone: formData.phone,
           isAcceptMarketing: formData.optionalCheckbox,

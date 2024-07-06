@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useContext } from 'react'
 import { Icon } from '../assets/icon/icons';
 import { Link } from 'react-router-dom';
 import { Logo } from '../config'
 import { MenuProfile } from './Menu';
-const Menu = ["Home", "Style", "Shop"]
-
+import { Menu } from '../config';
+import { SessionContext } from '../Context';
 
 
 export function Header() {
@@ -46,12 +46,12 @@ export function Header() {
     </div>
   )
 }
-
 export function HeaderAfterLogin() {
   const [search, setSearch] = React.useState('');
   const [notificationCount, setNotificationCount] = React.useState(4);
   const navActive = location.pathname.split('/')[1].toLowerCase();
   const [showMenu,setShowMenu] =useState(false);
+  const thisUser = useContext(SessionContext);
 
   const handleInputSearch = (e) => {
     setSearch(e.target.value);
@@ -92,8 +92,8 @@ export function HeaderAfterLogin() {
             {Icon.Bell}
             {notificationCount != 0 && <span className="notification_count">{notificationCount}</span>}
           </div>
-          <div className='HeaderProfile' onMouseEnter={() => {setShowMenu(true)}} onClick={() => window.location.href = '/user/profile/1'}>
-            <img className='ProfileAvatar' src="../img/OIP.png" alt="" />
+          <div className='HeaderProfile' onMouseEnter={() => setShowMenu(true)} onClick={() => setShowMenu(true)}>
+            <img className='ProfileAvatar' src={thisUser.urlImage} alt="Avatar" />
           </div>
         </div>
       </div>
@@ -105,6 +105,7 @@ export function HeaderforStyle() {
   const [notificationCount, setNotificationCount] = React.useState(4);
   const navActive = location.pathname.split('/')[1].toLowerCase();
   const [showMenu,setShowMenu] =useState(false);
+  const thisUser = useContext(SessionContext);
 
 
   const handleInputSearch = (e) => {
@@ -148,19 +149,19 @@ export function HeaderforStyle() {
             {Icon.Bell}
             {notificationCount != 0 && <span className="notification_count">{notificationCount}</span>}
           </div>
-          <div className='HeaderProfile' onMouseEnter={() => {setShowMenu(true)}} onClick={() => window.location.href = '/user/profile/1'}>
-            <img className='ProfileAvatar' src="../../img/OIP.png" alt="" />
+          <div className='HeaderProfile' onMouseEnter={() => setShowMenu(true)} onClick={() => setShowMenu(true)}>
+            <img className='ProfileAvatar' src={thisUser.urlImage} alt="" />
           </div>
         </div>
       </div>
     </div>
   )
 }
-
 export function HeaderforStudio() {
   const navActive = location.pathname.split('/')[1].toLowerCase();
   const [notificationCount, setNotificationCount] = React.useState(4);
   const [showMenu,setShowMenu] =useState(false);
+  const thisUser = useContext(SessionContext)
   return (
     <div className='HeaderBeforeLogin'>
       <div className={`menu-profile_container ${showMenu ? 'show': ''}`} onMouseLeave={()=>setShowMenu(false)}>
@@ -188,8 +189,8 @@ export function HeaderforStudio() {
             {Icon.Bell}
             {notificationCount != 0 && <span className="notification_count">{notificationCount}</span>}
           </div>
-          <div className='HeaderProfile' onMouseEnter={() => {setShowMenu(true)}} onClick={() => window.location.href = '/user/profile/1'}>
-            <img className='ProfileAvatar' src="../../img/OIP.png" alt="" />
+          <div className='HeaderProfile' onMouseEnter={() => setShowMenu(true)} onClick={() => setShowMenu(true)}>
+            <img className='ProfileAvatar' src={thisUser.urlImage} alt="" />
           </div>
         </div>
       </div>

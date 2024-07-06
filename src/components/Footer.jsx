@@ -60,7 +60,7 @@ export default function Footer() {
             {Icon.Instagram}
           </div>
           <div >
-            {Icon.FaceBook}
+            {Icon.Facebook2}
           </div>
           <div >
             {Icon.Twitter}

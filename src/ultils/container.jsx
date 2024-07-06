@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useContext } from 'react'
 import { Header, HeaderAfterLogin, HeaderforStudio, HeaderforStyle } from '../components/Header'
 import Footer from '../components/Footer'
 import { useNavigate } from 'react-router-dom';

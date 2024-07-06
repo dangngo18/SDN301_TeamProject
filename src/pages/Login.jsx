@@ -3,7 +3,7 @@ import { Header } from "../components/Header";
 import Footer from "../components/Footer";
 import "../assets/styles/SignUpStyle.scss";
 import { Icon } from "../assets/icon/icons";
-import { Logo } from '../config'
+import { API, Logo } from '../config'
 import { validateEmail, validatePassword } from "../ultils/validation";
 import axios from "axios";
 import Main from "../ultils/container";
@@ -44,7 +44,7 @@ const Login = () => {
     if (flag) {
     } else {
       try {
-        const response = await axios.post('http://localhost:8080/auth/login', {
+        const response = await axios.post(`${API}/auth/login`, {
           email: formData.email,
           password: formData.password
         });
@@ -52,6 +52,7 @@ const Login = () => {
         const { token, userId } = response.data;
         console.log(response.data);
         localStorage.setItem('token', token);
+        localStorage.setItem('userId', userId);
         navigate('/');
       } catch (error) {
         console.error('Login failed:', error.response ? error.response.data : error.message);

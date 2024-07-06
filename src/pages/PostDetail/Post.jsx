@@ -1,140 +1,118 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ProductCard from '../../components/ProductCard'
 import { Icon } from '../../assets/icon/icons'
 import { PostLoopTab, PostLoopTabLimited } from '../../components/Post_loop'
 import { Post_Image } from '../../Test/Jsontest'
-export default function Post() {
-    const products = [
-        {
-            "id": 1,
-            "name": "Supreme",
-            "description": "Supreme x Ducati Soccer Jersey Black - 24SS",
-            "price": "400.000 vnd",
-            "image": "https://i.ibb.co/qJKDRZX/Rectangle-10.png"
-        },
-        {
-            "id": 2,
-            "name": "Supreme",
-            "description": "Supreme x Ducati Soccer Jersey Black - 24SS",
-            "price": "400.000 vnd",
-            "image": "https://i.ibb.co/5Txnt03/Rectangle-10-1.png"
-        },
-        {
-            "id": 3,
-            "name": "Supreme",
-            "description": "Supreme x Ducati Soccer Jersey Black - 24SS",
-            "price": "400.000 vnd",
-            "image": "https://i.ibb.co/DKYwzNq/Rectangle-10-2.png"
-        },
-        {
-            "id": 4,
-            "name": "Supreme",
-            "description": "Supreme x Ducati Soccer Jersey Black - 24SS",
-            "price": "400.000 vnd",
-            "image": "https://i.ibb.co/Sv0cRvN/Rectangle-10-3.png"
-        },
-        {
-            "id": 5,
-            "name": "Supreme",
-            "description": "Supreme x Ducati Soccer Jersey Black - 24SS",
-            "price": "400.000 vnd",
-            "image": "https://i.ibb.co/wCt6gMw/Rectangle-10-4.png"
-        },
-    ]
-    const img = ["https://i.ibb.co/P4m9gPf/p-9b865d844e0b4272ae6b3cc60bef7a5d.jpg",
-        "https://i.ibb.co/P4m9gPf/p-9b865d844e0b4272ae6b3cc60bef7a5d.jpg",
-        "https://i.ibb.co/P4m9gPf/p-9b865d844e0b4272ae6b3cc60bef7a5d.jpg"
-    ]
-    
-    const [currentIndex, setCurrentIndex] = React.useState(0);
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import { formatDistanceToNow } from 'date-fns';
+import { SessionContext } from '../../Context'
+import { token } from '../../config'
 
-    const handlePrev = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === 0 ? img.length - 1 : prevIndex - 1));
-    };
+export default function Post({ PostProp, postsRelated }) {
+    const Post = PostProp.post;
+    const User = PostProp.user;
+    const CurrentUser = useContext(SessionContext);
+    const [isFollowed, setIsFollowed] = useState(false);
 
-    const handleNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === img.length - 1 ? 0 : prevIndex + 1));
-        console.log("click")
-    };
+    useEffect(() => {
+        if (CurrentUser.following.includes(User.userId)){
+           setIsFollowed(true);
+        }
+    }, [CurrentUser])
+
+    const handleFollow = async (isFollowed) => {
+        const result = await fetch(`http://localhost:8080/user/func/follow/${User.userId}/${isFollowed}`,{
+            method:"PUT",
+            headers:
+            {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        if(result.ok){
+            setIsFollowed(!isFollowed);
+        }else{
+            console.log("Follow fail");
+        }
+    }
+
+
+    const renderPostImage = () => {
+        return (
+            <Swiper
+                slidesPerView={1}
+                spaceBetween={0}
+                centeredSlides={true}
+                className='PostSwiperContainer'
+                lazy={'true'}
+                autoHeight={true}
+                pagination={true}
+                modules={[Navigation, Pagination]}
+                navigation={true}
+            >{
+                    Post.image.map((image, index) => (
+                        <div key={index}>
+                            <SwiperSlide className='PostSwiperSlide'>
+                                <picture>
+                                    <img src={image.urlImage} alt={image.alt} className={image.aspect} />
+                                </picture>
+                            </SwiperSlide>
+                        </div >
+                    ))
+                }
+            </Swiper>
+        )
+    }
+
     return (
         <div className='blog-container container'>
             <div className='blog-wrapper'>
                 <div className='blog'>
                     <div className='blog-title'>
-                        <div className='blog-title-profile'>
+                        <div className='blog-title-profile' onClick={() => { window.location.href = `/user/profile/${User.userId}` }}>
                             <div className='user-avatar'>
-                                <img src="/img/OIP.png" alt="" />
+                                <img src={User.urlImage} alt="" />
                             </div>
                             <div className='user'>
                                 <div className='username'>
-                                    j_c-y
+                                    {User.profileName}
                                 </div>
                                 <div className='date'>
-                                    3 hours ago
+                                    {formatDistanceToNow(new Date(Post.createdDate), { addSuffix: true })}
                                 </div>
                             </div>
                         </div>
                         <div className='blog-title-option'>
-                            <button className='blog-title-btn'>
-                                Follow
+                            {CurrentUser.userId == User.userId ?(
+                                <></>
+                            ):(
+                            <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(!isFollowed)}>
+                                {isFollowed ? "Following" : "Follow"}
                             </button>
+                            )}
                             <div className='blog-title-dots'>
-                                ...
+                                <span></span><span></span><span></span>
                             </div>
                         </div>
                     </div>
-                    <div className='blog-image-container'>
-                        {img.length > 1 ? (
-                            <>
-                                <div className='blog-image'>
-                                    {img.map((item) => (
-                                        <img className='image' src={item} alt=""
-                                            style={{ translate: `${-100 * currentIndex}%` }} />
-                                    ))}
-                                    <div className='slide-btn'>
-                                        <div className='left' onClick={handlePrev}>
-                                            <button>
-                                                {Icon.Left}
-                                            </button>
-                                        </div>
-                                        <div className='right' onClick={handleNext}>
-                                            <button>
-                                                {Icon.Right}
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='dots'>
-                                    {img.map((_, index) => (
-                                        <div key={index} className={currentIndex === index ? 'dot-active' : 'dot'} />
-                                    ))}
-                                </div>
-                            </>
-                        )
-                            : (
-                                <>
-                                    <div className='blog-image'>
-                                        {img.map((item) => (
-                                            <img className='image' src={item} alt=""
-                                                 />
-                                        ))}
-                                    </div>
-                                </>
-                            )}
-
+                    <div className='post-image-container'>
+                        {renderPostImage()}
                     </div>
                 </div>
-                <div className='list-items'>
-                    <h2 className='list-items-title'>
-                        product tag<span> 3 </span>items
-                    </h2>
-                    <div className='list-items-content'>
-                        {products.map((product) => (
-                            <ProductCard product={product} />
-                        ))
-                        }
+                {Post.productTags.length > 0 && (
+                    <div className='list-items'>
+                        <h2 className='list-items-title'>
+                            product tag<span> {Post.productTags.length} </span>items
+                        </h2>
+                        <div className='list-items-content'>
+                            {Post.productTags.map((product) => (
+                                <ProductCard product={product} />
+                            ))
+                            }
+                        </div>
                     </div>
-                </div>
+                )}
                 <div className='blog-action'>
                     <div className='share'>
                         <button>
@@ -143,20 +121,20 @@ export default function Post() {
                     </div>
                     <div className='post-action'>
                         <div className='like bounce-out'>
-                            <label class="container-heart">
+                            <label className="container-heart">
                                 <input type="checkbox" />
-                                <div class="checkmark">
+                                <div className="checkmark">
                                     {Icon.Like}
                                 </div>
                             </label>
                             <span className='number'>
-                                62
+                                {Post.likeList.length > 0 ? Post.likeList.length : 'Like'}
                             </span>
                         </div>
                         <div className='comment'>
                             <button>{Icon.Comment}</button>
                             <span className='number'>
-                                6
+                                {Post.commentList.length > 0 ? Post.commentList.length : 'Comment'}
                             </span>
                         </div>
                         <div className='save'>
@@ -165,17 +143,17 @@ export default function Post() {
                                 {Icon.Save}
                             </label>
                             <span className='number'>
-                                4
+                                {Post.saveNumber > 0 ? Post.saveNumber : 'Save'}
                             </span>
                         </div>
                     </div>
                 </div>
                 <div className='blog-content'>
                     <div className='blog-content-title'>
-                        summer🍀
+                        {Post.title}
                     </div>
                     <div className='blog-content-description'>
-                        Derby shoes are pretty 😎
+                        {Post.content}
                     </div>
                 </div>
             </div>
@@ -183,14 +161,14 @@ export default function Post() {
                 <div className='block-tag-block'>
                     <div className='block-tag-title'>
                         <h2>
-                            @j__c__y's other styles
+                            @{User.username}'s other styles
                         </h2>
-                        <div className='see-more'>
+                        <a href={`/user/profile/${User.userId}`} className='see-more'>
                             See more
-                        </div>
+                        </a>
                     </div>
                     <div className='block-tag-slide'>
-                        <PostLoopTabLimited Posts={Post_Image} />
+                        <PostLoopTabLimited Posts={postsRelated} />
                     </div>
                 </div>
             </div>

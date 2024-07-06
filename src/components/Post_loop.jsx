@@ -1,5 +1,4 @@
 import React, { useRef, useMemo, useEffect, useState } from "react";
-import Card from "react-bootstrap/Card";
 import { Icon } from "../assets/icon/icons";
 import Macy from "macy";
 
@@ -52,23 +51,56 @@ export function PostLoopTab({ Posts }) {
     )
   );
 }
+
+export function PostFeatureStoryLoop({ Posts }) {
+  return (
+    Posts.map((post, index) => {
+      const hasVideo = !!post.urlVideo;
+      const hasImages = post.image && post.image.length > 0;
+      const postImage = hasImages ? (post.image[0].urlImage || post.image[0].url) : "https://i.ibb.co/chpHF6x/No-Image-User.png";
+      const userName = post.user.username || 'no_name';
+
+      return (
+        <div key={index} className='Post_card1'>
+          <a href={`/style/post/${post.postId}`}>
+            <div className="Post_card1_overlay">
+              <picture className="Post_card1_overlay_avatar">
+                <img src={post.user.urlImage || "https://i.ibb.co/chpHF6x/No-Image-User.png"} alt="Avatar" />
+              </picture>
+              <p className="Post_card1_overlay_name">
+                @{userName}
+              </p>
+            </div>
+            {hasVideo ? (
+              <video className="Post_card1_img" src={post.urlVideo} />
+            ) : (
+              <picture className="Post_card1_img">
+                <img src={postImage} alt="Post Image" />
+              </picture>
+            )}
+          </a>
+        </div>
+      );
+    })
+  );
+}
+
 export function PostLoopTabLimited({ Posts }) {
-  const limitedItems = Posts.slice(0, 4);
-  return limitedItems.map((post, index) => {
+  return Posts.map((post, index) => {
     return (
       <div key={index} className="Post_card1">
-        <a href={`/post/id:${post.id}`}>
+        <a href={`/style/post/${post.postId}`}>
           <div className="Post_card1_img">
             <picture>
-              <img src={post.image[0].url} alt="" />
+              <img src={post.image[0].urlImage} alt="" />
             </picture>
             <div className="Post_card1_img_likeNumber">
               {Icon.Heart}
-              <span>{formatNumber(post.like_number)}</span>
+              <span>{formatNumber(post.likeList.length)}</span>
             </div>
             <span className="imageType">
               {post.image.length > 1 ? Icon.MultiImage : ""}
-              {post.type === 1 ? Icon.PlayIcon : ""}
+              {post.urlVideo != null ? Icon.PlayIcon : ""}
             </span>
           </div>
         </a>
@@ -76,6 +108,7 @@ export function PostLoopTabLimited({ Posts }) {
     );
   });
 }
+
 export function PostMasonryLoop({ children, Posts, User }) {
   const containerRef = useRef();
   const childCount = React.Children.count(children);
@@ -84,7 +117,7 @@ export function PostMasonryLoop({ children, Posts, User }) {
       // columns: 3,
       margin: {
         x: 25,
-        y: 44,
+        y: 40,
       },
       breakAt: {
         1215: 4,
@@ -100,42 +133,47 @@ export function PostMasonryLoop({ children, Posts, User }) {
   return (
     <div ref={containerRef} className="post_left_body_macy_inner">
       {Posts.map((post, index) => {
+        const hasVideo = !!post.urlVideo;
         return (
           <div key={index} className="Post_card2">
-            <a href={`/studio/post/${post.id}`}>
+            <a href={`/style/post/${post.postId}`}>
               <div className="Post_card2_img">
-                <picture>
-                  <img
-                    src={post.image[0].url}
-                    alt=""
-                    className={post.image[0].aspect}
-                  />
-                </picture>
+                {hasVideo ? (
+                  <video src={post.urlVideo} className="vertical"></video>
+                ) : (
+                  <picture>
+                    <img
+                      src={post.image[0].urlImage}
+                      alt=""
+                      className={post.image[0].aspect}
+                    />
+                  </picture>
+                )}
 
                 <div className="Post_card2_img_viewed">
                   {Icon.ViewIcon}
-                  <span>{formatNumber(post.viewed)}</span>
+                  <span>{formatNumber(post.viewNumber)}</span>
                 </div>
                 <span className="imageType">
                   {post.image.length > 1 ? Icon.MultiImage : ""}
-                  {post.type === 1 ? Icon.PlayIcon : ""}
+                  {post.urlVideo != null ? Icon.PlayIcon : ""}
                 </span>
               </div>
             </a>
             <div className="Post_card2_data">
-              <a href={`/user/profile/${User.id}`} className="user_data">
+              <a href={`/user/profile/${User.userId}`} className="user_data">
                 <picture>
                   <img src={User.urlImage} alt="" />
                 </picture>
-                <span>{User.name}</span>
+                <span>{User.profileName}</span>
               </a>
               <div className="likeNumber">
                 {Icon.Heart}
-                <span>{formatNumber(post.like_number)}</span>
+                <span>{formatNumber(post.likeList.length)}</span>
               </div>
             </div>
             <p className="Post_card2_content">
-              {post.title} {post.description}
+              {post.title} {post.content}
             </p>
           </div>
         );
@@ -143,8 +181,7 @@ export function PostMasonryLoop({ children, Posts, User }) {
     </div>
   );
 }
-
-export function StylePostMasonryLoop({ children, Posts }) {
+export function StyleMasonryLoop({ children, Posts }) {
   const containerRef = useRef();
   const childCount = React.Children.count(children);
   const options = useMemo(
@@ -152,7 +189,7 @@ export function StylePostMasonryLoop({ children, Posts }) {
       // columns: 3,
       margin: {
         x: 25,
-        y: 44,
+        y: 40,
       },
       breakAt: {
         1215: 4,
@@ -164,77 +201,52 @@ export function StylePostMasonryLoop({ children, Posts }) {
     }),
     []
   );
-
-  const isVideo = (url) => {
-    const videoExtensions = ["mp4", "webm", "ogg"];
-    const extension = url.split(".").pop();
-    return videoExtensions.includes(extension);
-  };
-
-  const [isRed, setIsRed] = useState(false);
-
-  const handleClick = () => {
-    setIsRed(!isRed);
-  };
   const { macy } = useMasonry(containerRef, options, childCount);
   return (
     <div ref={containerRef} className="post_left_body_macy_inner">
       {Posts.map((post, index) => {
+        const hasVideo = !!post.urlVideo;
         return (
-          <div className="postContainer" key={index}>
-            <div className="postCard-container">
-              <div className="media-container">
-                {isVideo(post.image[0].url) ? (
-                  <video controls className="postVid-container">
-                    <source
-                      src={post.image[0].url}
-                      type={`video/${post.image[0].url.split(".").pop()}`}
+          <div key={index} className="Post_card2">
+            <a href={`/style/post/${post.postId}`}>
+              <div className="Post_card2_img">
+                {hasVideo ? (
+                  <video src={post.urlVideo} className="vertical"></video>
+                ) : (
+                  <picture>
+                    <img
+                      src={post.image[0].urlImage}
+                      alt=""
                       className={post.image[0].aspect}
                     />
-                    Your browser does not support the video tag.
-                  </video>
-                ) : (
-                  <Card.Img
-                    variant="top"
-                    src={post.image[0].url}
-                    className={post.image[0].aspect}
-                  />
+                  </picture>
                 )}
 
-                <div className="overlay">
-                {post.image.length > 1 ? Icon.MultiImage : ""}
-                {post.type === 1 ? Icon.PlayIcon : ""}
+                <div className="Post_card2_img_viewed">
+                  {Icon.ViewIcon}
+                  <span>{formatNumber(post.viewNumber)}</span>
                 </div>
+                <span className="imageType">
+                  {post.image.length > 1 ? Icon.MultiImage : ""}
+                  {post.urlImage != null ? Icon.PlayIcon : ""}
+                </span>
               </div>
-
-              <Card.Body>
-                <Card.Title className="postTitle">
-                  <button className="postButton">
-                    <img src={post.avt} className="postAvt" />
-                    <span className="postName">{post.name}</span>
-                  </button>
-                  <span className="postLover">
-                    <button
-                      className="postIcon"
-                      onClick={handleClick}
-                      style={{
-                        background: "none",
-                        border: "none",
-                        padding: 0,
-                        cursor: "pointer",
-                      }}
-                    >
-                      <span style={{ fill: isRed ? "#ff385c" : "#6a6a6a" }}>
-                        {Icon.Love}
-                      </span>
-                    </button>
-                    <span>{post.lover}</span>
-                  </span>
-                </Card.Title>
-
-                <Card.Text className="postText">{post.title}</Card.Text>
-              </Card.Body>
+            </a>
+            <div className="Post_card2_data">
+              <a href={`/user/profile/${post.user.userId}`} className="user_data">
+                <picture>
+                  <img src={post.user.urlImage} alt="" />
+                </picture>
+                <span>{post.user.profileName}</span>
+              </a>
+              <div className="likeNumber">
+                {Icon.Heart}
+                <span>{formatNumber(post.likeList.length)}</span>
+              </div>
             </div>
+            <p className="Post_card2_content">
+              {post.title} {post.content}
+            </p>
           </div>
         );
       })}
@@ -257,6 +269,7 @@ export function Nopost() {
     </div>
   );
 }
+
 function formatNumber(number) {
   if (number >= 1000000000) {
     return (number / 1000000000).toFixed(1) + "T";

@@ -8,6 +8,7 @@ import { Post_Image, Post_Videos, product_tag } from '../../Test/Jsontest';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import Main from '../../ultils/container';
+import { API } from '../../config';
 
 
 export default function PostEdit() {
@@ -27,7 +28,7 @@ export default function PostEdit() {
     useEffect(() => {
         const fetchPost = async () => {
             setIsLoading(true);
-            const response = await fetch(`http://localhost:8080/studio/posts/${postId}`, {
+            const response = await fetch(`${API}/studio/posts/${postId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -124,7 +125,7 @@ export default function PostEdit() {
     async function handleArchive(bool) {
         confirm("Agree to archive");
         try {
-            const response = await fetch(`http://localhost:8080/studio/posts/archive/${postId}`, {
+            const response = await fetch(`${API}/studio/posts/archive/${postId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

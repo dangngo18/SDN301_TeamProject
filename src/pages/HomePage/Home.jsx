@@ -112,39 +112,39 @@ export default function Home() {
     ])
     const products = [
         {
-            "id": 1,
-            "name": "Supreme",
-            "description": "Supreme x Ducati Soccer Jersey Black - 24SS",
-            "price": "400.000 vnd",
-            "image": "https://i.ibb.co/qJKDRZX/Rectangle-10.png"
+            "productId": 1,
+            "productBrand": "Supreme",
+            "productName": "Supreme x Ducati Soccer Jersey Black - 24SS",
+            "price": "400000",
+            "urlImage": "https://i.ibb.co/qJKDRZX/Rectangle-10.png"
         },
         {
-            "id": 2,
-            "name": "Supreme",
-            "description": "Supreme x Ducati Soccer Jersey Black - 24SS",
-            "price": "400.000 vnd",
-            "image": "https://i.ibb.co/5Txnt03/Rectangle-10-1.png"
+            "productId": 2,
+            "productBrand": "Supreme",
+            "productName": "Supreme x Ducati Soccer Jersey Black - 24SS",
+            "price": "400000",
+            "urlImage": "https://i.ibb.co/5Txnt03/Rectangle-10-1.png"
         },
         {
-            "id": 3,
-            "name": "Supreme",
-            "description": "Supreme x Ducati Soccer Jersey Black - 24SS",
-            "price": "400.000 vnd",
-            "image": "https://i.ibb.co/DKYwzNq/Rectangle-10-2.png"
+            "productId": 3,
+            "productBrand": "Supreme",
+            "productName": "Supreme x Ducati Soccer Jersey Black - 24SS",
+            "price": "400000",
+            "urlImage": "https://i.ibb.co/DKYwzNq/Rectangle-10-2.png"
         },
         {
-            "id": 4,
-            "name": "Supreme",
-            "description": "Supreme x Ducati Soccer Jersey Black - 24SS",
-            "price": "400.000 vnd",
-            "image": "https://i.ibb.co/Sv0cRvN/Rectangle-10-3.png"
+            "productId": 4,
+            "productBrand": "Supreme",
+            "productName": "Supreme x Ducati Soccer Jersey Black - 24SS",
+            "price": "400000",
+            "urlImage": "https://i.ibb.co/Sv0cRvN/Rectangle-10-3.png"
         },
         {
-            "id": 5,
-            "name": "Supreme",
-            "description": "Supreme x Ducati Soccer Jersey Black - 24SS",
-            "price": "400.000 vnd",
-            "image": "https://i.ibb.co/wCt6gMw/Rectangle-10-4.png"
+            "productId": 5,
+            "productBrand": "Supreme",
+            "productName": "Supreme x Ducati Soccer Jersey Black - 24SS",
+            "price": "400000",
+            "urlImage": "https://i.ibb.co/wCt6gMw/Rectangle-10-4.png"
         },
     ]
     const media = [

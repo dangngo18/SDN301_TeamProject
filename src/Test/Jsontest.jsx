@@ -175,6 +175,36 @@ export const Post_Image = [
     viewed: 349,
     type: 0,
   },
+  {
+    id: 11,
+    title: "Post 11",
+    description: "post description",
+    image: [
+      {
+        alt: "image sub 5",
+        url: "https://i.ibb.co/P4m9gPf/p-9b865d844e0b4272ae6b3cc60bef7a5d.jpg",
+        aspect: "vertical",
+      },
+    ],
+    like_number: 349,
+    viewed: 349,
+    type: 0,
+  },
+  {
+    id: 12,
+    title: "Post 12",
+    description: "post description",
+    image: [
+      {
+        alt: "image sub 5",
+        url: "https://i.ibb.co/P4m9gPf/p-9b865d844e0b4272ae6b3cc60bef7a5d.jpg",
+        aspect: "horizontal",
+      },
+    ],
+    like_number: 349,
+    viewed: 349,
+    type: 0,
+  },
 ];
 
 export const Post_Videos = [
@@ -195,39 +225,39 @@ export const Post_Videos = [
 export const Post_Archived = [];
 
 export const product_tag =
-    [
-        {
-            productId: '63c4a2b8e12f3b1f32d42f9c',
-            productName: "Moonlight boot pride a",
-            price: 240000,
-            urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-        },
-        {
-            productId: '1a789d4f234b021e21e8bffe',
-            productName: "Moonlight boot pride b",
-            price: 240000,
-            urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-        },
-        {
-            productId: 'dfc12b1a1b222df012c17f2e',
-            productName: "Moonlight boot pride c",
-            price: 240000,
-            urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-        },
-        {
-            productId: '48210b921234e7f31ab4c123',
-            productName: "noonlight boot price d",
-            price: 240000,
-            urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-        }
-        ,
-        {
-            productId: '0ebf3d8a21e23f90212b4f1a',
-            productName: "noonlight boot price d",
-            price: 240000,
-            urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-        }
-    ]
+  [
+    {
+      productId: '63c4a2b8e12f3b1f32d42f9c',
+      productName: "Moonlight boot pride a",
+      price: 240000,
+      urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+    },
+    {
+      productId: '1a789d4f234b021e21e8bffe',
+      productName: "Moonlight boot pride b",
+      price: 240000,
+      urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+    },
+    {
+      productId: 'dfc12b1a1b222df012c17f2e',
+      productName: "Moonlight boot pride c",
+      price: 240000,
+      urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+    },
+    {
+      productId: '48210b921234e7f31ab4c123',
+      productName: "noonlight boot price d",
+      price: 240000,
+      urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+    }
+    ,
+    {
+      productId: '0ebf3d8a21e23f90212b4f1a',
+      productName: "noonlight boot price d",
+      price: 240000,
+      urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+    }
+  ]
 
 export const ListUser = [
   {
@@ -509,121 +539,121 @@ export const ListUser = [
       Post_Archived: [],
     },
 
-        tag_product: [
-            {
-                productId: 1,
-                productName: "Moonlight boot pride a",
-                price: 240000,
-                urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-            },
-            {
-                productId: 2,
-                productName: "Moonlight boot pride b",
-                price: 240000,
-                urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-            },
-            {
-                productId: 3,
-                productName: "Moonlight boot pride c",
-                price: 240000,
-                urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-            },
-            {
-                productId: 4,
-                productName: "noonlight boot price d",
-                price: 240000,
-                urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-            }
-            ,
-            {
-                productId: 4,
-                productName: "noonlight boot price d",
-                price: 240000,
-                urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-            }
-        ]
-    },
-    {
-        id: 2,
-        name: "Canisdang",
-        username: "h_dang",
-        bio: "I'm a web developer",
-        email: "h_dang@gmail.com",
+    tag_product: [
+      {
+        productId: 1,
+        productName: "Moonlight boot pride a",
+        price: 240000,
+        urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+      },
+      {
+        productId: 2,
+        productName: "Moonlight boot pride b",
+        price: 240000,
+        urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+      },
+      {
+        productId: 3,
+        productName: "Moonlight boot pride c",
+        price: 240000,
+        urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+      },
+      {
+        productId: 4,
+        productName: "noonlight boot price d",
+        price: 240000,
+        urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+      }
+      ,
+      {
+        productId: 4,
+        productName: "noonlight boot price d",
+        price: 240000,
+        urlImage: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+      }
+    ]
+  },
+  {
+    id: 2,
+    name: "Canisdang",
+    username: "h_dang",
+    bio: "I'm a web developer",
+    email: "h_dang@gmail.com",
+    urlImage: "https://i.ibb.co/7WW5vVq/p-e92be609f87443d9965a7a698062d6ed.jpg",
+    following: [
+      {
+        id: 1,
+        name: "j__c__y",
+        username: "@j__c__y",
         urlImage: "https://i.ibb.co/7WW5vVq/p-e92be609f87443d9965a7a698062d6ed.jpg",
-        following: [
-            {
-                id: 1,
-                name: "j__c__y",
-                username: "@j__c__y",
-                urlImage: "https://i.ibb.co/7WW5vVq/p-e92be609f87443d9965a7a698062d6ed.jpg",
-                isFollow: false
-            },
-            {
-                id: 2,
-                name: "owl__heun",
-                username: "@owlheun",
-                urlImage: "https://i.ibb.co/wBdwTBr/p-12d2b2e94e624c8d914cb26d768a77a4.webp",
-                isFollow: true
-            },
-            {
-                id: 3,
-                name: "Kanidang",
-                username: "@hdang",
-                urlImage: "https://i.ibb.co/Kr7kqq3/p-95dcd80450ca42ddadf4dbcf323c4ac3.webp",
-                isFollow: true
-            }
-        ],
-        followers: [
-            {
-                id: 1,
-                name: "Kanidang",
-                username: "@hdang",
-                urlImage: "https://i.ibb.co/Kr7kqq3/p-95dcd80450ca42ddadf4dbcf323c4ac3.webp",
-                isFollow: true
-            },
-            {
-                id: 2,
-                name: "owl__heun",
-                username: "@owlheun",
-                urlImage: "https://i.ibb.co/wBdwTBr/p-12d2b2e94e624c8d914cb26d768a77a4.webp",
-                isFollow: true
-            }
-        ],
-        posts: {},
-        tag_product: [
-            {
-                id: 1,
-                name: "Moonlight boot pride a",
-                price: 240000,
-                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-            },
-            {
-                id: 2,
-                name: "Moonlight boot pride b",
-                price: 240000,
-                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-            },
-            {
-                id: 3,
-                name: "Moonlight boot pride c",
-                price: 240000,
-                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-            },
-            {
-                id: 4,
-                name: "noonlight boot price d",
-                price: 240000,
-                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-            }
-            ,
-            {
-                id: 4,
-                name: "noonlight boot price d",
-                price: 240000,
-                url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
-            }
-        ]
-    }
+        isFollow: false
+      },
+      {
+        id: 2,
+        name: "owl__heun",
+        username: "@owlheun",
+        urlImage: "https://i.ibb.co/wBdwTBr/p-12d2b2e94e624c8d914cb26d768a77a4.webp",
+        isFollow: true
+      },
+      {
+        id: 3,
+        name: "Kanidang",
+        username: "@hdang",
+        urlImage: "https://i.ibb.co/Kr7kqq3/p-95dcd80450ca42ddadf4dbcf323c4ac3.webp",
+        isFollow: true
+      }
+    ],
+    followers: [
+      {
+        id: 1,
+        name: "Kanidang",
+        username: "@hdang",
+        urlImage: "https://i.ibb.co/Kr7kqq3/p-95dcd80450ca42ddadf4dbcf323c4ac3.webp",
+        isFollow: true
+      },
+      {
+        id: 2,
+        name: "owl__heun",
+        username: "@owlheun",
+        urlImage: "https://i.ibb.co/wBdwTBr/p-12d2b2e94e624c8d914cb26d768a77a4.webp",
+        isFollow: true
+      }
+    ],
+    posts: {},
+    tag_product: [
+      {
+        id: 1,
+        name: "Moonlight boot pride a",
+        price: 240000,
+        url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+      },
+      {
+        id: 2,
+        name: "Moonlight boot pride b",
+        price: 240000,
+        url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+      },
+      {
+        id: 3,
+        name: "Moonlight boot pride c",
+        price: 240000,
+        url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+      },
+      {
+        id: 4,
+        name: "noonlight boot price d",
+        price: 240000,
+        url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+      }
+      ,
+      {
+        id: 4,
+        name: "noonlight boot price d",
+        price: 240000,
+        url: "https://i.ibb.co/5Txnt03/Rectangle-10-1.png",
+      }
+    ]
+  }
 ]
 export const ForYou = [
   {
