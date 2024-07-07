@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Icon } from "../assets/icon/icons";
 import axios from "axios";
 import Main from "../ultils/container";
+import { API } from "../config";
 export default function SignUp() {
   const [formData, setFormData] = useState({
     email: "",
@@ -78,7 +79,8 @@ export default function SignUp() {
           email: formData.email,
           phone: formData.phone,
           isAcceptMarketing: formData.optionalCheckbox,
-          password: formData.password
+          password: formData.password,
+          productTags: []
         });
         console.log('Sign up successful:', response.data);
         // const { token } = response.data;

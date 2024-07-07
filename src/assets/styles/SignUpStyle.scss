@@ -210,11 +210,11 @@
     line-height: 22px;
     color: var(--Background-color);
     transition: 0.3s ease-in-out;
-    background: var(--Main-color);
-    border: 1px solid var(--Main-color);
+    background: var(--Black-color);
+    border: 1px solid var(--Black-color);
     &:hover {
-     background: var(--Main-color-hover);
-     border: 1px solid var(--Main-color-hover);
+     background: var(--Black-color-hover);
+     border: 1px solid var(--Black-color-hover);
      cursor: pointer;
     }
    &.disabled{

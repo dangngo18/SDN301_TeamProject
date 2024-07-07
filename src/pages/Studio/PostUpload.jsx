@@ -6,7 +6,7 @@ import { Icon } from '../../assets/icon/icons';
 import { Post_Image, Post_Videos, product_tag } from '../../Test/Jsontest';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
-import { ImageUploadAPI } from '../../config';
+import { ImageUploadAPI, API } from '../../config';
 import { useNavigate } from 'react-router-dom';
 import Main from '../../ultils/container';
 

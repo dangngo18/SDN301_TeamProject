@@ -1,23 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ProductCard from '../../components/ProductCard'
 import { Icon } from '../../assets/icon/icons'
-import { PostLoopTab, PostLoopTabLimited } from '../../components/Post_loop'
-import { Post_Image } from '../../Test/Jsontest'
+import { PostLoopTabLimited } from '../../components/Post_loop'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { formatDistanceToNow } from 'date-fns';
 import { SessionContext } from '../../Context'
 import { token } from '../../config'
+import { useNavigate } from 'react-router-dom';
 
 export default function Post({ PostProp, postsRelated }) {
     const Post = PostProp.post;
     const User = PostProp.user;
-    const CurrentUser = useContext(SessionContext);
+    const CurrentUser = useContext(SessionContext) || null;
     const [isFollowed, setIsFollowed] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (CurrentUser.following.includes(User.userId)){
-           setIsFollowed(true);
+        if(CurrentUser){
+            if (CurrentUser.following.includes(User.userId)){
+               setIsFollowed(true);
+            }
         }
     }, [CurrentUser])
 
@@ -33,7 +36,7 @@ export default function Post({ PostProp, postsRelated }) {
         if(result.ok){
             setIsFollowed(!isFollowed);
         }else{
-            console.log("Follow fail");
+            navigate('/login');
         }
     }
 
@@ -84,12 +87,18 @@ export default function Post({ PostProp, postsRelated }) {
                             </div>
                         </div>
                         <div className='blog-title-option'>
-                            {CurrentUser.userId == User.userId ?(
-                                <></>
+                            {CurrentUser ? (<>
+                                { CurrentUser.userId == User.userId ?(
+                                    <></>
+                                ):(
+                                <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(!isFollowed)}>
+                                    {isFollowed ? "Following" : "Follow"}
+                                </button>
+                                )}</>
                             ):(
-                            <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(!isFollowed)}>
-                                {isFollowed ? "Following" : "Follow"}
-                            </button>
+                                <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(!isFollowed)}>
+                                    {isFollowed ? "Following" : "Follow"}
+                                </button>
                             )}
                             <div className='blog-title-dots'>
                                 <span></span><span></span><span></span>

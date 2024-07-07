@@ -2,10 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
 
 :root {
-    --Main-color: #FF385C;
-    --Main-color-hover: #f03558;
+    --Main-color: #e03756;
+    --Main-color-hover: #de2e4f;
     --Background-color: #FFFFFF;
     --Black-color: #161823;
+    --Black-color-hover: #090a0e;
     --Gray-text-color: #6A6A6A;
     --Filter-image: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0.29%, rgba(0, 0, 0, 0.00) 30.11%);
     --Border-color: #D9D9D9;
@@ -124,19 +125,19 @@ textarea {
 .btn_style1 {
     width: 100%;
     padding: 10px 16px;
-    background: var(--Main-color);
+    background: var(--Black-color);
     color: var(--White-text);
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
     line-height: 90%;
     border-radius: 10px;
-    border: 1px solid var(--Main-color);
+    border: 1px solid var(--Black-color);
     transition: 0.3s ease-in-out;
     cursor: pointer;
 
     &:hover {
-        background: var(--Main-color-hover);
+        background: var(--Black-color-hover);
     }
 }
 
@@ -321,7 +322,7 @@ textarea {
 .upload_button {
     padding-right: 14px;
 
-    button {
+    &:not(:has(.blog-title-btn)) button {
         display: flex;
         align-items: center;
         gap: 8px;
@@ -354,6 +355,64 @@ textarea {
         svg {
             width: 12px;
             height: 12px;
+        }
+    }
+    &:has(.blog-title-btn) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        align-self: stretch;
+        .blog-title-btn {
+            display: flex;
+            padding: 10px 20px;
+            align-items: center;
+            border-radius: 10px;
+            background: var(--Title-color, #161823);
+            color: var(--Background-color, #FFF);
+            font-family: 'Roboto';
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            &.followed{
+                background: var(--Background-color-2);
+                color: var(--Black-color);
+                font-weight: 400;
+            }
+        }
+    
+        .blog-title-dots {
+            padding: 14px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            border-radius: 100px;
+            background: var(--Background-color);
+            border: 1px solid var(--Background-color);
+            cursor: pointer;
+            transition: 0.2s ease-in-out;
+    
+            span {
+                width: 3px;
+                height: 3px;
+                display: block;
+                border-radius: 100%;
+                line-height: 100%;
+                background: var(--Gray-text-color);
+                transition: 0.2s ease-in-out;
+    
+            }
+    
+            &:hover {
+                background: var(--Background-color-2);
+                border: 1px solid var(--Background-color-2);
+    
+                span {
+                    background: var(--Black-color);
+                }
+            }
         }
     }
 }

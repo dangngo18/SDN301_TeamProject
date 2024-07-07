@@ -99,7 +99,7 @@ const Login = () => {
                 </ul>
                 <div className="additional_login_select">
                   <button className="additional_login_option" onClick={handleGoogleLogin}>{Icon.Google} Log in with google</button>
-                  <button className="additional_login_option" onClick={handleGoogleLogin}>{Icon.FaceBook} Sign in with facebook</button>
+                  <button className="additional_login_option" onClick={handleGoogleLogin}>{Icon.Facebook} Sign in with facebook</button>
                 </div>
               </form>
             </div>
