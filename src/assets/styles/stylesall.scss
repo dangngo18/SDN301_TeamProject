@@ -357,12 +357,14 @@ textarea {
             height: 12px;
         }
     }
+
     &:has(.blog-title-btn) {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 12px;
         align-self: stretch;
+
         .blog-title-btn {
             display: flex;
             padding: 10px 20px;
@@ -375,13 +377,14 @@ textarea {
             font-style: normal;
             font-weight: 500;
             line-height: normal;
-            &.followed{
+
+            &.followed {
                 background: var(--Background-color-2);
                 color: var(--Black-color);
                 font-weight: 400;
             }
         }
-    
+
         .blog-title-dots {
             padding: 14px 8px;
             display: flex;
@@ -393,7 +396,7 @@ textarea {
             border: 1px solid var(--Background-color);
             cursor: pointer;
             transition: 0.2s ease-in-out;
-    
+
             span {
                 width: 3px;
                 height: 3px;
@@ -402,13 +405,13 @@ textarea {
                 line-height: 100%;
                 background: var(--Gray-text-color);
                 transition: 0.2s ease-in-out;
-    
+
             }
-    
+
             &:hover {
                 background: var(--Background-color-2);
                 border: 1px solid var(--Background-color-2);
-    
+
                 span {
                     background: var(--Black-color);
                 }
@@ -900,7 +903,8 @@ textarea {
             display: flex;
             padding: 32px 0px;
             height: fit-content;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: calc(7.8px * 100% / 1215px);
             align-items: flex-start;
             width: 100%;
             border-bottom: 1px solid #DDD;
@@ -944,6 +948,10 @@ textarea {
                         font-style: normal;
                         font-weight: 400;
                         line-height: normal;
+                        max-width: 100px;
+                        text-wrap: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
                     }
                 }
 

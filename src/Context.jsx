@@ -11,7 +11,8 @@ export function SessionProvider({ children }) {
 
     useEffect(() => {
         const fetchDataUser = async () => {
-            const res = await fetch(`${API}/user/session`, {
+            const res = await fetch(`${API}/user/session?userId=${localStorage.getItem("userId")}`, {
+                method:"GET",
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -23,9 +24,11 @@ export function SessionProvider({ children }) {
             
             setLoading(false);
         }
-        // if (token) {
+        if (token) {
             fetchDataUser();
-        // }
+        }else{
+            setLoading(false);
+        }
     }, [token])
 
     return (

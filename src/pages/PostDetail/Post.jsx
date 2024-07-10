@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import ProductCard from '../../components/ProductCard'
 import { Icon } from '../../assets/icon/icons'
 import { PostLoopTabLimited } from '../../components/Post_loop'
@@ -6,36 +6,28 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { formatDistanceToNow } from 'date-fns';
 import { SessionContext } from '../../Context'
-import { token } from '../../config'
+import { token,API } from '../../config'
 import { useNavigate } from 'react-router-dom';
 
 export default function Post({ PostProp, postsRelated }) {
     const Post = PostProp.post;
     const User = PostProp.user;
     const CurrentUser = useContext(SessionContext) || null;
-    const [isFollowed, setIsFollowed] = useState(false);
+    const [isFollowed, setIsFollowed] = useState(CurrentUser ? CurrentUser.following.some((e) => e.userId == User.userId) : false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if(CurrentUser){
-            if (CurrentUser.following.includes(User.userId)){
-               setIsFollowed(true);
-            }
-        }
-    }, [CurrentUser])
-
     const handleFollow = async (isFollowed) => {
-        const result = await fetch(`http://localhost:8080/user/func/follow/${User.userId}/${isFollowed}`,{
-            method:"PUT",
+        const result = await fetch(`${API}/user/func/follow?userId=${User.userId}&isFollowed=${!isFollowed}`, {
+            method: "PUT",
             headers:
             {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             }
         })
-        if(result.ok){
+        if (result.ok) {
             setIsFollowed(!isFollowed);
-        }else{
+        } else {
             navigate('/login');
         }
     }
@@ -54,14 +46,14 @@ export default function Post({ PostProp, postsRelated }) {
                 modules={[Navigation, Pagination]}
                 navigation={true}
             >{
-                    Post.image.map((image, index) => (
-                        <div key={index}>
+                    Post.image.map((image, i) => (
+                        <Fragment key={i}>
                             <SwiperSlide className='PostSwiperSlide'>
                                 <picture>
                                     <img src={image.urlImage} alt={image.alt} className={image.aspect} />
                                 </picture>
                             </SwiperSlide>
-                        </div >
+                        </Fragment >
                     ))
                 }
             </Swiper>
@@ -88,15 +80,15 @@ export default function Post({ PostProp, postsRelated }) {
                         </div>
                         <div className='blog-title-option'>
                             {CurrentUser ? (<>
-                                { CurrentUser.userId == User.userId ?(
+                                {CurrentUser.userId == User.userId ? (
                                     <></>
-                                ):(
-                                <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(!isFollowed)}>
-                                    {isFollowed ? "Following" : "Follow"}
-                                </button>
+                                ) : (
+                                    <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(isFollowed)}>
+                                        {isFollowed ? "Following" : "Follow"}
+                                    </button>
                                 )}</>
-                            ):(
-                                <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(!isFollowed)}>
+                            ) : (
+                                <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(isFollowed)}>
                                     {isFollowed ? "Following" : "Follow"}
                                 </button>
                             )}
@@ -115,8 +107,10 @@ export default function Post({ PostProp, postsRelated }) {
                             product tag<span> {Post.productTags.length} </span>items
                         </h2>
                         <div className='list-items-content'>
-                            {Post.productTags.map((product) => (
-                                <ProductCard product={product} />
+                            {Post.productTags.map((product, index) => (
+                                <Fragment key={index}>
+                                    <ProductCard product={product} />
+                                </Fragment>
                             ))
                             }
                         </div>

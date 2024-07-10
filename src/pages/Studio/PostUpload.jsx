@@ -6,9 +6,10 @@ import { Icon } from '../../assets/icon/icons';
 import { Post_Image, Post_Videos, product_tag } from '../../Test/Jsontest';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
-import { ImageUploadAPI, API } from '../../config';
+import { API } from '../../config';
 import { useNavigate } from 'react-router-dom';
 import Main from '../../ultils/container';
+import { uploadImagesToImgbb } from '../../components/function';
 
 
 export default function PostUpload() {
@@ -122,47 +123,6 @@ export default function PostUpload() {
     }
     // =================================================== Form prepairing =====================================
 
-    function toBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result.split(',')[1]);
-            reader.onerror = error => reject(error);
-        });
-    }
-
-    async function uploadImagesToImgbb(mediaFiles) {
-        let imagesArray = [];
-        console.log("uploading");
-        for (const media of mediaFiles) {
-            const base64 = await toBase64(media.file);
-            const formData = new FormData();
-            formData.append('image', base64);
-
-            try {
-                const response = await fetch(`https://api.imgbb.com/1/upload?key=${ImageUploadAPI}`, {
-                    method: 'POST',
-                    body: formData
-                });
-                const data = await response.json();
-                if (data.success) {
-                    console.log('Image uploaded successfully:', data);
-                    const imageAfterUpload = {
-                        alt: data.data.title,
-                        urlImage: data.data.display_url,
-                        aspect: data.data.width >= data.data.height ? 'horizontal' : 'vertical'
-                    };
-                    imagesArray.push(imageAfterUpload);
-                } else {
-                    console.error('Error uploading image:', data.error.message);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-        console.log("done");
-        return imagesArray;
-    }
 
     async function postDataToServer(postData) {
         try {
@@ -177,7 +137,7 @@ export default function PostUpload() {
             })
             console.log("Json Data ", JSON.stringify(postData));
             console.log("Response ", response);
-            return await response;
+            return response;
         } catch (err) {
             console.log(err);
         }

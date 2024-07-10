@@ -6,6 +6,7 @@ export const Menu = ["Home", "Style", "Shop"]
 export const ImageUploadAPI = "fedc69815575a27594994dec6f63c535"
 export const token = localStorage.getItem('token');
 export const API = "http://localhost:8080"
+export const LocalWebsite = "http://localhost:5173"
 export const listMenuProfile=
 [
 {

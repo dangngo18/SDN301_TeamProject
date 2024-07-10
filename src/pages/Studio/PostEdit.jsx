@@ -8,7 +8,7 @@ import { Post_Image, Post_Videos, product_tag } from '../../Test/Jsontest';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import Main from '../../ultils/container';
-import { API } from '../../config';
+import { API, token } from '../../config';
 
 
 export default function PostEdit() {
@@ -21,7 +21,6 @@ export default function PostEdit() {
     const [productTags, setProductTags] = useState([]);
     const { postId } = useParams();
     const [isFocused, setIsFocused] = useState(false);
-    const token = localStorage.getItem('token');
     const [post, setPost] = useState({});
     const navigate = useNavigate();
 
@@ -93,34 +92,34 @@ export default function PostEdit() {
     }
     // =================================================== Form prepairing =====================================
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        let flag = false;
-        if (postTitle === '') {
-            flag = true;
-        }
-        if (postMedia.length === 0) {
-            flag = true;
-        }
-        if (postMedia.length > 10) {
-            flag = true;
-        }
-        if (productTags.length === 0) {
-            flag = true;
-        }
-        if (flag) {
-            console.log("error");
-        } else {
-            const postData = {
-                postMedia,
-                postTitle,
-                postDescription,
-                productTags
-            }
-            console.log(postData);
-        }
+    // function handleSubmit(event) {
+    //     event.preventDefault();
+    //     let flag = false;
+    //     if (postTitle === '') {
+    //         flag = true;
+    //     }
+    //     if (postMedia.length === 0) {
+    //         flag = true;
+    //     }
+    //     if (postMedia.length > 10) {
+    //         flag = true;
+    //     }
+    //     if (productTags.length === 0) {
+    //         flag = true;
+    //     }
+    //     if (flag) {
+    //         console.log("error");
+    //     } else {
+    //         const postData = {
+    //             postMedia,
+    //             postTitle,
+    //             postDescription,
+    //             productTags
+    //         }
+    //         console.log(postData);
+    //     }
 
-    }
+    // }
 
     async function handleArchive(bool) {
         confirm("Agree to archive");
@@ -135,7 +134,6 @@ export default function PostEdit() {
                     isVisible: bool
                 })
             })
-            console.log(await response)
         } catch (err) {
             console.log(err);
         }
@@ -253,17 +251,17 @@ export default function PostEdit() {
     async function postDataToServer(postData) {
         try {
 
-            const response = await fetch(`http://localhost:8080/studio/posts/${postId}`, {
+            const response = await fetch(`${API}/studio/posts/${postId}`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(postData)
             })
             console.log("Json Data ", JSON.stringify(postData));
             console.log("Response ", response);
-            return await response;
+            return response;
         } catch (err) {
             console.log(err);
         }

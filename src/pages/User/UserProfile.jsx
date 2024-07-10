@@ -5,56 +5,55 @@ import '../../assets/styles/User.scss'
 import { useParams } from 'react-router-dom'
 import { Nopost, PostMasonryLoop } from '../../components/Post_loop'
 import Main from '../../ultils/container'
-import { API, token } from '../../config'
+import { API, LocalWebsite, token } from '../../config'
 import { SessionContext } from '../../Context'
+import { ModalEdit } from '../../components/user_modal_edit'
 
 export default function UserProfile() {
     const [currentTab, setCurrentTab] = useState(1);
     const [currentFollow, setCurrentFollow] = useState(1);
     const [showFollow, setShowFollow] = useState(false);
-    const [showEdit, setShowEdit] = useState(false);
     const CurrentUser = useContext(SessionContext) || null;
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const { idUser } = useParams();
     const [user, setUser] = useState({});
     const [posts, setPosts] = useState([]);
     const [isFollowed, setIsFollowed] = useState(false);
     const navigate = useNavigate();
+    const [showEdit, setShowEdit] = useState(false);
+
 
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            try {
-                const userResponse = await fetch(`${API}/user/${idUser}`, {
-                    method: "GET"
+        let mounted = false
+        if(!mounted){
+            const fetchData = async () => {
+                try {
+                    const userResponse = await fetch(`${API}/user/${idUser}`, {
+                        method: "GET"
+                    }
+                    );
+                    const postsResponse = await fetch(`${API}/style/posts/user?userId=${idUser}`, {
+                        method: "GET"
+                    });
+                    const data1 = await userResponse.json();
+                    const data2 = await postsResponse.json();
+                    if (data1 && data2) {
+                        setUser(data1);
+                        setPosts(data2);
+                        setIsFollowed(CurrentUser.following.some((e) => e.userId == data1.userId));
+                        setIsLoading(false);
+                    }
+                } catch (err) {
+                    console.error(err);
                 }
-                );
-                const postsResponse = await fetch(`${API}/style/posts/user/${idUser}`, {
-                    method: "GET"
-                });
-                const data1 = await userResponse.json();
-                const data2 = await postsResponse.json();
-                if (data1 && data2) {
-                    setUser(data1);
-                    setPosts(data2);
-                    setIsLoading(false);
-                }
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        fetchData();
-    }, []);
-    useEffect(() => {
-        if (CurrentUser) {
-            if (CurrentUser.following.includes(user.userId)) {
-                setIsFollowed(true);
-            }
+            };
+            fetchData();
         }
-    }, [CurrentUser])
+        return () => mounted = true;
+    }, []);
 
-    const handleFollow = async (isFollowed) => {
-        const result = await fetch(`http://localhost:8080/user/func/follow/${user.userId}/${isFollowed}`, {
+    const handleFollow = async (isFollowed, userId) => {
+        const result = await fetch(`${API}/user/func/follow?userId=${userId}&isFollowed=${!isFollowed}`, {
             method: "PUT",
             headers:
             {
@@ -64,7 +63,8 @@ export default function UserProfile() {
         })
         if (result.ok) {
             setIsFollowed(!isFollowed);
-        } else {
+        } 
+        if(result.status == 401){
             navigate('/login');
         }
     }
@@ -115,8 +115,6 @@ export default function UserProfile() {
     };
 
     function ModalFollow() {
-
-
         const tabItems = [
             {
                 id: 1,
@@ -129,6 +127,12 @@ export default function UserProfile() {
                 content: user.followers || []
             }
         ];
+
+        const handleReload = (e, userId) => {
+            e.preventDefault();
+            navigate(`/user/profile/${userId}`);
+            window.location.reload();
+        };
 
         const handleTab = (e) => {
             setCurrentFollow(parseInt(e.target.id, 10));
@@ -166,7 +170,7 @@ export default function UserProfile() {
                                                     tab.content.map((item, index) => {
                                                         return (
                                                             <div className="follow_item" key={index}>
-                                                                <Link className='follow_item_link' to={`/user/profile/${item.userId}`}>
+                                                                <Link className='follow_item_link' to={`/user/profile/${item.userId}`} onClick={() => handleReload(item.userId)}>
                                                                     <div className="follow_item_avatar">
                                                                         <img src={item.urlImage} alt="Avatar" />
                                                                     </div>
@@ -175,9 +179,12 @@ export default function UserProfile() {
                                                                         <p className="follow_item_info_username">{item.username}</p>
                                                                     </div>
                                                                 </Link>
-                                                                <button className={`follow_item_btn ${item.isFollow ? "followed" : ""}`}>
-                                                                    {item.isFollow ? "Following" : "Follow back"}
-                                                                </button>
+                                                                {CurrentUser.userId == user.userId &&
+                                                                    (
+                                                                        <button className={`follow_item_btn ${item.isFollow ? "followed" : ""}`} onClick={() => handleFollow(item.isFollow, item.userId)}>
+                                                                            {item.isFollow ? "Following" : "Follow back"}
+                                                                        </button>
+                                                                    )}
                                                             </div>
                                                         )
                                                     })
@@ -196,114 +203,7 @@ export default function UserProfile() {
         )
 
     }
-    if (CurrentUser && CurrentUser.userId == user.userId) {
 
-        function ModalEdit() {
-
-            const [imageEdit, setImageEdit] = useState(user.urlImage);
-            const [usernameEdit, setUsernameEdit] = useState(user.username);
-            const [nameEdit, setNameEdit] = useState(user.profileName);
-            const [bioEdit, setBioEdit] = useState(user.bio || "");
-
-            const [isEditDisable, setIsEditDisable] = useState(true);
-
-
-
-            const maxChars = 255;
-
-            const handleTextArea = (event) => {
-                const inputText = event.target.value;
-                if (inputText.length <= maxChars) {
-                    setBioEdit(inputText);
-                } else {
-                    setBioEdit(inputText.substring(0, maxChars));
-                }
-            };
-
-            return (
-                <>
-                    <div id='edit-modal' className={`edit_layout ${showEdit ? "show" : ""}`}>
-                        <div className="edit_container">
-                            <form className="edit_wrapper">
-                                <div className="edit_header">
-                                    <h3 className="edit_header_title">
-                                        Edit profile
-                                    </h3>
-                                    <button className="closeModal" type='button' onClick={(e) => { setShowEdit(false); document.body.style.overflow = "auto"; }}>{Icon.Remove}</button>
-
-                                </div>
-                                <div className="edit_form">
-                                    {/* ================ row 1 ========================= */}
-                                    <div className="edit_form_row">
-                                        <div className="edit_form_col_1">
-                                            <h3>Profile photo</h3>
-                                        </div>
-                                        <div className="edit_form_col_2">
-                                            <div className="edit_form_col_2_image">
-                                                <img src={imageEdit} alt="Avatar" />
-                                                <button type='button' className="image_edit_btn">
-                                                    {Icon.EditImage}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div className="edit_form_col_1"></div>
-                                    </div>
-                                    {/* ================ row 2 ========================= */}
-                                    <div className="edit_form_row">
-                                        <div className="edit_form_col_1">
-                                            <h3>Username</h3>
-                                        </div>
-                                        <div className="edit_form_col_2">
-                                            <input type="text" name="username" placeholder='e.g. johndoe' onChange={(e) => { setUsernameEdit(e.target.value) }} value={usernameEdit} />
-                                            <p className='edit_form_col_2_url'>www.sufy.com/@{usernameEdit}</p>
-                                            <p className="edit_form_col_2_note">
-                                                Usernames can only contain letters, numbers, underscores, and
-                                                periods. Changing your username will also change your profile link.
-                                            </p>
-                                        </div>
-                                        <div className="edit_form_col_1"></div>
-                                    </div>
-                                    {/* ================ row 3 ========================= */}
-                                    <div className="edit_form_row">
-                                        <div className="edit_form_col_1">
-                                            <h3>Name</h3>
-                                        </div>
-                                        <div className="edit_form_col_2">
-                                            <input type="text" name="name" placeholder='e.g. John Doe' onChange={(e) => setNameEdit(e.target.value)} value={nameEdit} />
-                                            <p className="edit_form_col_2_note">
-                                                Your nickname can only be changed once every 7 days.
-                                            </p>
-                                        </div>
-                                        <div className="edit_form_col_1"></div>
-                                    </div>
-                                    {/* ================ row 4 ========================= */}
-                                    <div className="edit_form_row">
-                                        <div className="edit_form_col_1">
-                                            <h3>Bio</h3>
-                                        </div>
-                                        <div className="edit_form_col_2">
-                                            <textarea rows={5} cols={51} name="bio" placeholder='e.g. I love to travel' onChange={handleTextArea} value={bioEdit}></textarea>
-                                            <p className="edit_form_col_2_note">
-                                                {bioEdit.length}/{maxChars}
-                                            </p>
-                                        </div>
-                                        <div className="edit_form_col_1"></div>
-                                    </div>
-
-                                </div>
-                                <div className="edit_action_btn">
-                                    <button type="button" className='btn_cancel' onClick={() => { setShowEdit(false); document.body.style.overflow = "auto"; }}>Cancel</button>
-                                    <button type="submit" className={`btn_submit ${isEditDisable && "disabled"}`} disabled={isEditDisable}>Save</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div className="edit_bg" onClick={() => { setShowEdit(false); document.body.style.overflow = "auto"; }}></div>
-                    </div>
-                </>
-            )
-
-        }
-    }
     return (
         <>
             <Main>
@@ -328,7 +228,7 @@ export default function UserProfile() {
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(!isFollowed)}>
+                                                            <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(isFollowed, user.userId)}>
                                                                 {isFollowed ? "Following" : "Follow"}
                                                             </button>
                                                             <div className='blog-title-dots'>
@@ -338,7 +238,7 @@ export default function UserProfile() {
                                                     )}</>
                                                 ) : (
                                                     <>
-                                                        <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(!isFollowed)}>
+                                                        <button type='button' className={`blog-title-btn ${isFollowed ? 'followed' : ''}`} onClick={() => handleFollow(isFollowed, user.userId)}>
                                                             {isFollowed ? "Following" : "Follow"}
                                                         </button>
                                                         <div className='blog-title-dots'>
@@ -406,7 +306,7 @@ export default function UserProfile() {
                     </div>
                 </main>
                 <ModalFollow />
-                {CurrentUser && <ModalEdit />}
+                {CurrentUser && <ModalEdit user={user} showEdit={showEdit} setShowEdit={setShowEdit}/>}
             </Main>
         </>
     )

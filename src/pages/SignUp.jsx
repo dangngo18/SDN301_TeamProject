@@ -79,8 +79,7 @@ export default function SignUp() {
           email: formData.email,
           phone: formData.phone,
           isAcceptMarketing: formData.optionalCheckbox,
-          password: formData.password,
-          productTags: []
+          password: formData.password
         });
         console.log('Sign up successful:', response.data);
         // const { token } = response.data;

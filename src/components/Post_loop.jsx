@@ -86,9 +86,9 @@ export function PostFeatureStoryLoop({ Posts }) {
 }
 
 export function PostLoopTabLimited({ Posts }) {
-  return Posts.map((post, index) => {
+  return Posts.map((post, inde) => {
     return (
-      <div key={index} className="Post_card1">
+      <div key={inde} className="Post_card1">
         <a href={`/style/post/${post.postId}`}>
           <div className="Post_card1_img">
             <picture>
