@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { HeaderforStudio } from '../../components/Header'
 import 'swiper/css/free-mode';
@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import Main from '../../ultils/container';
 import { API, token } from '../../config';
+import { SessionContext } from '../../Context';
 
 
 export default function PostEdit() {
@@ -23,6 +24,7 @@ export default function PostEdit() {
     const [isFocused, setIsFocused] = useState(false);
     const [post, setPost] = useState({});
     const navigate = useNavigate();
+    const user = useContext(SessionContext);
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -34,6 +36,10 @@ export default function PostEdit() {
                     "Authorization": `Bearer ${token}`,
                 }
             });
+            if (response.status == 401) {
+                window.localStorage.clear();
+                window.location.href = "/login"
+            }
             const data = await response.json();
             setPost(data);
             if (response.ok) {
@@ -365,23 +371,23 @@ export default function PostEdit() {
                                 <div className="post_right_profile">
                                     <div className="post_right_profile_info">
                                         <picture className="post_right_profile-img">
-                                            <img src="../../img/Bloons 6のTwitterイラスト検索結果。.png" alt="" />
+                                            <img src={user.urlImage} alt="" />
                                         </picture>
-                                        <span className='post_right_profile-name'>@hdang_n</span>
+                                        <span className='post_right_profile-name'>@{user.username}</span>
                                     </div>
                                     <div className="post_right_profile_dashboard">
                                         <div className="profile_dashboard_item">
                                             Following
-                                            <span>166</span>
+                                            <span>{user.following.length}</span>
                                         </div>
                                         <div className="profile_dashboard_item">
                                             Followers
-                                            <span>2,904</span>
+                                            <span>{user.followers.length}</span>
                                         </div>
-                                        <div className="profile_dashboard_item">
+                                        {/* <div className="profile_dashboard_item">
                                             Posts
                                             <span>{Post_Image.length + Post_Videos.length}</span>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="post_right_profile">

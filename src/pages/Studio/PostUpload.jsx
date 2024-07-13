@@ -1,15 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { HeaderforStudio } from '../../components/Header'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import 'swiper/css/free-mode';
 import "../../assets/styles/postManage.scss"
 import { Icon } from '../../assets/icon/icons';
-import { Post_Image, Post_Videos, product_tag } from '../../Test/Jsontest';
+import { product_tag } from '../../Test/Jsontest';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
-import { API } from '../../config';
+import { API, token } from '../../config';
 import { useNavigate } from 'react-router-dom';
 import Main from '../../ultils/container';
 import { uploadImagesToImgbb } from '../../components/function';
+import { SessionContext } from '../../Context';
 
 
 export default function PostUpload() {
@@ -20,9 +20,9 @@ export default function PostUpload() {
     const [postDescription, setPostDescription] = useState('');
     const [searchInput, setSearchInput] = useState('');
     const [productTags, setProductTags] = useState([]);
-    // const [urlVideo, setUrlVideo] = useState('');
     const [isFocused, setIsFocused] = useState(false);
     const navigate = useNavigate();
+    const user = useContext(SessionContext);
 
     useEffect(() => {
         if (postMedia.length > 0 && postTitle.length > 0) {
@@ -125,22 +125,26 @@ export default function PostUpload() {
 
 
     async function postDataToServer(postData) {
-        try {
+        let mounted = false;
+        if (!mounted) {
+            try {
 
-            const response = await fetch(`${API}/studio/upload`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(postData)
-            })
-            console.log("Json Data ", JSON.stringify(postData));
-            console.log("Response ", response);
-            return response;
-        } catch (err) {
-            console.log(err);
+                const response = await fetch(`${API}/studio/upload`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(postData)
+                })
+                console.log("Json Data ", JSON.stringify(postData));
+                console.log("Response ", response);
+                return response;
+            } catch (err) {
+                console.log(err);
+            }
         }
+        return () => mounted = true;
     }
 
     async function handleSubmit(event) {
@@ -379,23 +383,23 @@ export default function PostUpload() {
                                 <div className="post_right_profile">
                                     <div className="post_right_profile_info">
                                         <picture className="post_right_profile-img">
-                                            <img src="../../img/Bloons 6のTwitterイラスト検索結果。.png" alt="" />
+                                            <img src={user.urlImage} alt="" />
                                         </picture>
-                                        <span className='post_right_profile-name'>@hdang_n</span>
+                                        <span className='post_right_profile-name'>@{user.username}</span>
                                     </div>
                                     <div className="post_right_profile_dashboard">
                                         <div className="profile_dashboard_item">
                                             Following
-                                            <span>166</span>
+                                            <span>{user.following.length}</span>
                                         </div>
                                         <div className="profile_dashboard_item">
                                             Followers
-                                            <span>2,904</span>
+                                            <span>{user.followers.length}</span>
                                         </div>
-                                        <div className="profile_dashboard_item">
+                                        {/* <div className="profile_dashboard_item">
                                             Posts
-                                            <span>{Post_Image.length + Post_Videos.length}</span>
-                                        </div>
+                                            <span>{}</span>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="post_right_btn_action">

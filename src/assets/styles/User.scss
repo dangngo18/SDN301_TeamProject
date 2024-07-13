@@ -15,7 +15,7 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    min-height: 844px;
+    // min-height: 844px;
     flex: 1 0 0;
     align-self: stretch;
     background: var(--Background-color);
@@ -92,6 +92,11 @@
 
         &_wrapper {
             height: 100%;
+            .post_left_body_macy{
+                .nopost_container{
+                    height: 50vh;
+                }
+            }
         }
     }
 }
@@ -119,6 +124,7 @@
             img {
                 width: 100%;
                 height: 100%;
+                object-fit: contain;
             }
         }
 
@@ -507,11 +513,13 @@
                             position: relative;
                             padding-left: 33.114%;
                             width: fit-content;
+                        
 
                             img {
                                 width: 96px;
                                 height: 96px;
                                 border-radius: 100px;
+                                object-fit: contain;
                             }
 
                             .image_edit_btn {
@@ -730,6 +738,7 @@
                             width: 26px;
                             height: 26px;
                             border-radius: 100px;
+                            object-fit: contain;
                         }
                     }
 

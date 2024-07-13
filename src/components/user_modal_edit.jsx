@@ -167,8 +167,10 @@ export function ModalEdit({ user, showEdit, setShowEdit }) {
             })
 
             if (res.status == 401) {
-                navigate('/login');
-            } else if (res.status == 200) {
+                window.localStorage.clear();
+                window.location.href = "/login"
+            }
+            if (res.status == 200) {
                 window.location.reload();
             }
         }

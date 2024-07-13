@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { formatDistanceToNow } from 'date-fns';
 import { SessionContext } from '../../Context'
-import { token,API } from '../../config'
+import { token, API } from '../../config'
 import { useNavigate } from 'react-router-dom';
 
 export default function Post({ PostProp, postsRelated }) {
@@ -25,10 +25,12 @@ export default function Post({ PostProp, postsRelated }) {
                 "Authorization": `Bearer ${token}`
             }
         })
+        if (result.status == 401) {
+            window.localStorage.clear();
+            window.location.href = "/login"
+        }
         if (result.ok) {
             setIsFollowed(!isFollowed);
-        } else {
-            navigate('/login');
         }
     }
 

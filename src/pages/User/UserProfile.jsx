@@ -25,7 +25,7 @@ export default function UserProfile() {
 
     useEffect(() => {
         let mounted = false
-        if(!mounted){
+        if (!mounted) {
             const fetchData = async () => {
                 try {
                     const userResponse = await fetch(`${API}/user/${idUser}`, {
@@ -43,6 +43,7 @@ export default function UserProfile() {
                         setIsFollowed(CurrentUser.following.some((e) => e.userId == data1.userId));
                         setIsLoading(false);
                     }
+
                 } catch (err) {
                     console.error(err);
                 }
@@ -61,11 +62,13 @@ export default function UserProfile() {
                 "Authorization": `Bearer ${token}`
             }
         })
-        if (result.ok) {
+        if (result.status == 401) {
+            window.localStorage.clear();
+            window.location.href = "/login";
+        }
+        if (result.status == 200) {
             setIsFollowed(!isFollowed);
-        } 
-        if(result.status == 401){
-            navigate('/login');
+            console.log(!isFollowed)
         }
     }
 
@@ -285,7 +288,7 @@ export default function UserProfile() {
                                                         {tabItem.map((tab, i) => {
                                                             return (
                                                                 <div className="post_left_body_macy" id='body-macy' key={i}>
-                                                                    {currentTab === tab.id && (tab.content
+                                                                    {currentTab === tab.id && (tab.content.length > 0
                                                                         ?
                                                                         <>
                                                                             <PostMasonryLoop Posts={tab.content} User={user} />
@@ -306,7 +309,7 @@ export default function UserProfile() {
                     </div>
                 </main>
                 <ModalFollow />
-                {CurrentUser && <ModalEdit user={user} showEdit={showEdit} setShowEdit={setShowEdit}/>}
+                {CurrentUser && <ModalEdit user={user} showEdit={showEdit} setShowEdit={setShowEdit} />}
             </Main>
         </>
     )

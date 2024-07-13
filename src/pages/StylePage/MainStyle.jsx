@@ -16,11 +16,11 @@ export default function MainStyle() {
     {
       filterid: 1,
       title: "popular",
-      function: "",
+      function: 1,
     }, {
       filterid: 2,
       title: "newest",
-      function: "",
+      function: 2,
     }
   ]
 

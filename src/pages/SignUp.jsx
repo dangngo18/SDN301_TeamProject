@@ -81,9 +81,11 @@ export default function SignUp() {
           isAcceptMarketing: formData.optionalCheckbox,
           password: formData.password
         });
-        console.log('Sign up successful:', response.data);
-        // const { token } = response.data;
-        // localStorage.setItem('token', token);
+        if(response.status == 200){
+          window.location.href = "/login"
+        }else{
+          alert('opp. we get some error please try again')
+        }
       } catch (error) {
         console.error('singup failed:', error.response ? error.response.data : error.message);
       }

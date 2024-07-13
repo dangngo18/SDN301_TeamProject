@@ -54,6 +54,7 @@ const Login = () => {
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId);
         navigate('/');
+        window.location.reload();
       } catch (error) {
         console.error('Login failed:', error.response ? error.response.data : error.message);
       }

@@ -2,13 +2,12 @@ import React from 'react'
 import { Icon } from '../assets/icon/icons'
 import { listMenuProfile } from '../config'
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 export function MenuProfile() {
-    const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.clear();
-        navigate('/login');
+            window.localStorage.clear();
+            window.location.href = "/login"
     }
     return (
         <>
