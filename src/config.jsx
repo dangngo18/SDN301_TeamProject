@@ -42,7 +42,10 @@ export const listMenuProfile=
     icon: Icon.Night
 },
 ]
-export const Mainstyle_tabbar_Item =
+if(token){
+  
+}
+export const Mainstyle_tabbar_Item = token ?
 [
     {
       id:1,  
@@ -87,4 +90,37 @@ export const Mainstyle_tabbar_Item =
       icon: Icon.Accessory
     },
     
+]:
+[
+  {
+    id:1,  
+    title:"For you",
+    function:1,
+    icon: Icon.Home
+  },
+  {
+    id:4,  
+    title:"Trending",
+    function:4,
+    icon: Icon.Trending
+  },
+  {
+    id:5,  
+    title:"Clothes",
+    function:5,
+    icon: Icon.Clothes
+  },
+  {
+    id:6,  
+    title:"Bag",
+    function:6,
+    icon: Icon.Bag
+  },
+  {
+    id:7,  
+    title:"Accessory",
+    function:7,
+    icon: Icon.Accessory
+  },
+  
 ]

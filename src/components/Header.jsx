@@ -117,8 +117,8 @@ export function HeaderforStyle() {
         <MenuProfile />
       </div>
       <div className='logo'>
-        {/* <Link to='/'><img src={Logo} alt="logo" /></Link> */}
-        <Link to='/'><img src={'../../img/z5611699710319_1530d107aea12722e94eb60c14d564c9.jpg'} alt="logo" /></Link>
+        <Link to='/'><img src={Logo} alt="logo" /></Link>
+        {/* <Link to='/'><img src={'../../img/z5611699710319_1530d107aea12722e94eb60c14d564c9.jpg'} alt="logo" /></Link> */}
       </div>
       <div className='HeaderSearchBox'>
         <input className='SearchBox' type="text" value={search} onChange={handleInputSearch} placeholder='Search your product...' />

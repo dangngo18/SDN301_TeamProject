@@ -51,7 +51,7 @@ export default function UserProfile() {
             fetchData();
         }
         return () => mounted = true;
-    }, []);
+    }, [idUser]);
 
     const handleFollow = async (isFollowed, userId) => {
         const result = await fetch(`${API}/user/func/follow?userId=${userId}&isFollowed=${!isFollowed}`, {
@@ -134,7 +134,6 @@ export default function UserProfile() {
         const handleReload = (e, userId) => {
             e.preventDefault();
             navigate(`/user/profile/${userId}`);
-            window.location.reload();
         };
 
         const handleTab = (e) => {
@@ -184,7 +183,7 @@ export default function UserProfile() {
                                                                 </Link>
                                                                 {CurrentUser.userId == user.userId &&
                                                                     (
-                                                                        <button className={`follow_item_btn ${item.isFollow ? "followed" : ""}`} onClick={() => handleFollow(item.isFollow, item.userId)}>
+                                                                        <button className={`follow_item_btn ${item.isFollow ? "followed" : ""}`} onClick={(e) => {handleFollow(item.isFollow, item.userId);window.location.reload();}}>
                                                                             {item.isFollow ? "Following" : "Follow back"}
                                                                         </button>
                                                                     )}

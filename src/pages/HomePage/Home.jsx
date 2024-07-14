@@ -223,12 +223,13 @@ export default function Home() {
             <section className='medialist '>
                 <MediaList media={media} />
             </section>
-            <section className='productlist-2'>
-                <Productlist2 products={products} />
-            </section>
             <section className='productlist-3'>
                 <ProductList3 products={products} />
             </section>
+            <section className='productlist-2'>
+                <Productlist2 products={products} />
+            </section>
+            
         </Main>
     );
 }
