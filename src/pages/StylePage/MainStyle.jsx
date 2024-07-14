@@ -58,7 +58,6 @@ export default function MainStyle() {
   const getFilteredPosts = useMemo(() => {
     if (currentFilter === 1) {
       return [...MansoryPost]
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .sort((a, b) => (b.viewNumber + b.likeList) - (a.viewNumber + a.likeList));;
     } else if (currentFilter === 2) {
       return [...MansoryPost].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));

@@ -14,6 +14,7 @@ export default function Post({ PostProp, postsRelated }) {
     const User = PostProp.user;
     const CurrentUser = useContext(SessionContext) || null;
     const [isFollowed, setIsFollowed] = useState(CurrentUser ? CurrentUser.following.some((e) => e.userId == User.userId) : false);
+    const [isLiked, setIsLiked] = useState(CurrentUser ? Post.likeList.some((e) => e.userId == CurrentUser.userId) : false);
     const navigate = useNavigate();
 
     const handleFollow = async (isFollowed) => {
@@ -61,7 +62,25 @@ export default function Post({ PostProp, postsRelated }) {
             </Swiper>
         )
     }
-
+    const handleLike = async () => {
+        const result = await fetch(`${API}/style/posts/${Post.postId}/like-action`,
+            {
+                method: "PUT",
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+        if (result.status == 401) {
+            window.localStorage.clear();
+            window.location.href = "/login"
+        }
+        if (result.ok) {
+            setIsLiked(!isLiked);
+            document.querySelector(`.like-action-content`).innerText = Post.likeList.length + (isLiked ? -1 : 1);
+        }
+    }
     return (
         <div className='blog-container container'>
             <div className='blog-wrapper'>
@@ -127,12 +146,12 @@ export default function Post({ PostProp, postsRelated }) {
                     <div className='post-action'>
                         <div className='like bounce-out'>
                             <label className="container-heart">
-                                <input type="checkbox" />
+                                <input type="checkbox" onChange={() => handleLike()} checked={isLiked} />
                                 <div className="checkmark">
                                     {Icon.Like}
                                 </div>
                             </label>
-                            <span className='number'>
+                            <span className='number like-action-content'>
                                 {Post.likeList.length > 0 ? Post.likeList.length : 'Like'}
                             </span>
                         </div>

@@ -16,12 +16,12 @@ export default function PostDetail() {
   // const User = useContext(SessionContext);
 
   useEffect(() => {
-      const abortController = new AbortController();
+    let mounted = false;
+    if (!mounted) {
       const fetchPost = async () => {
         try {
           const res = await fetch(`${API}/style/posts/${postId}`, {
             method: 'GET',
-            signal: abortController.signal
           });
           const data = await res.json();
           if (data) {
@@ -39,11 +39,9 @@ export default function PostDetail() {
           console.log(err);
         }
       };
-  
       fetchPost();
-      return () => {
-        abortController.abort()
-      }
+    }
+    return () => mounted = true;
   }, []); // Đảm bảo effect chạy lại khi postId thay đổi
 
   return (
